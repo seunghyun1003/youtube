@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load socialaccount %}
+{% providers_media_js %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href=" {% static "css/mychannel-light-theme.css" %}" id="mychanneltheme"  class="theme-link"/>
+    <script>
+        function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+<section class="wrap2">
+    <button id=reload_btn onclick="location.reload();"><i class="fas fa-redo-alt"></i></button>
+    <div class="mychannel_info" id="mychannel_info">
+        
+        <div class="my_imgBox">
+            {% for account in user.socialaccount_set.all %}
+            <img class="my_img" src="{{ account.get_avatar_url }}" style="width:39px; margin-right:30px; border-radius: 4em;"/></img>
+            <div class="my_info">
+                <li><span id="user_Name">"{{ account.extra_data.name }}"님</span></li>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="tab" id="tab">
+            <button class="tablinks active" onclick="openTab(event, 'home')">업로드</button>
+            <button class="tablinks" onclick="openTab(event, 'filelist')">파일목록</button>
+        </div>
+    </div>
+    <div class="items" id="items">
+        <div id="home" class="tabcontent">
+            <div class="home-1">동영상을 저장하고 <br>파일 목록에서 확인해보세요.</div>
+            <div class="home-2">
+                <label for="fileupload_btn">파일 선택</label>
+                <input id="fileupload_btn" type="file" accept="video/*"/>
+            </div>
+            <div id="input_file">선택된 파일 없음.</div>
+            <div class="home-3"><button id="saveFile_btn" type="submit" title="파일을 DB에 저장">파일 저장</button></div>
+        </div>
+        <div id="filelist" class="tabcontent">
+            <div id="filelist-list"></div>
+        </div>
+    </div>
+    
+</section>
+{% endblock content %}

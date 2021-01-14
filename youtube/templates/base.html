@@ -1,0 +1,70 @@
+
+{% load socialaccount %}
+{% providers_media_js %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="#">
+    <script 
+      src="https://kit.fontawesome.com/2d323a629b.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script type="text/javascript" src="static/js/main.js" defer></script>
+    <meta name="google-signin-client_id" content="1078613595194-6m5joili5sqbd6doss9v3eg798564uaf.apps.googleusercontent.com">
+    {% block extrahead %}
+    {% endblock %}
+    <title>youtube video</title>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="menu">
+            <button id="menu_btn" onclick="ToggleSidebar()"><i class="fas fa-bars"></i></button>
+            <div class="logo">
+                <button id="logo_title" class="logo_title" onClick="window.location.href = '/index'">
+                    <i class="fab fa-youtube"></i>YOUTUBE
+                </button>
+            </div>
+            <nav class="menu_box" id="menu_box" onclick="ToggleSidebar()">
+                <ul id="menu_list">
+                    <li><button onclick="window.location.href = '/top'">인기</button></li>
+                    <li><button onclick="window.location.href = '/'">다른 메뉴</button></li>
+                </ul>
+            </nav>
+        </div> 
+        <div class="nav">
+            <button class="search_btn" id="search_btn" onclick="window.location.href = '/search'"><i class="fas fa-search"></i></button>
+            <button class="settings_btn" id="dropbtn" onclick="DropDownSetting()"><i class="fas fa-users-cog"></i></button>
+            <div id="myDropdown" class="dropdown-content">
+                <ul>
+                    
+                    {% if user.is_authenticated %} 
+                    {% for account in user.socialaccount_set.all %}
+                    <li style="line-height:30px;">
+                        <img class="user_img" src="{{ account.get_avatar_url }}" style="width:30px; margin: 0px 0px 0px 15px; border-radius: 4em;"/>
+                        <span id="user_name" style="vertical-align: middle; padding: 0;line-height:30px;height: 30px;">"{{ account.extra_data.name }}"님</span>
+                    </li>
+                    <li><a href = "/accounts/logout">Sign Out</a></li>
+                    {% endfor %}
+                    {% else %}
+                    
+                    <li><a href=" {% provider_login_url "google" %}">Google Sign in</a></li>
+                    {% endif %}
+                </ul>
+                <ul>
+                    <li><button id="darkmode_btn" onclick="ToggleTheme()">토글 버튼</button></li>
+                    <li><button onclick="window.location.href = '/mychannel'" id="mychannel_link" >내 채널</button></li>
+                    <li><a href="/who">내 정보</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    {% block content %}{% endblock content %}
+</body>
+</html>

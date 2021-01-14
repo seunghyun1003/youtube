@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href=" {% static "css/search-light-theme.css" %}" id="searchtheme"  class="theme-link"/>
+    <script type="text/javascript" src="static/js/search.js"></script>   
+{% endblock %}
+
+{% block content %}
+<section class="wrap3">
+    <div class="search_form_section">
+        <form id = "search_form" class="search_form"> 
+            <input id="keyword" class="keyword" type=text name=q maxlength=255 value="" placeholder="검색" />             
+            <button tag="icons" class="search_submitbtn"/><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+    <div>
+        <div id="input-wrapper">
+            <input type="text" id="ytinput" placeholder="주소를 입력해주세요">
+            <a class="button">Export</a>
+        </div>
+        <div id="result-wrapper" style="display:none">
+        <div class="ytdwnld"></div>
+        <div class="ytpreveal">
+            <div class="ytpreveal-img"></div>
+        </div>
+    </div>
+    <div id="search-list"></div>
+</section>
+{% endblock content %}

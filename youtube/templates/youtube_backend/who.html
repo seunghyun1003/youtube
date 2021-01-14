@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% load socialaccount %}
+
+{% block extrahead %}
+    <link rel="stylesheet" id="maintheme"  class="theme-link"/>
+
+{% endblock %}
+
+{% block content %}
+<div style="position: fixed; top: 55px; left:0px; padding:3% 3% 0 3%;">
+    {% if user.is_authenticated %} 
+    <h2>Login Success!</h2>
+    {% for account in user.socialaccount_set.all %}
+    <p><img src="{{ account.get_avatar_url }}"/></p>
+
+    <p>UID: <a href="{{ account.extra_data.link }}">{{ account.uid }}</a></p>
+
+    <p>email: {{ account.extra_data.email }}</p>
+    <p>Name: {{ account.extra_data.name }}</p>
+    {% endfor %}
+    {% else %}
+    <h2>로그인이 필요합니다.</h2>
+    <li><a href=" {% provider_login_url "google" %}">Google Sign in</a></li>
+    {% endif %}
+</div>
+{% endblock content %}
