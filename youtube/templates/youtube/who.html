@@ -4,24 +4,31 @@
 
 {% block extrahead %}
     <link rel="stylesheet" id="maintheme"  class="theme-link"/>
-
 {% endblock %}
 
 {% block content %}
-<div style="position: fixed; top: 55px; left:0px; padding:3% 3% 0 3%;">
+<div class="wrap" style="position: fixed; top: 55px; left:0px; padding:3% 3% 0 3%;">
     {% if user.is_authenticated %} 
-    <h2>Login Success!</h2>
+    <h2 class="loginsuc">Login Success!</h2>
+
     {% for account in user.socialaccount_set.all %}
-    <p><img src="{{ account.get_avatar_url }}"/></p>
-
-    <p>UID: <a href="{{ account.extra_data.link }}">{{ account.uid }}</a></p>
-
-    <p>email: {{ account.extra_data.email }}</p>
-    <p>Name: {{ account.extra_data.name }}</p>
+    <p style="padding-top: 20px;"><img src="{{ account.get_avatar_url }}"/></p>
+    <div class="userinfo" style="padding-top: 20px;">
+        <p>UserName: {{ account.extra_data.name }}</p>
+        <p>UID: <a href="{{ account.extra_data.link }}">{{ account.uid }}</a></p>
+        <p>email: {{ account.extra_data.email }}</p>
+    </div>
+    <div style="position: fixed; bottom:30px;">
+        <li style="padding-bottom:10px;">
+            <a href = "/logout">Sign Out</a>
+        </li>
+        <li><a href="https://www.google.com/accounts/logout">구글에서 완전히 로그아웃</li>
+    </div>
     {% endfor %}
+
     {% else %}
     <h2>로그인이 필요합니다.</h2>
-    <li><a href=" {% provider_login_url "google" %}">Google Sign in</a></li>
+    <li></li><a href=" {% provider_login_url "google" %}">Google Sign in</a></li>
     {% endif %}
 </div>
 {% endblock content %}

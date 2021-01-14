@@ -1,21 +1,20 @@
-var auth = firebase.auth();
-var provider = new firebase.auth.GoogleAuthProvider();
+
+
+var firebaseConfig = {
+    apiKey: "AIzaSyAzldBsf96FUTyYZninkxf6TCeBbHgKN3o",
+    authDomain: "clone-41130.firebaseapp.com",
+    databaseURL: "https://clone-41130-default-rtdb.firebaseio.com",
+    projectId: "clone-41130",
+    storageBucket: "clone-41130.appspot.com",
+    messagingSenderId: "45922064950",
+    appId: "1:45922064950:web:d96c56a018c5295fb05697",
+    measurementId: "G-8NLBJZHVVB"
+};
+
+firebase.initializeApp(firebaseConfig);
+
 var db = firebase.firestore();
-
-loginCheck();
-
-function loginCheck(){
-    auth.onAuthStateChanged(function(user){
-        if(user != null){
-            user.providerData.forEach(function (profile) {
-                document.getElementById("my_Name").innerHTML = '"' +profile.displayName+ '"' +"님";
-                filelist(profile);
-            });
-        }else{
-            document.getElementById("my_Name").innerHTML = "로그인이 필요합니다.";
-        }
-    })
-}
+var user = firebase.auth().currentUser;
 
 document.getElementById("fileupload_btn").addEventListener("change", function(){
     //업로드할 파일 선택
@@ -181,5 +180,3 @@ function filelist(profile){
         }
     }
 }
-
-

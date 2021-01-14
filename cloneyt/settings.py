@@ -167,3 +167,6 @@ SITE_ID = 1
 
 # 로그인 성공 후 이동할 페이지
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+AUTH_USER_MODEL = 'youtube.User'
