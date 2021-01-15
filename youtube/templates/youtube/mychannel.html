@@ -30,7 +30,7 @@
         
         <div class="my_imgBox">
             {% for account in user.socialaccount_set.all %}
-            <img class="my_img" src="{{ account.get_avatar_url }}" style="width:39px; margin-right:30px; border-radius: 4em;"/></img>
+            <img class="my_img" src="{{ account.get_avatar_url }}" style="width:40px; margin-right:20px; border-radius: 4em;"/></img>
             <div class="my_info">
                 <li><span id="user_Name">"{{ account.extra_data.name }}"님</span></li>
             </div>
