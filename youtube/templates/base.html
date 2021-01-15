@@ -36,32 +36,42 @@
             </nav>
         </div> 
         <div class="nav">
-            <button class="search_btn" id="search_btn" onclick="window.location.href = '/search'"><i class="fas fa-search"></i></button>
-            <button class="settings_btn" id="dropbtn" onclick="DropDownSetting()"><i class="fas fa-users-cog"></i></button>
+            <button class="search_btn" id="search_btn" onclick="window.location.href = '/search'">
+                <i class="fas fa-search"></i>
+            </button>
+            {% if user.is_authenticated %} 
+            {% for account in user.socialaccount_set.all %}
+            <button class="settings_btn" id="dropbtn" onclick="DropDownSetting()">
+                <img class="user_img" src="{{ account.get_avatar_url }}" style="width:30px; margin: 0px 0px 0px 15px; border-radius: 4em;"/>
+            </button>
             <div id="myDropdown" class="dropdown-content">
-                {% if user.is_authenticated %} 
-                {% for account in user.socialaccount_set.all %}
                 <ul>
-                    <li style="line-height:30px;">
-                        <img class="user_img" src="{{ account.get_avatar_url }}" style="width:30px; margin: 0px 0px 0px 15px; border-radius: 4em;"/>
-                        <span id="user_name" style="vertical-align: middle; padding: 0;line-height:30px;height: 30px;">"{{ account.extra_data.name }}"님</span>
+                    <li>
+                        <button onclick="window.location.href = '/mychannel'" id="mychannel_link">{{ account.extra_data.name }}님 채널</button>
                     </li>
-                    <li><a href = "/logout">Sign Out</a></li>
                 </ul>
                 <ul>
-                    <li><button onclick="window.location.href = '/mychannel'" id="mychannel_link" >내 채널</button></li>
-                    <li><a href="/who">계정 정보</a></li>
+                    <li><button id="darkmode_btn" onclick="ToggleTheme()">테마 토글</button></li>
                 </ul>
-                {% endfor %}
-                {% else %}
+                <ul>
+                    <li style="padding-bottom: 10px;"><a href="/who">로그인한 계정 정보</a></li>
+                    <li><a href="/logout">로그아웃</a></li>
+                </ul>
+            </div>
+            {% endfor %}
+            {% else %}
+            <button class="settings_btn" id="dropbtn" onclick="DropDownSetting()">
+                <i class="fas fa-users-cog"></i>
+            </button>
+            <div id="myDropdown" class="dropdown-content">
                 <ul>
                     <li><a href=" {% provider_login_url "google" %}">Google Sign in</a></li>
                 </ul>
-                {% endif %}
                 <ul>
                     <li><button id="darkmode_btn" onclick="ToggleTheme()">토글 버튼</button></li>
                 </ul>
             </div>
+            {% endif %}
         </div>
     </header>
     {% block content %}

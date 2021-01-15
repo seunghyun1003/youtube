@@ -12,6 +12,6 @@ urlpatterns = [
     path('search', views.search, name='search'),
     path('video', views.video, name='video'),
     path('top', views.top, name='top'),
-    path('mychannel', views.mychannel, name='mychannel'),
+    path('mychannel', views.mychannel),
     path('search', views.search, name='search'),
 ]

@@ -21,10 +21,6 @@
         evt.currentTarget.className += " active";
         }
     </script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-storage.js"></script>
-    <script type="text/javascript" src="static/js/fb_file.js" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -49,14 +45,34 @@
         <div id="home" class="tabcontent">
             <div class="home-1">동영상을 저장하고 <br>파일 목록에서 확인해보세요.</div>
             <div class="home-2">
-                <label for="fileupload_btn">파일 선택</label>
-                <input id="fileupload_btn" type="file" accept="video/*"/>
+                <form action="#" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form }}
+                    <label for = "file">파일명: </label>
+                    <input type="file" name="file" id="file"/>
+                    <br>
+                    <p>
+                        {{ form.docfile }}
+                    </p>
+                    <input type="submit" value="업로드">
+                </form>
             </div>
-            <div id="input_file">선택된 파일 없음.</div>
-            <div class="home-3"><button id="saveFile_btn" type="submit" title="파일을 DB에 저장">파일 저장</button></div>
+            
         </div>
         <div id="filelist" class="tabcontent">
-            <div id="filelist-list"></div>
+            <div id="filelist-list">
+                {% if videos %}
+                <ul>
+                    {% for video in videos %}
+                        <li>
+                            <a href="{{ video.docfile.url }}">{{ video.docfile.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>저장된 동영상이 없습니다.</p>
+                {% endif %}
+            </div>
         </div>
     </div>
     

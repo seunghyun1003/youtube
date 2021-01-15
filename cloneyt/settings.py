@@ -16,6 +16,9 @@ import os, json
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 secret_file = os.path.join(BASE_DIR, 'secrets.json')
 print(secret_file)
 with open(secret_file) as f:
@@ -89,6 +92,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media'
             ],
         },
     },
@@ -167,6 +171,5 @@ SITE_ID = 1
 
 # 로그인 성공 후 이동할 페이지
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
 
-AUTH_USER_MODEL = 'youtube.User'
+

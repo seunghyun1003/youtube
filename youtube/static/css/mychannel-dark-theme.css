@@ -71,39 +71,6 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.05);
 }
-#home .home-2 label {
-  display: inline-block;
-  cursor: pointer;
-  padding: 0.5em 0.75em;
-  font-size: 0.85em;
-  color: #fff;
-  background-color: #3c3fc9;
-  border-radius: 0.25em;
-}
-#home .home-2 input[type="file"] {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-#input_file {
-  display: block;
-}
-#home .home-3 #saveFile_btn {
-  display: inline-block;
-  padding: 0.5em 0.75em;
-  color: #fff;
-  line-height: normal;
-  vertical-align: middle;
-  background-color: #3c3fc9;
-  cursor: pointer;
-  border-radius: 0.25em;
-  transition: background-color 0.2s;
-}
 
 @media all and (min-width: 320px) {
   .tab button {
@@ -125,14 +92,6 @@
   #home .home-1 {
     font-size: 1.4em;
     padding-bottom: 30px;
-  }
-  #input_file {
-    display: block;
-    font-size: 0.8em;
-    padding-top: 10px;
-  }
-  #home .home-3 {
-    margin: 30px 0;
   }
   #filelist {
     display: none;
