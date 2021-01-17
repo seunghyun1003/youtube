@@ -38,14 +38,15 @@ def search(request):
     return render(request, 'youtube/search.html')
 
     
-from .models import UploadFileForm
+from .models import Video
+from .forms import UploadFileForm
 from django.template import RequestContext
 
 
 def form(request):
     return render(request, "youtube/form.html")
     
-def list(request):
+def mychannel(request):
     #파일 업로드
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
@@ -62,6 +63,6 @@ def list(request):
 
     return render(
         request,
-        'youtube.mychannel.html',
-        {'form':form, 'videos': videos}
+        'youtube/mychannel.html',
+        {'videos': videos}
     )

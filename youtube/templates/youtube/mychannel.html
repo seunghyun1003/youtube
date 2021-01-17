@@ -48,8 +48,6 @@
                 <form action="#" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form }}
-                    <label for = "file">파일명: </label>
-                    <input type="file" name="file" id="file"/>
                     <br>
                     <p>
                         {{ form.docfile }}
@@ -64,9 +62,12 @@
                 {% if videos %}
                 <ul>
                     {% for video in videos %}
+                    <video class="video-fluid" autoplay loop muted>
                         <li>
-                            <a href="{{ video.docfile.url }}">{{ video.docfile.name }}</a>
+                            <a href="{{ video.docfile.url }}">{{ video.name }}</a>
                         </li>
+                        <source src="{{ video.docfile.url }}" type="video/mp4">
+                    </video>
                     {% endfor %}
                 </ul>
                 {% else %}
