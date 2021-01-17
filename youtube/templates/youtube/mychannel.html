@@ -47,12 +47,12 @@
             <div class="home-2">
                 <form action="#" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form }}
+                    {{ form.as_p }}
                     <br>
                     <p>
                         {{ form.docfile }}
                     </p>
-                    <input type="submit" value="업로드">
+                    <button type="submit">업로드<button>
                 </form>
             </div>
             
@@ -64,7 +64,7 @@
                     {% for video in videos %}
                     <video class="video-fluid" autoplay loop muted>
                         <li>
-                            <a href="{{ video.docfile.url }}">{{ video.name }}</a>
+                            <a href="{{ video.docfile.url }}">{{ video.docfile.name }}</a>
                         </li>
                         <source src="{{ video.docfile.url }}" type="video/mp4">
                     </video>

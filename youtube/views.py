@@ -39,8 +39,6 @@ def search(request):
 
 
 from django.template import RequestContext
-
-"""
 from .models import Video
 from .forms import UploadFileForm
 
@@ -67,4 +65,3 @@ def mychannel(request):
         'youtube/mychannel.html',
         {'videos': videos}
     )
-"""
