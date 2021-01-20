@@ -45,28 +45,24 @@
         <div id="home" class="tabcontent">
             <div class="home-1">동영상을 저장하고 <br>파일 목록에서 확인해보세요.</div>
             <div class="home-2">
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <br>
-                    <p>
-                        {{ form.docfile }}
-                    </p>
-                    <button type="submit">업로드<button>
+                        <button type="submit">업로드<button>
                 </form>
             </div>
             
         </div>
         <div id="filelist" class="tabcontent">
             <div id="filelist-list">
-                {% if videos %}
+                {% if videomodel %}
                 <ul>
-                    {% for video in videos %}
+                    {% for video in videomodel %}
                     <video class="video-fluid" autoplay loop muted>
                         <li>
-                            <a href="{{ video.docfile.url }}">{{ video.docfile.name }}</a>
+                            <p>{{ video.videoname }}</p>
                         </li>
-                        <source src="{{ video.docfile.url }}" type="video/mp4">
+                        <source src="{{ video.videofile.url }}" type="video/mp4">
                     </video>
                     {% endfor %}
                 </ul>

@@ -1,14 +1,7 @@
-from django import forms
+from django.forms import ModelForm
+from .models import VideoModel
 
-"""
-from .models import Video
-
-class UploadFileForm(forms.Form):
+class VideoUploadForm(ModelForm):
     class Meta:
-        model=Video
-        label='파일을 선택해주세요.'
-        fields = ["docfile"]
-
-        def __init__(self, *args, **kwargs):
-            super(PostForm, self).__init__(*args, **kwargs)
-            self.fields['docfile'].required = False
+        model = VideoModel
+        fields = ('videoname', 'videofile',)

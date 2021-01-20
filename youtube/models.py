@@ -1,11 +1,14 @@
 from django.db import models
+from django.utils import timezone
 
-"""
-class Video(models.Model):
-    name = models.CharField(max_length=100)
-    docfile = models.FileField(upload_to = 'videos/', null=True)
-    upload_date = models.DateTimeField(auto_now_add=True)
+class VideoModel(models.Model):
+    videoname = models.CharField(max_length=200, null=False)
+    uploaded_at = models.DateTimeField('업로드 날짜', default = timezone.now)
+    videofile = models.FileField(upload_to="video/", null=False)
+    des = models.TextField('동영상 설명',null=True)
 
     def __str__(self):
-        return self.name
-"""
+        return self.videoname
+
+    def summary(self):
+        return self.des
