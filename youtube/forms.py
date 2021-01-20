@@ -1,7 +1,7 @@
-from django.forms import ModelForm
-from .models import VideoModel
+from django import forms
+from .models import Video
 
-class VideoUploadForm(ModelForm):
+class VideoForm(forms.ModelForm):
     class Meta:
-        model = VideoModel
-        fields = ('videoname', 'videofile',)
+        model = Video
+        fields = ['title', 'file', 'des']

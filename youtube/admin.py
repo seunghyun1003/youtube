@@ -1,9 +1,8 @@
 from django.contrib import admin
 
-from .models import VideoModel
+from youtube.models import Video
 
-@admin.register(VideoModel)
-class VideoAdmin(admin.ModelAdmin):
-    list_display = ('id','videoname', 'uploaded_at', 'des')
-    list_filter = ('uploaded_at',)
-    search_fields = ('videoname',)
+@admin.register(Video)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['id','title', 'file', 'des']
+    list_display_links = ['title', 'file']

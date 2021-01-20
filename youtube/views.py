@@ -4,7 +4,6 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 from social_core.exceptions import AuthAlreadyAssociated
-
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 
@@ -21,7 +20,6 @@ def who(request):
 def index(request):
     return render(request, 'youtube/index.html')
 
-
 def video(request):
     return render(request, 'youtube/video.html')
 
@@ -29,24 +27,33 @@ def video(request):
 def top(request):
     return render(request, 'youtube/top.html')
 
-
-def mychannel(request):
-    return render(request, 'youtube/mychannel.html')
-
-
 def search(request):
     return render(request, 'youtube/search.html')
 
 
-from .forms import VideoUploadForm
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.core.files.storage import FileSystemStorage
+
+from .forms import VideoForm
+from .models import Video
 
 def video_upload_form(request):
-    if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
+    if request.method == "POST":
+        form = VideoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return render(request, 'youtube/mychannel.html')
     else:
-        form = UploadFileForm()
+        form = VideoForm()
+        
+    videos = Video.objects.all()
+    return render(request, 'youtube/mychannel.html', {
+        'form' : form, 
+        'videos' : videos
+    })
 
-    return render(request, 'youtube/mychannel.html', {'form': form})
+def video_list(request):
+    videos = Video.objects.all()
+    return render(request, 'youtube/index.html', {
+        'videos' : videos
+    })

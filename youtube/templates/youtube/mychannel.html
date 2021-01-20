@@ -27,7 +27,6 @@
 <section class="wrap2">
     <button id=reload_btn onclick="location.reload();"><i class="fas fa-redo-alt"></i></button>
     <div class="mychannel_info" id="mychannel_info">
-        
         <div class="my_imgBox">
             {% for account in user.socialaccount_set.all %}
             <img class="my_img" src="{{ account.get_avatar_url }}" style="width:40px; margin-right:20px; border-radius: 4em;"/></img>
@@ -45,30 +44,26 @@
         <div id="home" class="tabcontent">
             <div class="home-1">동영상을 저장하고 <br>파일 목록에서 확인해보세요.</div>
             <div class="home-2">
-                <form method="POST" enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
-                        <button type="submit">업로드<button>
+                    <button type="submit" class="btn btn-primary">업로드</button>
                 </form>
+                {% if url %}
+                <p>업로드한 동영상 : <a href="{{ url }}">{{ url }}</a></p>
+                {% endif %}
             </div>
             
         </div>
         <div id="filelist" class="tabcontent">
             <div id="filelist-list">
-                {% if videomodel %}
-                <ul>
-                    {% for video in videomodel %}
-                    <video class="video-fluid" autoplay loop muted>
-                        <li>
-                            <p>{{ video.videoname }}</p>
-                        </li>
-                        <source src="{{ video.videofile.url }}" type="video/mp4">
-                    </video>
-                    {% endfor %}
-                </ul>
-                {% else %}
-                <p>저장된 동영상이 없습니다.</p>
-                {% endif %}
+                {% for video in videos %}
+                <div>
+                    <li><a href="{{ video.file.url }}">download video</a></li>
+                    <li><p>{{ video.title }}</p></li>
+                    <li><p>{{ video.des }}</p></li>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

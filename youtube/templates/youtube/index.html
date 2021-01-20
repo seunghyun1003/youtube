@@ -7,6 +7,12 @@
 
 {% block content %}
 <div class="wrap">
-    <div><p>동영상 리스트들이 보여야 함</p></div>
+    {% for video in videos %}
+    <div>
+        <li><a href="{{ video.file.url }}">download video</a></li>
+        <li><p>{{ video.title }}</p></li>
+        <li><p>{{ video.des }}</p></li>
+    </div>
+    {% endfor %}
 </div>
 {% endblock content %}
