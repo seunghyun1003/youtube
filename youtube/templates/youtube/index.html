@@ -9,9 +9,13 @@
 <div class="wrap">
     {% for video in videos %}
     <div>
-        <li><a href="{{ video.file.url }}">download video</a></li>
+        <a href="{% url 'youtube:detail' video.id %}">
+        <video width="180" height="120" controls>
+        <source src="{{video.file.url}}" type="video/mp4">
+        </video>
         <li><p>{{ video.title }}</p></li>
         <li><p>{{ video.des }}</p></li>
+        </a>
     </div>
     {% endfor %}
 </div>

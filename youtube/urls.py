@@ -6,6 +6,7 @@ app_name = 'youtube_backend'
 urlpatterns = [
     path('', views.video_list, name='video_list'),
     path('index', views.video_list, name='video_list'),
+    path('<int:id>', views.detail_page, name='detail'),
     path('login/', views.login, name='login'),
     path("logout", views.logout_request, name="logout"),
     path('who', views.who, name='who'),

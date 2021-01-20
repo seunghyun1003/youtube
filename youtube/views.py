@@ -31,24 +31,23 @@ def search(request):
     return render(request, 'youtube/search.html')
 
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
 
-from .forms import VideoForm
 from .models import Video
 
 def video_upload_form(request):
     if request.method == "POST":
-        form = VideoForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-    else:
-        form = VideoForm()
+        title = request.POST['title']
+        video = request.POST['video']
+        video_key = request.POST['video_key']
+        des = request.POST['des']
+        content = Video(title=title,file=video,des=des,video_key = video_key)
+        content.save()
         
     videos = Video.objects.all()
     return render(request, 'youtube/mychannel.html', {
-        'form' : form, 
         'videos' : videos
     })
 
@@ -57,3 +56,7 @@ def video_list(request):
     return render(request, 'youtube/index.html', {
         'videos' : videos
     })
+
+def detail_page(request, id):
+    video = get_object_or_404(Video,pk=id)
+    return render(request, 'youtube/video.html', {'video': video})

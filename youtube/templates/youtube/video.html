@@ -3,17 +3,23 @@
 
 {% block extrahead %}
     <link rel="stylesheet" href=" {% static "css/video-light-theme.css" %}" id="videotheme"  class="theme-link"/>
-{% endblock %}
+    <script type="text/javascript" src="static/js/video.js" defer></script>
+    {% endblock %}
 
 {% block content %}
 <div class="wrap">
     <div class="contents">
         <section class="video">
             <div class="video_player">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/mGuYJ4wc-xw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <video autoplay controls width="560" height="315" style="background-color: black;">
+                <source src="{{video.file.url}}" type="video/mp4">
+                </video>
             </div>
             <div class="video_title">
-                "고양이를 훈련해 보았습니다."   가 원래 제목이지만 제목이 이렇게 저렇게 요롷게 길면 이렇게 저렇게 요롷게 이렇게 넘어간답니다.
+                제목 : {{ video.title }}
+            </div>
+            <div>
+                업로드 날짜 : {{ video.uploaded_at }}
             </div>
             <div class="video_information">
                 <span class="video_views" title="조회 수">조회수 200만회</span>
@@ -41,7 +47,7 @@
                     </div>
                 </div>
                 <div class="video_des">
-                    이 부분은 동영상에 대한 설명 또는 하고 싶은 말 등을 적는 부분입니다.
+                    {{ video.des }}
                 </div>
             </div>
         </section>
