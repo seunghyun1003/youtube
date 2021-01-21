@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load socialaccount %}
+{% providers_media_js %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href=" {% static "css/mychannel-light-theme.css" %}" id="mychanneltheme"  class="theme-link"/>
+{% endblock %}
+
+{% block content %}
+<section class="wrap2">
+    <button id=reload_btn onclick="location.reload();"><i class="fas fa-redo-alt"></i></button>
+    <div class="mychannel_info" id="mychannel_info">
+        <div class="my_imgBox">
+            {% for account in user.socialaccount_set.all %}
+            <img class="my_img" src="{{ account.get_avatar_url }}" style="width:40px; margin-right:20px; border-radius: 4em;"/></img>
+            <div class="my_info">
+                <li><span id="user_Name">"{{ account.extra_data.name }}"님</span></li>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="tab" id="tab">
+            <button class="tabbtn active" onclick="window.location.href = 'mychannel'">업로드</button>
+            <button class="tabbtn" onclick="window.location.href = 'list'">파일목록</button>
+        </div>
+    </div>
+    <div id="home" class="tabcontent">
+        <div class="home-1">동영상을 저장하고 <br>파일 목록에서 확인해보세요.</div>
+        <div class="home-2">
+            <form action="" method="POST">{% csrf_token %}
+                <label for="video-title" requir>제목</label>
+                <input id="video-title" type="text" name="title" placeholder="동영상 제목 입력"><br>
+                
+                <label for="video-file">동영상 선택</label>
+                <input id="video-file" type="file" name="video" accept="video/*"><br>
+                
+                <label for="video-des">설명</label>
+                <textarea id="video-des" name="des" rows="5" placeholder="동영상에 대한 설명 입력"></textarea><br>
+                
+                <button type="submit"> 업로드 </button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock content %}

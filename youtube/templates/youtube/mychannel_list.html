@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load socialaccount %}
+{% providers_media_js %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href=" {% static "css/mychannel-light-theme.css" %}" id="mychanneltheme"  class="theme-link"/>
+{% endblock %}
+
+{% block content %}
+<section class="wrap2">
+    <button id=reload_btn onclick="location.reload();"><i class="fas fa-redo-alt"></i></button>
+    <div class="mychannel_info" id="mychannel_info">
+        <div class="my_imgBox">
+            {% for account in user.socialaccount_set.all %}
+            <img class="my_img" src="{{ account.get_avatar_url }}" style="width:40px; margin-right:20px; border-radius: 4em;"/></img>
+            <div class="my_info">
+                <li><span id="user_Name">"{{ account.extra_data.name }}"님</span></li>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="tab" id="tab">
+            <button class="tabbtn" onclick="window.location.href = 'mychannel'">업로드</button>
+            <button class="tabbtn active" onclick="window.location.href = 'list'">파일목록</button>
+        </div>
+    </div>
+    <div id="filelist" class="tabcontent" style="display:block">
+        {% if videos %}
+        <table>
+            <thead>
+                <th>동영상</th>
+                <th>다운로드 url</th>
+                <th>삭제</th>
+            </thead>
+            <tbody>
+                {% for video in videos %}
+                <tr>
+                    <td>
+                        <li><p>제목 : {{ video.title }}</p></li>
+                        <li><p>설명 : {{ video.des }}</p></li>
+                    </td>
+                    <td>
+                        <li><a href="{{ video.file.url }}">{{ video.file.url }}</a></li>
+                    </td>
+                    <td>
+                        <form method="post" action="{% url 'youtube:video_delete' video.pk %}">
+                            {% csrf_token %}
+                            <button type="submit">delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h3>저장된 동영상 없음.</h3>
+        {% endif %}
+    </div>
+</section>
+{% endblock content %}
