@@ -11,10 +11,11 @@
     <div>
         <a href="{% url 'youtube:detail' video.id %}">
         <video width="180" height="120" controls>
-        <source src="{{video.file.url}}" type="video/mp4">
+            <source src="{{video.file.url}}" type="video/mp4">
         </video>
         <li><p>{{ video.title }}</p></li>
         <li><p>{{ video.des }}</p></li>
+        <li><p>{{ video.uploaded_at }}</p></li>
         </a>
     </div>
     {% endfor %}

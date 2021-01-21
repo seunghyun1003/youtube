@@ -32,6 +32,7 @@ def search(request):
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.files.storage import FileSystemStorage
 from .models import Video
+from django.utils import timezone
 
 def video_list(request):
     videos = Video.objects.all()
@@ -50,20 +51,35 @@ def video_upload(request):
         title = request.POST['title']
         video = request.FILES['videofile']
         des = request.POST['des']
-        Video.objects.create(title=title,file=video,des=des)
+        content = Video(title=title,file=video,des=des)
+        content.save()
         return redirect('youtube:video_list_mych')
     else:
         return render(request, 'youtube/mychannel_upload.html')
 
     return render(request, 'youtube/mychannel_upload.html')
 
+def video_update(request, id):
+    video = Video.objects.get(pk=id)
+    if request.method == "POST":
+        title = video.title
+        title = request.POST.get('title')
+        des = video.des
+        des = request.POST.get('des')
+        video.save()
+        return render(request, 'youtube/video_update.html', 
+        {'video': video,}
+        )
+
+
+    
+
 def video_delete(request, id):
     if request.method == "POST":
         video = Video.objects.get(pk=id)
         video.delete()
         return redirect('youtube:video_list_mych')
-    return render(request, 'youtube/mychannel_list.html')
-
+    return redirect('mychannel')
 
 def detail_page(request, id):
     video = get_object_or_404(Video,pk=id)
