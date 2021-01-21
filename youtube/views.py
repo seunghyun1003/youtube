@@ -30,7 +30,6 @@ def search(request):
 
 
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
 from .models import Video
 
@@ -49,7 +48,7 @@ def video_list_mych(request):
 def video_upload(request):
     if request.method == "POST":
         title = request.POST['title']
-        video = request.POST['video']
+        video = request.FILES['videofile']
         des = request.POST['des']
         Video.objects.create(title=title,file=video,des=des)
         return redirect('youtube:video_list_mych')
