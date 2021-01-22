@@ -32,31 +32,21 @@
                 {% for video in videos %}
                 <tr>
                     <td>
+                        <a href="{{video.pk}}">
                         <li><p>제목 : {{ video.title }}</p></li>
                     </td>
-                    <td>
-                        <a href="{{video.pk}}">
-                            <li><p>게시물</p></li>
-                        </a>
-                    </td>
-                    <td>
+                    <td class="downloadlink">
                         <li><a href="{{ video.file.url }}">download</a></li>
                     </td>
-                    <div class="deup-btn-flex">
-                        <td>
-                            <div>
-                                <form method="post" action="{% url 'youtube:video_delete' video.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit">delete</button>
-                                </form>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <a href="{{ video.pk }}/edit" class="update-link"><button class="update-btn">update</button></a>
-                            </div>
-                        </td>
-                    </div>
+                    <td>
+                        <form method="post" action="{% url 'youtube:video_delete' video.id %}">
+                            {% csrf_token %}
+                            <button type="submit">delete</button>
+                        </form>
+                    </td>
+                    <td>
+                        <a href="{{ video.pk }}/edit" class="update-link"><button class="update-btn">update</button></a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

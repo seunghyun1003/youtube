@@ -49,6 +49,7 @@
   border-bottom: 3px solid var(--dark-mode4);
 }
 .tabcontent {
+  display: flex;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.05);
@@ -76,6 +77,9 @@
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 10px;
+  }
+  .downloadlink {
+    display: none;
   }
   input[type="text"],
   textarea {
@@ -106,6 +110,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    max-width: 150px;
   }
   button[type="submit"]:hover,
   td > button :hover {
@@ -197,6 +202,13 @@
     padding: 30px;
     width: 80%;
   }
+  .downloadlink {
+    display: inline;
+  }
+  table {
+    margin: 0 auto;
+    width: 90%;
+  }
   #reload_btn {
     width: 40px;
     height: 40px;
@@ -223,6 +235,20 @@
     padding: 30px;
     width: 60%;
   }
+  table {
+    margin: 0 auto;
+    width: 70%;
+  }
+  td > a {
+    padding: 5px;
+    text-align: center;
+  }
+  button[type="submit"],
+  .update-btn {
+    padding: 12px 18px;
+    margin: 4px 0;
+    max-width: 140px;
+  }
   #reload_btn {
     bottom: 20px;
     width: 50px;
@@ -237,7 +263,6 @@
     display: block;
     height: 100%;
     text-align: center;
-    padding-top: 10%;
   }
   #home .home-1 {
     font-size: 1.6em;
