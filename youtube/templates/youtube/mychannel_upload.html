@@ -28,12 +28,12 @@
     <div id="home" class="tabcontent">
         <div class="home-1">동영상을 저장하고 <br>파일 목록에서 확인해보세요.</div>
         <div class="home-2">
-            <form action="" method="POST" encType="multipart/form-data">{% csrf_token %}
+            <form action="" method="POST" encType="multipart/form-data" class="upload-form">{% csrf_token %}
                 <label for="video-title" requir>제목</label>
-                <input id="video-title" type="text" name="title" placeholder="동영상 제목 입력" /><br>
+                <input id="video-title" type="text" name="title" placeholder="동영상 제목 입력" required/><br>
                 
                 <label for="video-file">동영상 선택</label>
-                <input id="video-file" type="file" name="videofile" accept="video/*" /><br>
+                <input id="video-file" type="file" name="videofile" accept="video/*" required/><br>
                 
                 <label for="video-des">설명</label>
                 <textarea id="video-des" name="des" rows="5" placeholder="동영상에 대한 설명 입력"></textarea><br>

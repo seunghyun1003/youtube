@@ -7,17 +7,23 @@
 
 {% block content %}
 <div class="wrap">
-    {% for video in videos %}
-    <div>
-        <a href="{% url 'youtube:detail' video.id %}">
-        <video width="180" height="120" controls>
-            <source src="{{video.file.url}}" type="video/mp4">
-        </video>
-        <li><p>{{ video.title }}</p></li>
-        <li><p>{{ video.des }}</p></li>
-        <li><p>{{ video.uploaded_at }}</p></li>
-        </a>
+    <div class="video-flex">
+        {% for video in videos %}
+        <div class="video-item">
+            <a href="{% url 'youtube:detail' video.id %}">
+            <div class="video-div">
+                <video class="video-player">
+                    <source src="{{video.file.url}}" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-info-div">
+                <li class="video-info"><p>{{ video.title }}</p></li>
+                <li class="video-info"><p>{{ video.des }}</p></li>
+                <li class="video-info"><p>{{ video.uploaded_at }}</p></li>
+            </div>
+            </a>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endblock content %}

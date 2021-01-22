@@ -28,32 +28,35 @@
     <div id="filelist" class="tabcontent" style="display:block">
         {% if videos %}
         <table>
-            <thead>
-                <th>동영상</th>
-                <th>다운로드 url</th>
-                <th>삭제</th>
-            </thead>
             <tbody>
                 {% for video in videos %}
                 <tr>
                     <td>
+                        <li><p>제목 : {{ video.title }}</p></li>
+                    </td>
+                    <td>
                         <a href="{{video.pk}}">
-                            <li><p>제목 : {{ video.title }}</p></li>
-                            <li><p>설명 : {{ video.des }}</p></li>
+                            <li><p>게시물</p></li>
                         </a>
                     </td>
                     <td>
-                        <li><a href="{{ video.file.url }}">{{ video.file.url }}</a></li>
+                        <li><a href="{{ video.file.url }}">download</a></li>
                     </td>
-                    <td>
-                        <form method="post" action="{% url 'youtube:video_delete' video.id %}">
-                            {% csrf_token %}
-                            <button type="submit">delete</button>
-                        </form>
-                    </td>
-                    <td>
-                        <div><a href="{{ video.pk }}/edit">update</a></div>
-                    </td>
+                    <div class="deup-btn-flex">
+                        <td>
+                            <div>
+                                <form method="post" action="{% url 'youtube:video_delete' video.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit">delete</button>
+                                </form>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <a href="{{ video.pk }}/edit" class="update-link"><button class="update-btn">update</button></a>
+                            </div>
+                        </td>
+                    </div>
                 </tr>
                 {% endfor %}
             </tbody>
