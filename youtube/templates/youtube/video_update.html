@@ -12,14 +12,14 @@
     <video width="180" height="120" controls>
         <source src="{{video.file.url}}" type="video/mp4">
     </video>
-    <form action="/list" method="POST">{% csrf_token %}
+    <form method="POST">{% csrf_token %}
         <label for="video-title" requir>제목</label>
         <input id="video-title" type="text" name="title" value="{{video.title}}" /><br>
     
         <label for="video-des">설명</label>
-        <textarea id="video-des" name="des" rows="5" value="{{video.des}}" ></textarea><br>
+        <textarea id="video-des" name="des" rows="5">{{video.des}}</textarea><br>
         
-        <button type="submit"> 수정 </button>
+        <button type="submit">수정</button>
     </form>
 </div>
 {% endblock content %}

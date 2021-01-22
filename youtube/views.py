@@ -62,15 +62,14 @@ def video_upload(request):
 def video_update(request, id):
     video = Video.objects.get(pk=id)
     if request.method == "POST":
-        title = video.title
-        title = request.POST.get('title')
-        des = video.des
-        des = request.POST.get('des')
+        video.title = request.POST['title']
+        video.des = request.POST['des']
+        video.uploaded_at = timezone.datetime.now()
         video.save()
-        return render(request, 'youtube/video_update.html', 
-        {'video': video,}
-        )
-
+        return redirect('youtube:video_list_mych')
+    else:
+        return render(request, 'youtube/video_update.html',{'video': video,})
+    return render(request, 'youtube/video_update.html',{'video': video,})
 
     
 
@@ -78,8 +77,7 @@ def video_delete(request, id):
     if request.method == "POST":
         video = Video.objects.get(pk=id)
         video.delete()
-        return redirect('youtube:video_list_mych')
-    return redirect('mychannel')
+    return redirect('youtube:video_list_mych')
 
 def detail_page(request, id):
     video = get_object_or_404(Video,pk=id)
