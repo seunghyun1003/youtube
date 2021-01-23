@@ -2,24 +2,28 @@
 {% load static %}
 
 {% block extrahead %}
-    <link rel="stylesheet" href=" {% static "css/main-light-theme.css" %}" id="toptheme"  class="theme-link"/>
+    <link rel="stylesheet" href=" {% static "css/mychannel-light-theme.css" %}" id="toptheme"  class="theme-link"/>
 
 {% endblock %}
 
 {% block content %}
 <div class="wrap">
-    <h1>수정 페이지</h1>
-    <video width="180" height="120" controls>
-        <source src="{{video.file.url}}" type="video/mp4">
-    </video>
-    <form method="POST">{% csrf_token %}
-        <label for="video-title" requir>제목</label>
-        <input id="video-title" type="text" name="title" value="{{video.title}}" /><br>
-    
-        <label for="video-des">설명</label>
-        <textarea id="video-des" name="des" rows="5">{{video.des}}</textarea><br>
+    <div class="updateform">
+        <div><p class="update-p">게시물 <{{ video.title }}>에 대한 수정</p></div>
+        <div class="video-div">
+            <video width="180" height="120" controls>
+                <source src="{{video.file.url}}" type="video/mp4">
+            </video>
+        </div>
+        <form method="POST">{% csrf_token %}
+            <label for="video-title" requir>제목</label>
+            <input id="video-title" type="text" name="title" value="{{video.title}}" /><br>
         
-        <button type="submit">수정</button>
-    </form>
+            <label for="video-des">설명</label>
+            <textarea id="video-des" name="des" rows="5">{{video.des}}</textarea><br>
+            
+            <button type="submit">수정</button>
+        </form>
+    </div>
 </div>
 {% endblock content %}
