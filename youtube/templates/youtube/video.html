@@ -10,26 +10,27 @@
 <div class="wrap">
     <div class="contents">
         <section class="video">
-            <div class="video_player">
-                <video autoplay controls  style="width: 100%; background-color: black;">
+            <div class="video-div">
+                <video autoplay controls>
                 <source src="{{video.file.url}}" type="video/mp4">
                 </video>
             </div>
-            <div class="video_title">
-                제목 : {{ video.title }}
-            </div>
             <div>
-                업로드 날짜 : {{ video.uploaded_at }}
-            </div>
-            <div class="video_information">
-                <span class="video_views" title="조회 수">조회수 200만회</span>
-                <div class="video_likehateicons">
-                    <li><button class="video_btn" title="이 동영상이 마음에 듭니다."><i class="fas fa-thumbs-up fa-md"></i> 1만</button></li> 
-                    <li><button class="video_btn" title="이 동영상이 마음에 들지 않습니다."><i class="fas fa-thumbs-down fa-md"></i> 2천</button></li> 
-                    <li><button class="video_btn" title="공유"><i class="fas fa-share fa-md"></i> 공유</button></li> 
-                    <li><button class="video_btn" title="저장"><i class="fas fa-save fa-md"></i> 저장</button></li> 
+                <div class="video_title">
+                    제목 : {{ video.title }}
                 </div>
-            </div>  
+                <div>
+                    업로드 날짜 : {{ video.uploaded_at }}
+                </div>
+                <div class="video_information">
+                    <span class="video_views" title="조회 수">조회수 200만회</span>
+                    <div class="video_likehateicons">
+                        <li><button class="video_btn" title="이 동영상이 마음에 듭니다."><i class="fas fa-thumbs-up fa-md"></i> 1만</button></li> 
+                        <li><button class="video_btn" title="이 동영상이 마음에 들지 않습니다."><i class="fas fa-thumbs-down fa-md"></i> 2천</button></li> 
+                        <li><button class="video_btn" title="공유"><i class="fas fa-share fa-md"></i> 공유</button></li> 
+                    </div>
+                </div>  
+            </div>
         </section>
         <section class="video_user">
             <div class="user_imgBox">

@@ -1,40 +1,34 @@
 @import url("base-dark.css");
 
 .wrap2 {
-  position: absolute;
+  position: fixed;
   top: 55px;
   left: 0;
   width: 100%;
   height: 100%;
   margin: 0;
   background-color: var(--dark-mode1);
-}
-#reload_btn {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: 2;
-  width: 40px;
-  height: 40px;
-  background-color: var(--dark-mode4);
-  border-radius: 2em;
-  margin: 20px;
-}
-#reload_btn i {
-  font-size: medium;
-  color: var(--dark-mode0);
+  color: white;
+  overflow: auto;
 }
 .mychannel_info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: white;
   width: 70%;
   height: 15%;
   padding: 5% 15% 0 15%;
+  color: white;
+}
+button,
+a,
+input[type="file"] {
+  cursor: pointer;
 }
 .my_imgBox {
   display: flex;
+}
+.my_img {
 }
 .my_info {
   width: 100%;
@@ -48,7 +42,6 @@
 }
 .tabbtn {
   background-color: inherit;
-  cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
   font-size: 17px;
@@ -60,8 +53,12 @@
   color: white;
   border-bottom: 3px solid var(--dark-mode4);
 }
+.tab_dark button.active {
+  color: white;
+  border-bottom: 3px solid var(--dark-mode4);
+}
 .tabcontent {
-  display: block;
+  display: flex;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.05);
@@ -72,11 +69,28 @@
 #home .home-2 {
   height: 50%;
 }
-#video-title {
-  color: black;
+.updateform {
+  display: flex;
+  height: 100%;
+  background-color: var(--dark-mode2);
+  text-align: center;
+}
+.video-div {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+}
+video {
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
 }
 @media all and (min-width: 320px) {
-  .tab button {
+  .tabbtn {
     padding: 8px 6px;
     font-size: 14px;
   }
@@ -86,34 +100,160 @@
     text-align: start;
     font-size: 14px;
   }
+  .home-2 {
+    display: flex;
+  }
+  .upload-form {
+    margin: 0 auto;
+    width: 90%;
+    border-radius: 5px;
+    background-color: var(--dark-mode2);
+    padding: 10px;
+  }
+  .downloadlink {
+    display: none;
+  }
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: white;
+  }
+  input[type="file"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: white;
+  }
+  button[type="submit"],
+  .update-btn {
+    width: 100%;
+    padding: 4px 6px;
+    max-width: 100px;
+    background-color: #4853d3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  button[type="submit"]:hover,
+  td > button :hover {
+    background-color: #3841a5;
+  }
+  .deup-btn-flex {
+    display: flex;
+    flex-direction: column;
+  }
+  table,
+  tr,
+  th {
+    border-bottom: 1px solid rgb(98, 97, 97);
+    text-align: left;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td {
+    padding: 10px;
+    text-align: left;
+    height: 10px;
+    line-height: 10px;
+  }
+  td > a,
+  li a {
+    padding: 0;
+    color: lightgray;
+  }
+  td > a :hover,
+  li :hover {
+    color: white;
+  }
+  .update-link {
+    color: white;
+    padding: 0;
+  }
+  .update-link :hover {
+    color: white;
+    background-color: #3841a5;
+  }
+
+  #reload_btn {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    background-color: var(--dark-mode4);
+    border-radius: 2em;
+    margin: 20px;
+  }
+  #reload_btn i {
+    font-size: medium;
+    color: var(--dark-mode0);
+  }
   #home {
     display: block;
     height: 100%;
     text-align: center;
-    padding-top: 100px;
+    padding-top: 50px;
   }
   #home .home-1 {
-    font-size: 1.4em;
+    font-size: 1.2em;
     padding-bottom: 30px;
+    font-weight: 600;
+  }
+  #input_file {
+    display: block;
+    font-size: 0.8em;
+    padding-top: 10px;
+  }
+  #home .home-3 {
+    margin: 30px 0;
   }
   #filelist {
     display: block;
     height: 100%;
   }
+  .updateform {
+    flex-direction: column;
+    width: 86%;
+    margin: 20px 2%;
+    padding: 5%;
+  }
+  .update-p {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: x-large;
+  }
+  .video-div {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    margin-bottom: 30px;
+  }
+  video {
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+  }
 }
 @media all and (min-width: 768px) {
-  .tabbtn {
-    padding: 16px 20px;
-    font-size: 16px;
-    min-width: 120px;
-  }
-  .my_Name {
-    font-size: 16px;
-  }
-}
-
-@media all and (min-width: 960px) {
-  .tabbtn {
+  .tab button {
     padding: 16px 20px;
     font-size: 16px;
     min-width: 120px;
@@ -122,14 +262,110 @@
     padding-top: 0;
     font-size: 16px;
   }
+  .upload-form {
+    padding: 30px;
+    width: 80%;
+    height: 100%;
+  }
+  #filelist > table {
+    margin: 20px 3%;
+  }
+  td {
+    text-align: center;
+    height: 15px;
+    line-height: 15px;
+  }
+  button[type="submit"],
+  .update-btn {
+    padding: 6px 9px;
+    max-width: 100px;
+  }
+  .downloadlink {
+    display: inline;
+  }
+  table {
+    margin: 0 auto;
+    width: 90%;
+  }
+  #reload_btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 2em;
+    margin: 20px;
+  }
+  #reload_btn i {
+    font-size: medium;
+    padding-top: 0;
+  }
+}
+
+@media all and (min-width: 960px) {
+  .tab button {
+    padding: 16px 20px;
+    font-size: 16px;
+    min-width: 120px;
+  }
+  .my_Name {
+    padding-top: 0;
+    font-size: 16px;
+  }
+  .upload-form {
+    padding: 30px;
+    width: 60%;
+  }
+  #filelist > table {
+    margin: 20px 5%;
+  }
+  td {
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+  }
+  button[type="submit"],
+  .update-btn {
+    padding: 6px 9px;
+    max-width: 100px;
+  }
+  #reload_btn {
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 2em;
+    margin: 20px;
+  }
+  #reload_btn i {
+    font-size: large;
+  }
   #home {
     display: block;
     height: 100%;
     text-align: center;
-    padding-top: 10%;
   }
   #home .home-1 {
     font-size: 1.6em;
     padding-bottom: 40px;
+  }
+  .updateform {
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 50%;
+    width: 84%;
+    margin: 50px 5%;
+    padding: 3%;
+  }
+  .flex-p {
+    height: 100px;
+    width: 100%;
+  }
+  .update-p {
+    font-size: xx-large;
+  }
+  .flex-video {
+    flex-basis: 40%;
+    padding: 0 2% 0 8%;
+  }
+  .flex-form {
+    flex-basis: 40%;
+    align-self: center;
   }
 }
