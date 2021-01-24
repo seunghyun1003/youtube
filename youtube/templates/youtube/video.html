@@ -7,6 +7,7 @@
     {% endblock %}
 
 {% block content %}
+{{ video.click }}
 <div class="wrap">
     <div class="contents">
         <section class="video">
@@ -23,7 +24,7 @@
                     업로드 날짜 : {{ video.uploaded_at }}
                 </div>
                 <div class="video_information">
-                    <span class="video_views" title="조회 수">조회수 200만회</span>
+                    <span class="video_views" title="조회 수">조회수 : {{ video.hits }}회</span>
                     <div class="video_likehateicons">
                         <li><button class="video_btn" title="이 동영상이 마음에 듭니다."><i class="fas fa-thumbs-up fa-md"></i> 1만</button></li> 
                         <li><button class="video_btn" title="이 동영상이 마음에 들지 않습니다."><i class="fas fa-thumbs-down fa-md"></i> 2천</button></li> 

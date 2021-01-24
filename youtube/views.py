@@ -71,8 +71,6 @@ def video_update(request, id):
         return render(request, 'youtube/video_update.html',{'video': video,})
     return render(request, 'youtube/video_update.html',{'video': video,})
 
-    
-
 def video_delete(request, id):
     if request.method == "POST":
         video = Video.objects.get(pk=id)
@@ -81,4 +79,8 @@ def video_delete(request, id):
 
 def detail_page(request, id):
     video = get_object_or_404(Video,pk=id)
-    return render(request, 'youtube/video.html', {'video': video})
+    if request.method == "POST":
+        return render(request, 'youtube/video.html', {'video': video})
+    else:
+        return render(request, 'youtube/video.html', {'video': video})
+
