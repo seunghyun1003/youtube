@@ -40,10 +40,10 @@ function loadTheme(){
         }
     } else if(theme_name == 'toptheme'){
         if (currentTheme == "dark") {
-            theme.setAttribute('href', "static/css/top-dark-theme.css?after");
+            theme.setAttribute('href', "static/css/top-dark-theme.css");
             console.log("인기 테마 : 다크");
         } else{
-            theme.setAttribute('href', "static/css/top-light-theme.css?after");
+            theme.setAttribute('href', "static/css/top-light-theme.css");
             console.log("인기  테마 : 라이트");
         }
     } 

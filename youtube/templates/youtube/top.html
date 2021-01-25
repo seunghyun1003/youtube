@@ -2,12 +2,11 @@
 {% load static %}
 
 {% block extrahead %}
-    <link rel="stylesheet" href=" {% static "css/top-light-theme.css" %}" id="toptheme"  class="theme-link"/>
+    <link rel="stylesheet" id="toptheme"  class="theme-link"/>
 {% endblock %}
 
 {% block content %}
 <div class="wrap">
-    <div><h2 class="toptitle">동영상 top 100</h2></div>
     <div class="video-flex">
         {% for video in videos %}
         <div class="video-item">
