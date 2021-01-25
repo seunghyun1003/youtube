@@ -22,9 +22,6 @@ def mychannel(request):
 def mychannel_list(request):
     return render(request, 'youtube/mychannel_list.html')
 
-def top(request):
-    return render(request, 'youtube/top.html')
-
 def search(request):
     return render(request, 'youtube/search.html')
 
@@ -79,8 +76,11 @@ def video_delete(request, id):
 
 def detail_page(request, id):
     video = get_object_or_404(Video,pk=id)
-    if request.method == "POST":
-        return render(request, 'youtube/video.html', {'video': video})
-    else:
-        return render(request, 'youtube/video.html', {'video': video})
+    print(video.hits)
+    return render(request, 'youtube/video.html', {'video': video})
 
+def top(request):
+    videos = Video.objects.all().order_by('-hits')
+    return render(request, 'youtube/top.html', {
+        'videos' : videos
+    })
