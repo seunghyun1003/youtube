@@ -4,32 +4,27 @@
   position: fixed;
   top: 55px;
   left: 0;
-  overflow: auto;
-  width: 100%;
-  height: 100%;
-  background-color: var(--dark-mode1);
-  color: white;
 }
 .contents {
-  margin: 3% 5% 0 5%;
+  margin: 3% 3% 0 3%;
 }
 .video {
   border-bottom: 1px solid lightgray;
 }
-.video-div {
+.video_player {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
+  padding-bottom: 56.25%;
   height: 0;
+  overflow: hidden;
 }
-.video-div > video {
-  margin: 0 auto;
-  position: absolute;
+.video_player iframe {
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: black;
+  position: absolute;
 }
+
 .video .video_title {
   padding: 8px 0 0 0;
   display: inline-block;
@@ -113,6 +108,46 @@
 .video_user .video_des {
 }
 
+/* 리스트 영역 */
+.list {
+  margin: 2% 3% 3% 3%;
+}
+.list .list_title {
+  vertical-align: start;
+}
+.list .item {
+  display: flex;
+  padding: 8px 0px;
+}
+.list .item .img {
+  flex-basis: 20%;
+}
+.list .item .img img {
+  width: 100%;
+}
+.list .item .item_info {
+  display: flex;
+  flex-direction: column;
+  padding: 0 8px;
+  flex-basis: 60%;
+  height: 30%;
+}
+
+.list .item .item_info .title {
+  /* 한 줄 자르기 */
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 여러 줄 자르기 추가 스타일 */
+  white-space: normal;
+  line-height: 1.2;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
 @media all and (min-width: 320px) {
   /*폰트크기*/
   .video_title {
@@ -124,6 +159,12 @@
   .user_NumOfSub,
   .video_des,
   .sub_btn {
+    font-size: 14px;
+  }
+  .list_title {
+    font-size: 16px;
+  }
+  .list .item {
     font-size: 14px;
   }
 }
@@ -145,23 +186,13 @@
 }
 
 @media all and (min-width: 960px) {
-  .video {
+  .wrap {
     display: flex;
-    flex-direction: column;
+    margin: 1.5% 5%;
   }
-  .video-div {
-    position: relative;
-    padding-bottom: 33.75%; /* 16:9 */
-    height: 0;
-  }
-  .video-div > video {
-    margin: 0 auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60%;
-    height: 100%;
-    background-color: black;
+  .contents {
+    width: 70%;
+    margin: 0;
   }
   /*폰트크기*/
   .video_title {

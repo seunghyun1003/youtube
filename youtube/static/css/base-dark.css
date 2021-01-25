@@ -30,7 +30,6 @@ a {
 }
 
 body {
-  font-family: Roboto;
 }
 
 header {
@@ -148,6 +147,9 @@ ul li button {
     width: 100%;
   }
   .logo button i {
+    font-size: x-large;
+  }
+  .logo button .logo_title {
     font-size: large;
   }
   .nav i {
@@ -156,8 +158,14 @@ ul li button {
   .nav {
     width: 15%;
   }
-  .logo-span {
-    font-size: 18px;
+  .logo .logo_title {
+    font-size: 14px;
+  }
+  .logo i {
+    font-size: x-large;
+  }
+  .nav i {
+    font-size: large;
   }
 }
 
@@ -171,8 +179,5 @@ ul li button {
   }
   .logo {
     min-width: 200px;
-  }
-  .logo-span {
-    font-size: 20px;
   }
 }

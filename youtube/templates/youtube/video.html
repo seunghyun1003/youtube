@@ -3,7 +3,8 @@
 
 {% block extrahead %}
     <link rel="stylesheet" href=" {% static "css/video-light-theme.css" %}" id="videotheme"  class="theme-link"/>
-    {% endblock %}
+    
+{% endblock %}
 
 {% block content %}
 {{ video.click }}
@@ -56,20 +57,22 @@
             <div>
                 <h3>{{video.title}}에 댓글을 달아주세요.</h3>
             </div>
-            {% for comment in video.comments.all %}
-            <div>
-                <div>{{ comment.comment_body }}</div>
-                <div>{{ comment.comment_date }}</div>
-            </div>
-            {% empty %}
+            {% if comments %}
+                {% for comment in video.comments.all %}
+                <div>
+                    <div>{{ comment.comment_body }}</div>
+                    <div>{{ comment.comment_date }}</div>
+                </div>
+                {% endfor %}
+            {% else %}
             <p>아직 댓글이 없음.</p>
-            {% endfor %}
+            {% endif %}
             <div>
-                <form action="" method="POST">
+                <div class="comment_form">
                     {% csrf_token %}
                     <textarea name="comment" placeholder="댓글을 적어주세요." required></textarea>
                     <input type="submit" value="쓰기">
-                </form>
+                </div>
             </div>
         </section>
     </div>
