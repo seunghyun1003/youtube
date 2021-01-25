@@ -19,6 +19,10 @@
   color: white;
 }
 
+.comment_section {
+  overflow: auto;
+}
+
 @media all and (min-width: 320px) {
   .video-flex {
     display: flex;

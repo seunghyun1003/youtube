@@ -84,7 +84,6 @@ def detail_page(request, id):
             'video': video,
             'comments' : comments
             })
-    
     return render(request, 'youtube/video.html', {'video': video})
 
 def comment_write(request, id):

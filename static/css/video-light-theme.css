@@ -4,274 +4,151 @@
   position: fixed;
   top: 55px;
   left: 0;
-}
-.contents {
-  margin: 3% 3% 0 3%;
-}
-.video {
-  border-bottom: 1px solid lightgray;
-}
-.video_player {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-}
-.video_player iframe {
-  top: 0;
-  left: 0;
-  width: 100%;
+  background-color: inherit;
   height: 100%;
-  position: absolute;
+  width: 100%;
 }
 
-.video .video_title {
-  padding: 8px 0 0 0;
-  display: inline-block;
-  width: 100%;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; /* 여러 줄 자르기 추가 스타일 */
-  white-space: normal;
-  text-align: left;
-  word-wrap: break-word;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-.video .video_information {
+.video-flex {
   display: flex;
-  padding: 8px 0px;
-  justify-content: space-between;
-  align-items: center;
-}
-.video .video_information .video_views {
-  color: gray;
-}
-.video .video_information .video_likehateicons {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 8px;
-}
-.video .video_information .video_likehateicons .video_btn {
-  padding: 5px 8px;
-  color: gray;
-  border: none;
-}
-.video .video_information .video_likehateicons .video_btn :hover {
-  color: blue;
 }
 
-.video_user {
-  display: flex;
-  padding: 2% 0;
-  border-bottom: 1px solid lightgray;
-}
-.video_user .user_imgBox {
-  border-radius: 50%;
-  overflow: hidden;
-  width: 70px;
-  height: 70px;
-}
-.video_user .video_detail {
-  padding-left: 1%;
-  width: 100%;
-}
-.video_user .user_detail {
-  display: flex;
-  flex-direction: column;
-  padding-left: 0.5em;
-  width: 100%;
-}
-.video_user .user_Box {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 24px;
-}
-.video_user .subbtnAndAlarm {
-  display: flex;
-  margin-right: 3%;
-}
-.video_user .subbtnAndAlarm .sub_btn {
-  width: 5.5em;
-  height: 2.8em;
-  color: rgb(245, 245, 245);
-  background-color: rgb(211, 17, 17);
-  border-radius: 2px;
-  margin-right: 20px;
-}
-.video_user .subbtnAndAlarm #alarm_btn {
-  display: none;
-  color: var(--dark-mode4);
-}
-.video_user .video_des {
+.video-item > a {
+  padding: 0;
+  color: black;
 }
 
-/* 리스트 영역 */
-.list {
-  margin: 2% 3% 3% 3%;
-}
-.list .list_title {
-  vertical-align: start;
-}
-.list .item {
-  display: flex;
-  padding: 8px 0px;
-}
-.list .item .img {
-  flex-basis: 20%;
-}
-.list .item .img img {
-  width: 100%;
-}
-.list .item .item_info {
-  display: flex;
-  flex-direction: column;
-  padding: 0 8px;
-  flex-basis: 60%;
-  height: 30%;
-}
-
-.list .item .item_info .title {
-  /* 한 줄 자르기 */
-  display: inline-block;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis; /* 여러 줄 자르기 추가 스타일 */
-  white-space: normal;
-  line-height: 1.2;
-  text-align: left;
-  word-wrap: break-word;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+.comment_section {
+  overflow: auto;
 }
 
 @media all and (min-width: 320px) {
-  .list .item .img {
-    flex-basis: 40%;
-  }
-  .list .item .img img {
-    width: 100%;
-  }
-  .list .item .item_info {
+  .video-flex {
     display: flex;
     flex-direction: column;
-    padding: 0 8px;
-    flex-basis: 60%;
-    height: 30%;
+    text-align: center;
+    margin: 0 2%;
   }
-  /*폰트크기*/
-  .video_title {
-    font-size: 16px;
+  .video-item {
+    flex-basis: 92%;
+    margin: 20px 4% 0;
   }
-  .video_views,
-  .video_btn,
-  .user_Name,
-  .user_NumOfSub,
-  .video_des,
-  .sub_btn {
-    font-size: 14px;
+  .video-div {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
   }
-  .list_title {
-    font-size: 16px;
-  }
-  .list .item {
-    font-size: 14px;
+  .video-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
   }
 }
-@media all and (min-width: 768px) {
-  .list .item {
+@media all and (min-width: 600px) {
+  .video-flex {
     display: flex;
-    padding: 4px 0px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20px 2% 0;
   }
-  .list .item .img {
-    flex-basis: 20%;
+  .video-item {
+    flex-basis: 48%;
+    margin: 20px 1% 0;
   }
-  .list .item .img img {
+  .video-div {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+  }
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-  }
-  .list .item .item_info {
-    display: flex;
-    flex-direction: column;
-    padding: 0 8px;
-    flex-basis: 72%;
-    height: 30%;
-  }
-  /*폰트크기*/
-  .video_title {
-    font-size: 18px;
-  }
-  .video_views,
-  .video_btn {
-    font-size: 16px;
-  }
-  .user_Name,
-  .user_NumOfSub,
-  .video_des,
-  .sub_btn {
-    font-size: 14px;
-  }
-  .list_title {
-    font-size: 16px;
-  }
-  .list .item {
-    font-size: 14px;
+    height: 100%;
+    margin: 0;
+    background-color: black;
   }
 }
 
-@media all and (min-width: 960px) {
-  .wrap {
-    display: flex;
-    margin: 1.5% 5%;
+@media all and (min-width: 768px) {
+  .video-flex {
+    margin: 20px 3% 0;
   }
-  .contents {
-    width: 70%;
-    margin: 0;
+  .video-item {
+    flex-basis: 31.33%;
+    margin: 20px 1% 0;
   }
-  .list {
-    width: 30%;
-    margin: 0;
-    margin-left: 1.5%;
-    text-align: start;
+  .video-div {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
   }
-  .list .list_title {
-    display: block;
-    border-bottom: 1px solid lightgray;
-    padding-bottom: 4px;
-    margin-bottom: 8px;
-  }
-  .list .item {
-    display: flex;
-    padding: 4px 0px;
-  }
-  .list .item .img {
-    flex-basis: 50%;
-  }
-  .list .item .img img {
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: black;
   }
-  .list .item .item_info {
-    display: flex;
-    flex-direction: column;
-    padding: 0 8px;
-    flex-basis: 72%;
-    height: 30%;
+}
+
+@media all and (min-width: 1024px) {
+  .video-flex {
+    margin: 20px 5% 0;
   }
-  /*폰트크기*/
-  .video_title {
-    font-size: 20px;
+  .video-item {
+    flex-basis: 24%;
+    margin: 20px 0.5% 0;
   }
-  .video_views,
-  .video_btn,
-  .user_Name,
-  .user_NumOfSub,
-  .video_des,
-  .sub_btn {
-    font-size: 16px;
+  .video-div {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
   }
-  .list .item {
-    font-size: 14px;
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: black;
+  }
+}
+
+@media all and (min-width: 1500px) {
+  .menu .menu_box {
+    position: fixed;
+    width: 250px;
+  }
+  .video-flex {
+    position: fixed;
+    left: 250px;
+    margin: 20px 3% 0;
+  }
+  .video-item {
+    flex-basis: 24%;
+    margin: 20px 0.5% 0;
+  }
+  .video-div {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+  }
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: black;
   }
 }
