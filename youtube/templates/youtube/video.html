@@ -52,6 +52,26 @@
                 </div>
             </div>
         </section>
+        <section class="comment_section">
+            <div>
+                <h3>{{video.title}}에 댓글을 달아주세요.</h3>
+            </div>
+            {% for comment in video.comments.all %}
+            <div>
+                <div>{{ comment.comment_body }}</div>
+                <div>{{ comment.comment_date }}</div>
+            </div>
+            {% empty %}
+            <p>아직 댓글이 없음.</p>
+            {% endfor %}
+            <div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <textarea name="comment" placeholder="댓글을 적어주세요." required></textarea>
+                    <input type="submit" value="쓰기">
+                </form>
+            </div>
+        </section>
     </div>
 </div>   
 {% endblock content %}

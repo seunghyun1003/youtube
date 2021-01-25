@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extrahead %}
-    <link rel="stylesheet" id="toptheme"  class="theme-link"/>
+    <link rel="stylesheet" id="toptheme" class="theme-link"/>
 {% endblock %}
 
 {% block content %}
@@ -10,16 +10,17 @@
     <div class="video-flex">
         {% for video in videos %}
         <div class="video-item">
+            {{ forloop.counter }}
             <a href="{% url 'youtube:detail' video.id %}">
             <div class="video-div">
                 <video class="video-player">
                     <source src="{{video.file.url}}" type="video/mp4">
                 </video>
             </div>
-            <div class="video-info-div" style="paddin-top: 10px;">
-                <li class="video-info" style="font-weight: bold;"><p>{{ video.title }}</p></li>
-                <li class="video-info" style="color:gray;"><p>{{ video.des }}</p></li>
-                <li class="video-info" style="color:gray;"><p>{{ video.uploaded_at }}</p></li>
+            <div class="video-info-div">
+                <li class="video-info" style="color:black; font-weight: bold;"><p>{{ video.title }}</p></li>
+                <li class="video-info"><p>{{ video.des }}</p></li>
+                <li class="video-info"><p>{{ video.uploaded_at }}</p></li>
             </div>
             </a>
         </div>

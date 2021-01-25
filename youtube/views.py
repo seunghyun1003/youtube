@@ -28,7 +28,7 @@ def search(request):
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.files.storage import FileSystemStorage
-from .models import Video
+from .models import Video, Comment
 from django.utils import timezone
 
 def video_list(request):
@@ -76,8 +76,20 @@ def video_delete(request, id):
 
 def detail_page(request, id):
     video = get_object_or_404(Video,pk=id)
-    print(video.hits)
+    if request.method == "POST":
+        comment_body = request.POST['comment']
+        comments = Comment(video=video, comment_body=comment_body)
+        comments.save()
+        return render(request, 'youtube/video.html', {
+            'video': video,
+            'comments' : comments
+            })
+    
     return render(request, 'youtube/video.html', {'video': video})
+
+def comment_write(request, id):
+    video = get_object_or_404(Video,pk=id)
+        
 
 def top(request):
     videos = Video.objects.all().order_by('-hits')
