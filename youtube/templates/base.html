@@ -1,5 +1,3 @@
-{% load socialaccount %}
-{% providers_media_js %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +8,6 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="static/js/main.js" defer></script>
-    <meta name="google-signin-client_id" content="1078613595194-6m5joili5sqbd6doss9v3eg798564uaf.apps.googleusercontent.com">
     {% block extrahead %}
     {% endblock %}
     <title>youtube video</title>
@@ -27,7 +24,7 @@
             <nav class="menu_box" id="menu_box" onclick="ToggleSidebar()">
                 <ul id="menu_list">
                     <li><button onclick="window.location.href = '/top'">인기</button></li>
-                    <li><button onclick="window.location.href = '/'">다른 메뉴</button></li>
+                    <li><button onclick="window.location.href = ''">다른 메뉴</button></li>
                 </ul>
             </nav>
         </div> 
@@ -35,15 +32,14 @@
             <button class="search_btn" id="search_btn" onclick="window.location.href = '/search'">
                 <i class="fas fa-search"></i>
             </button>
-            {% if user.is_authenticated %} 
-            {% for account in user.socialaccount_set.all %}
             <button class="settings_btn" id="dropbtn" onclick="DropDownSetting()">
-                <img class="user_img" src="{{ account.get_avatar_url }}" style="width:30px; margin: 0px 0px 0px 15px; border-radius: 4em;"/>
+                <i class="fas fa-users-cog"></i>
             </button>
+            {% if user.is_authenticated %}
             <div id="myDropdown" class="dropdown-content">
                 <ul>
                     <li>
-                        <button onclick="window.location.href = '/mychannel'" id="mychannel_link">{{ account.extra_data.name }}님 채널</button>
+                        <button onclick="window.location.href = '/mychannel'" id="mychannel_link">{{ user.username }}님 채널</button>
                     </li>
                 </ul>
                 <ul>
@@ -51,17 +47,14 @@
                 </ul>
                 <ul>
                     <li style="padding-bottom: 10px;"><a href="/who">로그인한 계정 정보</a></li>
-                    <li><a href="/logout">로그아웃</a></li>
+                    <li><a href="{% url 'youtube:logout' %}">로그아웃</a></li>
                 </ul>
             </div>
-            {% endfor %}
             {% else %}
-            <button class="settings_btn" id="dropbtn" onclick="DropDownSetting()">
-                <i class="fas fa-users-cog"></i>
-            </button>
             <div id="myDropdown" class="dropdown-content">
                 <ul>
-                    <li><a href=" {% provider_login_url "google" %}">Google Sign in</a></li>
+                    <li><a href="{% url 'youtube:signup' %}">Sign up</a></li>
+                    <li><a href="{% url 'youtube:login' %}">Sign in</a></li>
                 </ul>
                 <ul>
                     <li><button id="darkmode_btn" onclick="ToggleTheme()">토글 버튼</button></li>

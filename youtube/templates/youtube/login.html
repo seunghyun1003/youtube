@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href=" {% static "css/reg-light-theme.css" %}"  id="maintheme" class="theme-link"/>
+{% endblock %}
+
+{% block content %}
+<div class="wrap">
+    {{ error }}
+    <div>
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="로그인" />
+        </form>
+    </div>
+    <div>
+        만약 계정이 없다면 <br>
+        <a href="{% url 'youtube:signup' %}">signup</a>
+    </div>
+</div>
+{% endblock content %}

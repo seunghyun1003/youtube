@@ -58,15 +58,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'youtube',
-
-    
-    # 사용자 인증을 위한 기본모듈
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    # provider
-    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -149,25 +140,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-# 로그인
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',  # django가 관리하는 AUTH
-    'allauth.account.auth_backends.AuthenticationBackend'
-]
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
-}
-SITE_ID = 1
-
-# 로그인 성공 후 이동할 페이지
-LOGIN_REDIRECT_URL = '/'
-
-
+# 로그인 이후 경로 수정
+LOGIN_REDIRECT_URL = "/"

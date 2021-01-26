@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% load socialaccount %}
-{% providers_media_js %}
-
 {% block extrahead %}
     <link rel="stylesheet" href=" {% static "css/mychannel-light-theme.css" %}" id="mychanneltheme"  class="theme-link"/>
 {% endblock %}
@@ -13,10 +10,8 @@
     <button id=reload_btn onclick="location.reload();"><i class="fas fa-redo-alt"></i></button>
     <div class="mychannel_info" id="mychannel_info">
         <div class="my_imgBox">
-            {% for account in user.socialaccount_set.all %}
-            <img class="my_img" src="{{ account.get_avatar_url }}" style="width:40px; margin-right:20px; border-radius: 4em;"/></img>
             <div class="my_info">
-                <li><span id="user_Name">"{{ account.extra_data.name }}"님</span></li>
+                <li><span id="user_Name">""님</span></li>
             </div>
             {% endfor %}
         </div>

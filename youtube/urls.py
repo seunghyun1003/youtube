@@ -6,16 +6,21 @@ app_name = 'youtube_backend'
 urlpatterns = [
     path('', views.video_list, name='video_list'),
     path('index', views.video_list, name='video_list'),
+
+    path('signup', views.signup, name='signup'),
+    path('login', views.signin, name='login'),
+    path('logout', views.signout, name='logout'),
+    path('who', views.who, name='who'),
+    
     path('mychannel', views.video_upload, name='video_upload'),
     path('list', views.video_list_mych, name='video_list_mych'),
+
     path('<int:id>', views.detail_page, name='detail'),
     path('delete<int:id>', views.video_delete, name='video_delete'),
     path('edit<int:id>', views.video_update, name='video_update'),
-    path('login/', views.login, name='login'),
-    path("logout", views.logout_request, name="logout"),
-    path('who', views.who, name='who'),
+    path('<int:id>/comment/write', views.comment_write, name='comment_write'),
+    path('<int:id>/comment/delete', views.comment_delete, name='comment_delete'),
+
     path('search', views.search, name='search'),
     path('top', views.top, name='top'),
-    path('<int:id>/comment/write/', views.comment_write, name='comment_write'),
-    path('<int:id>/comment/delete/', views.comment_delete, name='comment_delete'),
 ]
