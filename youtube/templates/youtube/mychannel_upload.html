@@ -11,9 +11,10 @@
     <div class="mychannel_info" id="mychannel_info">
         <div class="my_imgBox">
             <div class="my_info">
-                <li><span id="user_Name">""님</span></li>
+                {% if user.is_active %} 
+                <li><span id="user_Name">"{{ user.username }}"님</span></li>
+                {% endif %}
             </div>
-            {% endfor %}
         </div>
         <div class="tab" id="tab">
             <button class="tabbtn active" onclick="window.location.href = 'mychannel'">업로드</button>

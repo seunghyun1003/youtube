@@ -11,9 +11,10 @@
     <div class="mychannel_info" id="mychannel_info">
         <div class="my_imgBox">
             <div class="my_info">
-                <li><span id="user_Name">""님</span></li>
+                {% if user.is_active %} 
+                <li><span id="user_Name">"{{ user.username }}"님</span></li>
+                {% endif %}
             </div>
-            {% endfor %}
         </div>
         <div class="tab" id="tab">
             <button class="tabbtn" onclick="window.location.href = 'mychannel'">업로드</button>
@@ -34,7 +35,7 @@
                         <li><a href="{{ video.file.url }}">download</a></li>
                     </td>
                     <td>
-                        <form method="post" action="{% url 'youtube:video_delete' video.id %}">
+                        <form method="post" action="{% url 'youtube:video_delete' video.id %}" onclick="return confirm('<{{ video.title }}>을 정말 삭제하시겠습니까?')">
                             {% csrf_token %}
                             <button type="submit">delete</button>
                         </form>
