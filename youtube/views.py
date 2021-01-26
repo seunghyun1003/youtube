@@ -86,12 +86,33 @@ def detail_page(request, id):
             })
     return render(request, 'youtube/video.html', {'video': video})
 
-def comment_write(request, id):
-    video = get_object_or_404(Video,pk=id)
-        
-
 def top(request):
     videos = Video.objects.all().order_by('-hits')
     return render(request, 'youtube/top.html', {
         'videos' : videos
     })
+
+
+import json
+from django.core import serializers
+from django.core.serializers.json import DjangoJSONEncoder
+
+def comment_write(request, id):
+    video = get_object_or_404(Video,pk=id)
+    comment_body = request.POST['comment']
+    comment  = Comment.objects.create(video=video, comment_body=comment_body)
+    video.save()
+    data = {
+        'comment_body' : comment_body,
+        'comment_date' : '방금 전',
+        'comment_id' : comment.id
+    }
+    return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder), content_type = "application/json")
+
+def comment_delete(request, id):
+    video = get_object_or_404(Video,pk=id)
+    video.save()
+    data = {
+        'comment_id': comment_id,
+    }
+    return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder), content_type = "application/json")
