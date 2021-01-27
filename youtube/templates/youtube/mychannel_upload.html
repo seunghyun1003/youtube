@@ -27,8 +27,8 @@
         {% if user.is_active %} 
         <div class="home-2">
             <form action="" method="POST" encType="multipart/form-data" class="upload-form">{% csrf_token %}
-                <label for="video-title" requir>제목</label>
-                <input id="video-title" type="text" name="title" placeholder="동영상 제목 입력" required/><br>
+                <label for="video-title" required>제목</label>
+                <input id="video-title" maxlength='50' type="text" name="title" placeholder="동영상 제목 입력" required/><br>
                 
                 <label for="video-file">동영상 선택</label>
                 <input id="video-file" type="file" name="videofile" accept="video/*" required/><br>

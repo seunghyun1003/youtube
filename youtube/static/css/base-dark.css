@@ -5,6 +5,7 @@
   --dark-mode3: rgb(61, 61, 61);
   --dark-mode4: rgb(136, 136, 136);
   --dark-mode5: rgb(226, 226, 226);
+  --dark-mode6: rgb(238, 237, 237);
   --red: rgb(211, 17, 17);
 }
 
@@ -30,6 +31,7 @@ a {
 }
 
 body {
+  overflow: auto;
 }
 
 header {

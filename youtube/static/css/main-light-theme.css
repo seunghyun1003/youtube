@@ -33,6 +33,28 @@
   background-color: black;
 }
 
+.video-info-div {
+  padding-top: 10px;
+  text-align: start;
+}
+.video-info-title {
+  font-size: large;
+  /* 한 줄 자르기 */
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 여러 줄 자르기 추가 스타일 */
+  white-space: normal;
+  line-height: 1.2;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.video-info {
+  color: gray;
+  padding-top: 10px;
+}
 @media all and (min-width: 320px) {
   .video-flex {
     display: flex;

@@ -5,6 +5,7 @@
   --dark-mode3: rgb(61, 61, 61);
   --dark-mode4: rgb(136, 136, 136);
   --dark-mode5: rgb(226, 226, 226);
+  --dark-mode6: rgb(231, 231, 231);
   --red: rgb(211, 17, 17);
 }
 
@@ -31,8 +32,8 @@ a {
 
 body {
   background-color: rgb(247, 245, 245);
+  overflow: auto;
 }
-
 /* 헤더 영역 */
 header {
   display: flex;

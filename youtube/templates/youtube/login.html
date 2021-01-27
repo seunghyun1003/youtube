@@ -7,11 +7,12 @@
 
 {% block content %}
 <div class="wrap">
+    <span class="login-span">LOGIN</span>
     {{ error }}
     <div>
-        <form method="post" action="">
+        <form method="post" action="" class="form-login">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form }}
             <input type="submit" value="로그인" />
         </form>
     </div>

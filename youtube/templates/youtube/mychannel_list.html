@@ -23,24 +23,20 @@
     </div>
     <div id="filelist" class="tabcontent" style="display:block">
         {% if videos %}
-        <table>
+        <table class="list-table">
             <tbody>
                 {% for video in videos %}
                 <tr>
-                    <td>
-                        <a href="{{video.pk}}">
-                        <li><p>제목 : {{ video.title }}</p></li>
+                    <td class="list-td1">
+                        <a href="video{{video.pk}}" class="channellist-title">제목 : {{ video.title }}</a>
                     </td>
-                    <td class="downloadlink">
-                        <li><a href="{{ video.file.url }}">download</a></li>
-                    </td>
-                    <td>
+                    <td class="list-td2">
                         <form method="post" action="{% url 'youtube:video_delete' video.id %}" onclick="return confirm('<{{ video.title }}>을 정말 삭제하시겠습니까?')">
                             {% csrf_token %}
                             <button type="submit">delete</button>
                         </form>
                     </td>
-                    <td>
+                    <td class="list-td2">
                         <a href="edit{{ video.pk }}" class="update-link"><button class="update-btn">update</button></a>
                     </td>
                 </tr>

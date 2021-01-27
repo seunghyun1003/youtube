@@ -53,14 +53,14 @@
             </div>
         </section>
         <section class="comment_section">
-            <span><h3>{{ video.comments.count }}개의 댓글</h3></span>
+            <span><h3>댓글 {{ video.comments.count }}개 </h3></span>
             {% if user.is_authenticated %}
             <div>
-                <div class="comment_form">
-                    <form  action="{% url 'youtube:comment_write' video.id %}" method="POST">
+                <div class="comment-form-div">
+                    <form class="comment-form" action="{% url 'youtube:comment_write' video.id %}" method="POST">
                         {% csrf_token %}
-                        <textarea name="comment" placeholder="댓글을 적어주세요." required></textarea>
-                        <input type="submit" value="댓글 달기">
+                        <textarea name="comment" placeholder="공개 댓글 추가" required></textarea>
+                        <input type="submit" value="댓글">
                     </form>
                 </div>
             </div>

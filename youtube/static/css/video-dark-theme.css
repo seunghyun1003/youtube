@@ -1,9 +1,11 @@
 @import url("base-dark.css");
 
 .wrap {
-  position: fixed;
-  top: 55px;
-  left: 0;
+  padding-top: 55px;
+  background-color: inherit;
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
 }
 .contents {
   margin: 3% 3% 0 3%;
