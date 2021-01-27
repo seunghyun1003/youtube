@@ -2,23 +2,25 @@
 {% load static %}
 
 {% block extrahead %}
-    <link rel="stylesheet" href=" {% static "css/reg-light-theme.css" %}"  id="maintheme" class="theme-link"/>
+    <link rel="stylesheet" href=" {% static "css/login_signup-light.css" %}"  id="login_signuptheme" class="theme-link"/>
 {% endblock %}
 
 {% block content %}
 <div class="wrap">
-    <span class="login-span">LOGIN</span>
-    {{ error }}
-    <div>
-        <form method="post" action="" class="form-login">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="로그인" />
-        </form>
-    </div>
-    <div>
-        만약 계정이 없다면 <br>
-        <a href="{% url 'youtube:signup' %}">signup</a>
+    <div class="login">
+        <span class="login-title-i"><i class="far fa-user fa-3x"></i></span>
+        <span class="login-title-span">Member Login</span>
+        {{ error }}
+        <div class="login-form-div">
+            <form method="post" action="" class="login-form">
+                <br>
+                {% csrf_token %}
+                {{ form }}
+                <br>
+                <button id="submitbtn" type="submit">Login</button>
+                <a class="signuplink" href="{% url 'youtube:signup' %}"><button class="signup_btn">Sign up</button></a>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock content %}

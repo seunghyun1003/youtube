@@ -46,7 +46,15 @@ function loadTheme(){
             theme.setAttribute('href', "static/css/top-light-theme.css");
             console.log("인기  테마 : 라이트");
         }
-    } 
+    } else if(theme_name == 'login_signuptheme'){
+        if (currentTheme == "dark") {
+            theme.setAttribute('href', "static/css/login_signup-dark.css");
+            console.log("인기 테마 : 다크");
+        } else{
+            theme.setAttribute('href', "static/css/login_signup-light.css");
+            console.log("인기  테마 : 라이트");
+        }
+    }
 }
 
 function ToggleTheme(){

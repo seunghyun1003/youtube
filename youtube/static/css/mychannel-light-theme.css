@@ -7,6 +7,7 @@
   width: 100%;
   height: 100%;
   margin: 0;
+  overflow: auto;
 }
 .mychannel_info {
   display: flex;
@@ -51,9 +52,6 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.05);
-}
-#home .home-2 {
-  height: 50%;
 }
 .updateform {
   display: flex;
@@ -111,6 +109,7 @@ video {
   }
   .home-2 {
     display: flex;
+    height: 50%;
   }
   .upload-form {
     margin: 0 auto;
@@ -148,10 +147,15 @@ video {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: bold;
+    font-size: medium;
   }
   button[type="submit"]:hover,
   td > button :hover {
     background-color: #3841a5;
+  }
+  label {
+    font-weight: bold;
   }
   .deup-btn-flex {
     display: flex;
@@ -206,7 +210,7 @@ video {
     display: block;
     height: 100%;
     text-align: center;
-    padding-top: 100px;
+    padding-top: 50px;
   }
   #home .home-1 {
     font-size: 1.4em;
@@ -216,6 +220,12 @@ video {
     display: block;
     font-size: 0.8em;
     padding-top: 10px;
+  }
+  button[type="submit"],
+  .update-btn {
+    padding: 6px 10px;
+    margin: 6px 0;
+    max-width: 140px;
   }
   #home .home-3 {
     margin: 30px 0;
@@ -263,9 +273,19 @@ video {
     padding-top: 0;
     font-size: 16px;
   }
+  .home-2 {
+    display: flex;
+    height: 44%;
+  }
   .upload-form {
     padding: 30px;
     width: 80%;
+  }
+  button[type="submit"],
+  .update-btn {
+    padding: 12px 18px;
+    margin: 4px 0;
+    max-width: 140px;
   }
   table {
     margin: 0 auto;
