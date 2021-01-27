@@ -146,9 +146,7 @@ def comment_write(request, id):
     if request.method == "POST":
         video = get_object_or_404(Video,pk=id)
         comment_body = request.POST['comment']
-
         commenter = request.user
-
         comment = Comment(video=video,commenter=commenter,comment_body=comment_body)
         comment.save()
         return render(request, 'youtube/video.html', {
@@ -169,3 +167,4 @@ def comment_delete(request, video_id, comment_id):
         'video': video,
         'comment':comment,
     })
+

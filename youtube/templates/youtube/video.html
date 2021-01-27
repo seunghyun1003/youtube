@@ -53,24 +53,7 @@
             </div>
         </section>
         <section class="comment_section">
-            <div>
-                <h3>{{video.title}}에 댓글을 달아주세요.</h3>
-            </div>
-            {% for comment in video.comments.all %}
-            <div>
-                <div>{{ comment.comment_body }}</div>
-                <div>{{ comment.commenter }}</div>
-                <div>{{ comment.comment_date }}</div>
-                {% if comment.commenter == user %}
-                <form action="{% url 'youtube:comment_delete' video.id comment.id %}" method="POST">
-                    {% csrf_token %}
-                    <input type="submit" value="댓글 삭제">
-                </form>
-                {% endif %}
-            {% empty %}
-            <div class="card-text">댓글이 없습니다.</div>
-            {% endfor %}
-
+            <span><h3>{{ video.comments.count }}개의 댓글</h3></span>
             {% if user.is_authenticated %}
             <div>
                 <div class="comment_form">
@@ -81,7 +64,28 @@
                     </form>
                 </div>
             </div>
+            {% else %}
+            <h3>로그인 후 댓글을 달아보세요.</h3>
             {% endif %}
+            <div class="comment-list">
+            {% for comment in video.comments.all %}
+                <div class="comment-list-flex">
+                    <div class="comment-list-user" style="font-weight: bold;">{{ comment.commenter }}</div>
+                    <div class="comment-list-body">{{ comment.comment_body }}</div>
+                    <div class="comment-list-date">{{ comment.comment_date }}</div>
+                    {% if comment.commenter == user %}
+                    <div class="comment-list-delete">
+                        <form action="{% url 'youtube:comment_delete' video.id comment.id %}" method="POST">
+                            {% csrf_token %}
+                            <input type="submit" value="댓글 삭제">
+                        </form>
+                    </div>
+                    {% endif %} 
+                </div>
+            {% empty %}
+            <div class="card-text">댓글이 없습니다.</div>
+            {% endfor %}
+            </div>
         </section>
     </div>
 </div>   
