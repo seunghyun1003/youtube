@@ -23,6 +23,8 @@
     </div>
     <div id="home" class="tabcontent">
         <div class="home-1">동영상을 저장하고 <br>파일 목록에서 확인해보세요.</div>
+        
+        {% if user.is_active %} 
         <div class="home-2">
             <form action="" method="POST" encType="multipart/form-data" class="upload-form">{% csrf_token %}
                 <label for="video-title" requir>제목</label>
@@ -37,6 +39,12 @@
                 <button type="submit"> 업로드 </button>
             </form>
         </div>
+        {% else %}
+        <div>로그인이 필요한 서비스입니다.</div>
+        <a href="{% url 'youtube:login' %}">Sign in</a>
+        {% endif %}
+
     </div>
 </section>
 {% endblock content %}
+

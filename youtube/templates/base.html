@@ -29,38 +29,38 @@
             </nav>
         </div> 
         <div class="nav">
+            {% if user.is_authenticated %}
+            <button style="min-width: 100px;">
+                <a href="/mychannel">{{user.username}}님의 채널</a>
+            </button>
+            {% else %}
+            <button>
+                <li><a href="{% url 'youtube:login' %}">Sign in</a></li>
+            </button>
+            {% endif %}
             <button class="search_btn" id="search_btn" onclick="window.location.href = '/search'">
                 <i class="fas fa-search"></i>
             </button>
             <button class="settings_btn" id="dropbtn" onclick="DropDownSetting()">
                 <i class="fas fa-users-cog"></i>
             </button>
-            {% if user.is_authenticated %}
             <div id="myDropdown" class="dropdown-content">
-                <ul>
-                    <li>
-                        <button onclick="window.location.href = '/mychannel'" id="mychannel_link">{{ user.username }}님 채널</button>
-                    </li>
-                </ul>
                 <ul>
                     <li><button id="darkmode_btn" onclick="ToggleTheme()">테마 토글</button></li>
                 </ul>
+                {% if user.is_authenticated %}
                 <ul>
                     <li style="padding-bottom: 10px;"><a href="/who">로그인한 계정 정보</a></li>
                     <li><a href="{% url 'youtube:logout' %}">로그아웃</a></li>
                 </ul>
+                {% else %}
+                {% endif %}
             </div>
-            {% else %}
             <div id="myDropdown" class="dropdown-content">
-                <ul>
-                    <li><a href="{% url 'youtube:signup' %}">Sign up</a></li>
-                    <li><a href="{% url 'youtube:login' %}">Sign in</a></li>
-                </ul>
                 <ul>
                     <li><button id="darkmode_btn" onclick="ToggleTheme()">토글 버튼</button></li>
                 </ul>
             </div>
-            {% endif %}
         </div>
     </header>
     {% block content %}

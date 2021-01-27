@@ -11,7 +11,7 @@
     <div class="contents">
         <section class="video">
             <div class="video-div">
-                <video autoplay controls>
+                <video controls>
                 <source src="{{video.file.url}}" type="video/mp4">
                 </video>
             </div>
@@ -39,7 +39,7 @@
             <div class="video_detail">
                 <div class="user_Box">
                     <div class="user_detail">
-                        <span class="user_Name" title="유저 네임">유저 네임</span>
+                        <span class="user_Name" title="유저 네임">{{ video.writer }}</span>
                         <span class="user_NumOfSub" title="구독자 수">135만 명</span>
                     </div>
                     <div class="subbtnAndAlarm">
@@ -56,78 +56,33 @@
             <div>
                 <h3>{{video.title}}에 댓글을 달아주세요.</h3>
             </div>
-            {% if comments %}
-                {% for comment in video.comments.all %}
-                <div>
-                    <div>{{ comment.comment_body }}</div>
-                    <div>{{ comment.comment_date }}</div>
-                </div>
-                {% endfor %}
-            {% else %}
-            <p>아직 댓글이 없음.</p>
-            {% endif %}
+            {% for comment in video.comments.all %}
+            <div>
+                <div>{{ comment.comment_body }}</div>
+                <div>{{ comment.commenter }}</div>
+                <div>{{ comment.comment_date }}</div>
+                {% if comment.commenter == user %}
+                <form action="{% url 'youtube:comment_delete' video.id comment.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="댓글 삭제">
+                </form>
+                {% endif %}
+            {% empty %}
+            <div class="card-text">댓글이 없습니다.</div>
+            {% endfor %}
+
+            {% if user.is_authenticated %}
             <div>
                 <div class="comment_form">
-                    {% csrf_token %}
-                    <textarea name="comment" placeholder="댓글을 적어주세요." required></textarea>
-                    <input id="comment_write_btn" type="submit" value="댓글 달기">
+                    <form  action="{% url 'youtube:comment_write' video.id %}" method="POST">
+                        {% csrf_token %}
+                        <textarea name="comment" placeholder="댓글을 적어주세요." required></textarea>
+                        <input type="submit" value="댓글 달기">
+                    </form>
                 </div>
             </div>
+            {% endif %}
         </section>
     </div>
 </div>   
 {% endblock content %}
-
-{% block javascript %}
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#comment_write_btn').click(function () {
-            var comment_body= $("#content_id").val();
-            $.ajax({
-                type: "POST",
-                url: "{% url 'youtube:comment_write' video.id %}",
-                dataType: "json",
-                data: {
-                    'comment_body': comment_body,
-                    'csrfmiddlewaretoken': '{{csrf_token}}',
-                },
-                success: function (response) {
-                    $('#comment_list').append(
-                        '<div><div id='+response.comment_id+'><strong>'+
-                        '<span style="float:right;">'+response.comment_date+'</span>'+
-                        '<div><div style="white-space:pre-wrap; text-align:left;">'+response.comment_body+
-                        '</div><div style="text-align:right;"><a onclick="commentDelete('+response.comment_id+');">댓글삭제</a></div></div><hr></div><div class='+response.comment_id+'></div>'
-                    );
-                    $('#content_id').val("");
-                },
-                error: function () {
-                    if ($('#content_id').val()=="") {
-                        alert('댓글을 입력해주세요.');
-                    }
-                },
-            })
-        });
-    });
-</script>
-
-<script type="text/javascript">
-    function commentDelete(value) {
-        var comment_id = value;
-        var delete_warning = confirm('댓글을 삭제하시겠습니까?');
-        if (delete_warning == true) {
-            $.ajax({
-                type: "POST",
-                url: "{% url 'youtube:comment_delete' video.id %}",
-                dataType: "json",
-                data: {
-                    'comment_id': comment_id,
-                    'csrfmiddlewaretoken': '{{csrf_token}}',
-                },
-                success: function (response) {
-                    $('#'+response.comment_id).replaceWith('<span style="color:gray;">삭제된 댓글입니다.</span><hr>');
-                },
-            });
-        }
-    }
-</script>
-{% endblock %}

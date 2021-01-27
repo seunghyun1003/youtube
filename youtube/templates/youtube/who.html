@@ -7,14 +7,19 @@
 
 {% block content %}
 <div class="wrap" style="position: fixed; top: 55px; left:0px; padding:3% 3% 0 3%;">
-    <h2 class="loginsuc">Login Success!</h2>
-
-    <p style="padding-top: 20px;"><img src=""/></p>
+    
+    {% if user.is_active %} 
+    <h2 class="loginsuc">Logged User Info</h2>
     <div class="userinfo" style="padding-top: 20px;">
         <p>email: {{ user.email }}</p>
         <p>UserName: {{ user.username }}</p>
-        <p>password: {{ user.password }}</p>
         <p>last login: {{ user.last_login }}</p>
     </div>
+    <div style="position: fixed; bottom: 50px;">
+        <a href="{% url 'youtube:logout' %}">Sign Out</a>
+    </div>
+    {% else %}
+    <h2 class="loginsuc">No user logged in.</h2>
+    {% endif %}
 </div>
 {% endblock content %}

@@ -16,10 +16,10 @@
                     <source src="{{video.file.url}}" type="video/mp4">
                 </video>
             </div>
-            <div class="video-info-div" style="paddin-top: 10px;">
-                <li class="video-info" style="font-weight: bold;"><p>{{ video.title }}</p></li>
-                <li class="video-info" style="color:gray;"><p>조회수 {{ video.hits }}회</p></li>
-                <li class="video-info" style="color:gray;"><p>{{ video.uploaded_at }}</p></li>
+            <div class="video-info-div" style="padding-top: 10px; text-align: start;">
+                <li class="video-info" style="font-size: large;padding-bottom: 10px; "><p>{{ video.title }}</p></li>
+                <li class="video-info" style="color:gray;"><p>{{ video.writer }}</p></li>
+                <li class="video-info" style="color:gray;"><p>조회수 {{ video.hits }}회, {{ video.uploaded_at }}</p></li>
             </div>
             </a>
         </div>

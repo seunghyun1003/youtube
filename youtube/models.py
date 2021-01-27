@@ -1,11 +1,12 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth import get_user_model
 
 class Video(models.Model):
-    title = models.CharField(max_length=100)
-    file = models.FileField(upload_to='video/')
-    des = models.TextField(max_length=1000)
-
+    title = models.CharField(max_length=100, verbose_name = "제목")
+    file = models.FileField(upload_to='video/', verbose_name = "동영상")
+    des = models.TextField(max_length=1000, verbose_name = "설명")
+    writer = models.ForeignKey(get_user_model(), verbose_name = "게시자", on_delete = models.CASCADE, blank=True, null=True)
     uploaded_at = models.DateTimeField(default=timezone.now)
     
     hits = models.PositiveIntegerField(default = 0)
@@ -22,7 +23,8 @@ class Video(models.Model):
         self.save()
 
 class Comment(models.Model):
-    video = models.name = models.ForeignKey('Video', related_name='comments', on_delete=models.CASCADE)
+    commenter = models.ForeignKey(get_user_model(), verbose_name = "작성자", on_delete = models.CASCADE, blank=True, null=True)
+    video = models.ForeignKey('Video', related_name='comments', on_delete=models.CASCADE)
     comment_date = models.DateTimeField(auto_now_add=True)
     comment_body = models.TextField(max_length=1000)
 

@@ -18,8 +18,8 @@ urlpatterns = [
     path('<int:id>', views.detail_page, name='detail'),
     path('delete<int:id>', views.video_delete, name='video_delete'),
     path('edit<int:id>', views.video_update, name='video_update'),
-    path('<int:id>/comment/write', views.comment_write, name='comment_write'),
-    path('<int:id>/comment/delete', views.comment_delete, name='comment_delete'),
+    path('<int:id>comment/write', views.comment_write, name='comment_write'),
+    path('<int:video_id>/comment/<int:comment_id>/delete', views.comment_delete, name='comment_delete'),
 
     path('search', views.search, name='search'),
     path('top', views.top, name='top'),

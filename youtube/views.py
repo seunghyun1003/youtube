@@ -15,11 +15,13 @@ def mychannel_list(request):
 def search(request):
     return render(request, 'youtube/search.html')
 
-from django.contrib.auth.models import User
 from .forms import UserForm, LoginForm
 from django.contrib.auth import login, logout , authenticate
 from django.template import RequestContext
 
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 def signup(request):  
     if request.method == "POST":
@@ -48,8 +50,6 @@ def signin(request):
         form = LoginForm()
         return render(request, 'youtube/login.html', {'form': form})
 
-    
-    
 def signout(request):
     logout(request)
     return redirect('youtube:video_list')
@@ -66,34 +66,39 @@ def who(request):
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.files.storage import FileSystemStorage
-from .models import Video, Comment
+from .models import Video
 from django.utils import timezone
+from django.contrib import messages
 
+#모든 게시물 가져오기
 def video_list(request):
     videos = Video.objects.all()
     return render(request, 'youtube/index.html', {
         'videos' : videos
     })
     
+#사용자별 게시물 가져오기
 def video_list_mych(request):
-    videos = Video.objects.all()
-    return render(request, 'youtube/mychannel_list.html', {
+    user = request.user
+    videos = Video.objects.filter(writer = user).order_by('-uploaded_at')
+    return render(request, 'youtube/mychannel_list.html',{
         'videos' : videos
     })
 
+#비디오 업로드
 def video_upload(request):
     if request.method == "POST":
         title = request.POST['title']
         video = request.FILES['videofile']
         des = request.POST['des']
-        content = Video(title=title,file=video,des=des)
+        writer = request.user
+        content = Video(title=title,file=video,des=des,writer=writer)
         content.save()
         return redirect('youtube:video_list_mych')
     else:
         return render(request, 'youtube/mychannel_upload.html')
 
-    return render(request, 'youtube/mychannel_upload.html')
-
+#비디오 수정
 def video_update(request, id):
     video = Video.objects.get(pk=id)
     if request.method == "POST":
@@ -106,51 +111,61 @@ def video_update(request, id):
         return render(request, 'youtube/video_update.html',{'video': video,})
     return render(request, 'youtube/video_update.html',{'video': video,})
 
+#비디오 삭제
 def video_delete(request, id):
     if request.method == "POST":
         video = Video.objects.get(pk=id)
         video.delete()
     return redirect('youtube:video_list_mych')
 
+#비디오 디텡일 페이지
 def detail_page(request, id):
     video = get_object_or_404(Video,pk=id)
-    if request.method == "POST":
-        comment_body = request.POST['comment']
-        comments = Comment(video=video, comment_body=comment_body)
-        comments.save()
+    comments = Comment.objects.all()
+    if comments.exists():
+        comments.order_by('-comment_date')
         return render(request, 'youtube/video.html', {
-            'video': video,
-            'comments' : comments
-            })
-    return render(request, 'youtube/video.html', {'video': video})
+            'comments':comments,
+            'video': video
+        })
+    else:
+        return render(request, 'youtube/video.html', {
+            'video': video
+        })
 
+#인기순으로 비디오 정렬
 def top(request):
     videos = Video.objects.all().order_by('-hits')
     return render(request, 'youtube/top.html', {
         'videos' : videos
     })
 
-
-import json
-from django.core import serializers
-from django.core.serializers.json import DjangoJSONEncoder
+from .models import Comment
 
 def comment_write(request, id):
-    video = get_object_or_404(Video,pk=id)
-    comment_body = request.POST['comment']
-    comment  = Comment.objects.create(video=video, comment_body=comment_body)
-    video.save()
-    data = {
-        'comment_body' : comment_body,
-        'comment_date' : '방금 전',
-        'comment_id' : comment.id
-    }
-    return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder), content_type = "application/json")
+    if request.method == "POST":
+        video = get_object_or_404(Video,pk=id)
+        comment_body = request.POST['comment']
 
-def comment_delete(request, id):
-    video = get_object_or_404(Video,pk=id)
-    video.save()
-    data = {
-        'comment_id': comment_id,
-    }
-    return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder), content_type = "application/json")
+        commenter = request.user
+
+        comment = Comment(video=video,commenter=commenter,comment_body=comment_body)
+        comment.save()
+        return render(request, 'youtube/video.html', {
+            'video': video,
+        })
+    else:
+        return render(request, 'youtube/video.html',{
+            'video': video,
+        })
+
+#댓글 삭제
+def comment_delete(request, video_id, comment_id):
+    video = get_object_or_404(Video,pk=video_id)
+    comment = get_object_or_404(Comment, id=comment_id)
+    if comment.commenter == request.user:
+        comment.delete()
+    return render(request, 'youtube/video.html', {
+        'video': video,
+        'comment':comment,
+    })
