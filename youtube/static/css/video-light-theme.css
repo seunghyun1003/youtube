@@ -304,6 +304,15 @@ video {
     padding-left: 2%;
     flex-basis: 30%;
   }
+  .comment_section::-webkit-scrollbar {
+    width: 8px;
+  }
+  .comment_section::-webkit-scrollbar-thumb {
+    background-color: var(--dark-mode3);
+  }
+  .comment_section::-webkit-scrollbar-track {
+    background-color: var(--dark-mode5);
+  }
   .video_title {
     font-size: 20px;
   }

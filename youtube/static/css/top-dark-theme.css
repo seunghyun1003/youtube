@@ -11,6 +11,15 @@
   background-color: var(--dark-mode1);
   color: white;
 }
+.wrap::-webkit-scrollbar {
+  width: 8px;
+}
+.wrap::-webkit-scrollbar-thumb {
+  background-color: var(--dark-mode3);
+}
+.wrap::-webkit-scrollbar-track {
+  background-color: var(--dark-mode2);
+}
 a {
   padding-left: 0;
 }

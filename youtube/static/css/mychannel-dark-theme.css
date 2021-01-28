@@ -7,28 +7,13 @@
   width: 100%;
   height: 100%;
   margin: 0;
+  overflow: auto;
   background-color: var(--dark-mode1);
-}
-#reload_btn {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: 2;
-  width: 40px;
-  height: 40px;
-  background-color: var(--dark-mode4);
-  border-radius: 2em;
-  margin: 20px;
-}
-#reload_btn i {
-  font-size: medium;
-  color: var(--dark-mode0);
 }
 .mychannel_info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: white;
   width: 70%;
   height: 15%;
   padding: 5% 15% 0 15%;
@@ -38,6 +23,9 @@
 }
 .my_info {
   width: 100%;
+}
+#user_Name {
+  color: white;
 }
 .mychannel_menu-box {
   display: flex;
@@ -61,22 +49,27 @@
   border-bottom: 3px solid var(--dark-mode4);
 }
 .tabcontent {
-  display: block;
+  display: flex;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.05);
+  overflow: auto;
 }
-#home {
-  color: white;
+.tabcontent::-webkit-scrollbar {
+  width: 8px;
 }
-#home .home-2 {
-  height: 50%;
+.tabcontent::-webkit-scrollbar-thumb {
+  background-color: var(--dark-mode3);
+}
+.tabcontent::-webkit-scrollbar-track {
+  background-color: var(--dark-mode2);
 }
 .updateform {
   display: flex;
   height: 100%;
-  background-color: var(--dark-mode4);
+  background-color: var(--dark-mode2);
   text-align: center;
+  color: white;
 }
 .video-div {
   position: relative;
@@ -93,8 +86,25 @@ video {
   margin: 0 10%;
   background-color: black;
 }
+.list-table {
+  width: 100%;
+}
+.channellist-title {
+  color: white;
+  /* 한 줄 자르기 */
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 여러 줄 자르기 추가 스타일 */
+  white-space: normal;
+  line-height: 1.2;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
 @media all and (min-width: 320px) {
-  .tab button {
+  .tabbtn {
     padding: 8px 6px;
     font-size: 14px;
   }
@@ -104,34 +114,165 @@ video {
     text-align: start;
     font-size: 14px;
   }
+  .home-2 {
+    display: flex;
+    height: 50%;
+  }
+  .upload-form {
+    margin: 0 auto;
+    width: 90%;
+    border-radius: 5px;
+    background-color: var(--dark-mode2);
+    color: white;
+    padding: 10px;
+  }
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: white;
+  }
+  input[type="file"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  button[type="submit"],
+  .update-btn {
+    background-color: #4853d3;
+    color: white;
+    padding: 3px 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: medium;
+  }
+  button[type="submit"]:hover,
+  td > button :hover {
+    background-color: #3841a5;
+  }
+  label {
+    font-weight: bold;
+  }
+  .deup-btn-flex {
+    display: flex;
+    flex-direction: column;
+  }
+  table,
+  tr,
+  th {
+    border-bottom: 1px solid rgb(98, 97, 97);
+    text-align: left;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td {
+    padding: 10px 3px;
+    text-align: left;
+  }
+  td > a {
+    padding: 0;
+  }
+  td > a :hover,
+  li :hover {
+    color: black;
+  }
+  .list-td1 {
+  }
+  .list-td2 {
+    margin-right: 10px;
+  }
+  .update-link {
+    color: white;
+    padding: 0;
+  }
+  .update-link :hover {
+    color: white;
+    background-color: #3841a5;
+  }
+
+  #reload_btn {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    background-color: var(--dark-mode4);
+    border-radius: 2em;
+    margin: 20px;
+  }
+  #reload_btn i {
+    font-size: medium;
+    color: var(--dark-mode0);
+  }
   #home {
     display: block;
     height: 100%;
     text-align: center;
-    padding-top: 100px;
+    padding-top: 50px;
+    border-top: 1px solid rgba(255, 255, 255, 0.143);
   }
   #home .home-1 {
     font-size: 1.4em;
     padding-bottom: 30px;
+    color: white;
+  }
+  #input_file {
+    display: block;
+    font-size: 0.8em;
+    padding-top: 10px;
+  }
+  #home .home-3 {
+    margin: 30px 0;
   }
   #filelist {
     display: block;
+    width: 96%;
+    padding: 0 2%;
+    border-top: 1px solid rgba(255, 255, 255, 0.143);
+  }
+  .updateform {
+    flex-direction: column;
+    width: 86%;
+    margin: 20px 2%;
+    padding: 5%;
+  }
+  .update-p {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: x-large;
+  }
+  .video-div {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    margin-bottom: 30px;
+  }
+  video {
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
+    background-color: black;
   }
 }
 @media all and (min-width: 768px) {
-  .tabbtn {
-    padding: 16px 20px;
-    font-size: 16px;
-    min-width: 120px;
-  }
-  .my_Name {
-    font-size: 16px;
-  }
-}
-
-@media all and (min-width: 960px) {
-  .tabbtn {
+  .tab button {
     padding: 16px 20px;
     font-size: 16px;
     min-width: 120px;
@@ -140,14 +281,108 @@ video {
     padding-top: 0;
     font-size: 16px;
   }
+  .home-2 {
+    display: flex;
+    height: 44%;
+  }
+  .upload-form {
+    padding: 30px;
+    width: 80%;
+  }
+  button[type="submit"],
+  .update-btn {
+    padding: 8px 13px;
+    margin: 4px 0;
+    max-width: 140px;
+  }
+  table {
+    margin: 0 auto;
+    width: 90%;
+  }
+  #reload_btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 2em;
+    margin: 20px;
+  }
+  #reload_btn i {
+    font-size: medium;
+    padding-top: 0;
+  }
+}
+
+@media all and (min-width: 960px) {
+  .tab button {
+    padding: 16px 20px;
+    font-size: 16px;
+    min-width: 120px;
+  }
+  .my_Name {
+    padding-top: 0;
+    font-size: 16px;
+  }
+  .upload-form {
+    padding: 30px;
+    width: 60%;
+  }
+  #filelist {
+    display: block;
+    width: 70%;
+    padding: 0 15%;
+  }
+  table {
+    margin: 0 auto;
+    width: 70%;
+  }
+  td > a {
+    padding: 5px;
+    text-align: center;
+  }
+  button[type="submit"],
+  .update-btn {
+    padding: 12px 18px;
+    margin: 4px 0;
+    max-width: 140px;
+  }
+  #reload_btn {
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 2em;
+    margin: 20px;
+  }
+  #reload_btn i {
+    font-size: large;
+  }
   #home {
     display: block;
     height: 100%;
     text-align: center;
-    padding-top: 10%;
   }
   #home .home-1 {
     font-size: 1.6em;
     padding-bottom: 40px;
+  }
+  .updateform {
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 50%;
+    width: 84%;
+    margin: 50px 5%;
+    padding: 3%;
+  }
+  .flex-p {
+    height: 100px;
+    width: 100%;
+  }
+  .update-p {
+    font-size: xx-large;
+  }
+  .flex-video {
+    flex-basis: 40%;
+    padding: 0 2% 0 8%;
+  }
+  .flex-form {
+    flex-basis: 40%;
   }
 }
