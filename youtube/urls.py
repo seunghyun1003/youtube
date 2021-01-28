@@ -22,5 +22,6 @@ urlpatterns = [
     path('video<int:video_id>/comment/<int:comment_id>/delete', views.comment_delete, name='comment_delete'),
 
     path('search', views.search, name='search'),
+    path('search/result', views.search_result, name='search_result'),
     path('top', views.top, name='top'),
 ]

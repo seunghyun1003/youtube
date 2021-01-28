@@ -98,6 +98,9 @@
     margin: 5px 0px;
     font-size: 0.95em;
   }
+  .search_form > input[type="text"] {
+    color: white;
+  }
   .search_submitbtn {
     background-color: var(--dark-mode3);
     border-top: 2px solid var(--dark-mode4);
@@ -107,5 +110,8 @@
   }
   .search_submitbtn > i {
     color: var(--dark-mode6);
+  }
+  .result-div {
+    color: white;
   }
 }

@@ -6,14 +6,29 @@ from social_core.exceptions import AuthAlreadyAssociated
 from django.shortcuts import redirect
 from django.http import HttpResponse
 
-def mychannel(request):
-    return render(request, 'youtube/mychannel_upload.html')
 
-def mychannel_list(request):
-    return render(request, 'youtube/mychannel_list.html')
+from .models import Video
+from django.db.models import Q
 
 def search(request):
     return render(request, 'youtube/search.html')
+
+def search_result(request):
+    videos = Video.objects.order_by('-hits').all()
+    query = None
+
+    if 'q' in request.GET:
+        query = request.GET.get('q','')
+        videos = videos.filter(
+                Q(title__icontains=query) | 
+                Q(des__icontains=query) | 
+                Q(writer__icontains=query)
+        )
+        return redirect('youtube:search')
+        return render(request, 'youtube/search.html',{
+            'query':query,
+            'videos':videos
+        })
 
 from .forms import UserForm, LoginForm
 from django.contrib.auth import login, logout , authenticate
@@ -66,7 +81,6 @@ def who(request):
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.files.storage import FileSystemStorage
-from .models import Video
 from django.utils import timezone
 from django.contrib import messages
 

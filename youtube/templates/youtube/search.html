@@ -3,28 +3,34 @@
 
 {% block extrahead %}
     <link rel="stylesheet" href=" {% static "css/search-light-theme.css" %}" id="searchtheme"  class="theme-link"/>
-    <script type="text/javascript" src="static/js/search.js"></script>   
 {% endblock %}
 
 {% block content %}
 <section class="wrap3">
     <div class="search_form_section">
-        <form id = "search_form" class="search_form"> 
-            <input id="keyword" class="keyword" type=text name=q maxlength=255 value="" placeholder="검색" />             
-            <button tag="icons" class="search_submitbtn"/><i class="fas fa-search"></i></button>
+        <form method='GET' action="{% url 'youtube:search_result' %}" id="search_form" class="search_form"> 
+            {% csrf_token %}
+            <input id="keyword" class="keyword" type=text name=q maxlength=255 value="{{ keyword }}" placeholder="검색" />             
+            <button type="submit" tag="icons" class="search_submitbtn"/><i class="fas fa-search"></i></button>
         </form>
     </div>
-    <div>
-        <div id="input-wrapper">
-            <input type="text" id="ytinput" placeholder="주소를 입력해주세요">
-            <a class="button">Export</a>
-        </div>
-        <div id="result-wrapper" style="display:none">
-        <div class="ytdwnld"></div>
-        <div class="ytpreveal">
-            <div class="ytpreveal-img"></div>
+    <div id="search-list">
+        <div class="result">
+            {% for video in videos %}
+            <div>검색 결과
+                <a href="{% url 'youtube:detail' video.id %}">
+                    <li class="video-info-title">{{ video.title }}</li>
+                    <div class="video-info-div">
+                        <li>{{ video.writer }}</li>
+                        <li>조회수 {{ video.hits }}회</li>
+                        <li>{{ video.uploaded_at }}</li>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+                <div class="result-div">검색 결과 없음.</div>
+            {% endfor %}
         </div>
     </div>
-    <div id="search-list"></div>
 </section>
 {% endblock content %}

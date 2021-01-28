@@ -24,7 +24,7 @@ class Video(models.Model):
 
 class Comment(models.Model):
     commenter = models.ForeignKey(get_user_model(), verbose_name = "작성자", on_delete = models.CASCADE, blank=True, null=True)
-    video = models.ForeignKey('Video', related_name='comments', on_delete=models.CASCADE)
+    video = models.ForeignKey(Video, related_name='comments', on_delete=models.CASCADE)
     comment_date = models.DateTimeField(auto_now_add=True)
     comment_body = models.TextField(max_length=1000)
 

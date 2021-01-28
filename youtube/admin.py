@@ -2,16 +2,19 @@ from django.contrib import admin
 from youtube.models import Video,Comment
 
 
-@admin.register(Video)
 class VideoAdmin(admin.ModelAdmin):
     list_display = ['id','title', 'writer']
+    search_fields = ('title', 'writer')
+
+admin.site.register(Video, VideoAdmin)
     
-@admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = (
+        'id',
         'video', 
         'commenter',
         'comment_body',
         'comment_date',
     )
-    search_fields = ('video__title', 'commenter','comment_body', 'comment_date',)
+
+admin.site.register(Comment, CommentAdmin)
