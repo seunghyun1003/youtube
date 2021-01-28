@@ -49,10 +49,10 @@ function loadTheme(){
     } else if(theme_name == 'login_signuptheme'){
         if (currentTheme == "dark") {
             theme.setAttribute('href', "static/css/login_signup-dark.css");
-            console.log("인기 테마 : 다크");
+            console.log("로그인 테마 : 다크");
         } else{
             theme.setAttribute('href', "static/css/login_signup-light.css");
-            console.log("인기  테마 : 라이트");
+            console.log("로그인  테마 : 라이트");
         }
     }
 }
@@ -72,10 +72,10 @@ function ToggleTheme(){
 }
 
 function ToggleSidebar() {
-    if(menu_box.style.width === "240px") {
-        menu_box.style.width = "0";
-    }else {
+    if(menu_box.style.width = "0") {
         menu_box.style.width = "240px";
+    }else {
+        menu_box.style.width = "0";
     } 
 }
 

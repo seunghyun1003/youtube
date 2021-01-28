@@ -7,24 +7,27 @@
 
 {% block content %}
 <div class="wrap">
+    <div class="topvideo-title">인기 동영상</div>
+    {% for video in videos %}
     <div class="video-flex">
-        {% for video in videos %}
-        <div class="video-item">
-            {{ forloop.counter }}
+        <div class="video-item" >
             <a href="{% url 'youtube:detail' video.id %}">
-            <div class="video-div">
-                <video class="video-player">
-                    <source src="{{video.file.url}}" type="video/mp4">
-                </video>
-            </div>
-            <div class="video-info-div" style="padding-top: 10px; text-align: start;">
-                <li class="video-info" style="font-size: large;padding-bottom: 10px; "><p>{{ video.title }}</p></li>
-                <li class="video-info" style="color:gray;"><p>{{ video.writer }}</p></li>
-                <li class="video-info" style="color:gray;"><p>조회수 {{ video.hits }}회, {{ video.uploaded_at }}</p></li>
-            </div>
+                <div class="video-div">
+                    <video class="video-player" src="{{video.file.url}}" type="video/mp4"></video>
+                </div>
             </a>
         </div>
-        {% endfor %}
+        <div class="video-item2">
+            <a href="{% url 'youtube:detail' video.id %}">
+                <li class="video-info-title">{{ video.title }}</li>
+                <div class="video-info-div">
+                    <li>{{ video.writer }}</li>
+                    <li>조회수 {{ video.hits }}회</li>
+                    <li>{{ video.uploaded_at }}</li>
+                </div>
+            </a>
+        </div>
     </div>
+    {% endfor %}
 </div>
 {% endblock content %}

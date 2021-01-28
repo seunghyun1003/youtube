@@ -34,11 +34,9 @@
 }
 
 .video-info-div {
-  padding-top: 10px;
   text-align: start;
 }
 .video-info-title {
-  font-size: large;
   /* 한 줄 자르기 */
   display: inline-block;
   overflow: hidden;
@@ -65,6 +63,13 @@
   .video-item {
     flex-basis: 92%;
     margin: 20px 4% 0;
+  }
+  .video-info-div {
+    font-size: small;
+  }
+  .video-info-title {
+    padding-top: 10px;
+    font-size: medium;
   }
 }
 @media all and (min-width: 600px) {

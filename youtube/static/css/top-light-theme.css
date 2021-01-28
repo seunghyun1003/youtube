@@ -7,17 +7,21 @@
   background-color: inherit;
   height: 100%;
   width: 100%;
+  overflow: auto;
+}
+a {
+  padding-left: 0;
 }
 
+.topvideo-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+  padding: 10px 0 0;
+}
 .video-flex {
   display: flex;
 }
-
-.video-item > a {
-  padding: 0;
-  color: black;
-}
-
 .video-div {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
@@ -32,55 +36,103 @@
   background-color: black;
 }
 
+.video-info-title {
+  font-size: large;
+  color: black;
+  /* 한 줄 자르기 */
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 여러 줄 자르기 추가 스타일 */
+  white-space: normal;
+  line-height: 1.2;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.video-info {
+  color: gray;
+  padding-top: 10px;
+}
 @media all and (min-width: 320px) {
   .video-flex {
     display: flex;
     flex-direction: column;
-    text-align: center;
-    margin: 0 2%;
+    margin: 20px 5%;
   }
-  .video-item {
-    flex-basis: 92%;
-    margin: 20px 4% 0;
+  .video-info-div {
+    text-align: start;
+    font-size: small;
   }
-}
-@media all and (min-width: 600px) {
-  .video-flex {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 20px 2% 0;
-  }
-  .video-item {
-    flex-basis: 48%;
-    margin: 20px 1% 0;
+  .video-info-title {
+    padding-top: 10px;
+    font-size: medium;
   }
 }
 
 @media all and (min-width: 768px) {
+  .wrap {
+    align-content: center;
+    padding-top: 20px;
+  }
+  .topvideo-title {
+    font-size: x-large;
+  }
   .video-flex {
-    margin: 20px 2% 0;
+    flex-direction: row;
+    margin: 30px 2%;
+    justify-content: center;
   }
   .video-item {
-    flex-basis: 32.33%;
-    margin: 20px 0.5% 0;
+    min-width: 40%;
+    padding-right: 2%;
+  }
+  .video-item2 {
+    min-width: 40%;
+    max-width: 40%;
+  }
+  .video-info-div {
+    text-align: start;
+    font-size: medium;
+  }
+  .video-info-title {
+    padding-top: 10px;
+    font-size: large;
   }
 }
 
 @media all and (min-width: 1024px) {
+  .topvideo-title {
+    font-size: xx-large;
+  }
   .video-flex {
-    margin: 20px 2% 0;
+    flex-direction: row;
+    margin: 30px 2%;
+    justify-content: center;
   }
   .video-item {
-    flex-basis: 24%;
-    margin: 20px 0.5% 0;
+    min-width: 400px;
+    padding-right: 2%;
+  }
+  .video-item2 {
+    min-width: 400px;
+    max-width: 400px;
+  }
+  .video-info-div {
+    text-align: start;
+    font-size: medium;
+  }
+  .video-info-title {
+    padding-top: 10px;
+    font-size: large;
   }
 }
 
 @media all and (min-width: 1500px) {
   .menu .menu_box {
     position: fixed;
-    width: 12%;
+    width: 250px;
   }
   #menu_btn {
     display: none;
@@ -91,15 +143,5 @@
   }
   .logo-span {
     font-size: x-large;
-  }
-  .video-flex {
-    position: fixed;
-    width: 84%;
-    left: 12%;
-    margin: 20px 2%;
-  }
-  .video-item {
-    flex-basis: 23%;
-    margin: 20px 1% 0;
   }
 }

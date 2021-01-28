@@ -6,14 +6,17 @@
 {% endblock %}
 
 {% block content %}
-<div class="wrap" style="position: fixed; top: 55px; left:0px; padding:3% 3% 0 3%;">
+<div class="wrap" style="position: fixed; top: 55px; left:0px;">
     
     {% if user.is_active %} 
-    <h2 class="loginsuc">Logged User Info</h2>
-    <div class="userinfo" style="padding-top: 20px;">
-        <p>email: {{ user.email }}</p>
-        <p>UserName: {{ user.username }}</p>
-        <p>last login: {{ user.last_login }}</p>
+    <h2 class="loginsuc" style="text-align: center;">Logged User Info</h2>
+    <div class="userinfo" style="margin: 20px 10%;background-color: lightgray;text-align: center;">
+        <p style="padding:10px; font-size: large; font-weight: bold;">"email"</p> 
+        <p style="padding:10px;">{{ user.email }}</p>
+        <p style="padding:10px; font-size: large; font-weight: bold;">"UserName"</p> 
+        <p style="padding:10px;">{{ user.username }}</p>
+        <p style="padding:10px; font-size: large; font-weight: bold;">"last login"</p> 
+        <p style="padding:10px;">{{ user.last_login }}</p>
     </div>
     <div style="position: fixed; bottom: 50px;">
         <a href="{% url 'youtube:logout' %}">Sign Out</a>
