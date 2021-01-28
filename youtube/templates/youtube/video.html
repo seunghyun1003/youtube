@@ -9,51 +9,53 @@
 {{ video.click }}
 <div class="wrap">
     <div class="contents">
-        <section class="video">
-            <div class="video-div">
-                <video controls>
-                <source src="{{video.file.url}}" type="video/mp4">
-                </video>
-            </div>
-            <div>
-                <div class="video_title">
-                    제목 : {{ video.title }}
+        <div class="video-flex">
+            <section class="video">
+                <div class="video-div">
+                    <video controls>
+                    <source src="{{video.file.url}}" type="video/mp4">
+                    </video>
                 </div>
-                <div>
-                    업로드 날짜 : {{ video.uploaded_at }}
-                </div>
-                <div class="video_information">
-                    <span class="video_views" title="조회 수">조회수 : {{ video.hits }}회</span>
-                    <div class="video_likehateicons">
-                        <li><button class="video_btn" title="이 동영상이 마음에 듭니다."><i class="fas fa-thumbs-up fa-md"></i> 1만</button></li> 
-                        <li><button class="video_btn" title="이 동영상이 마음에 들지 않습니다."><i class="fas fa-thumbs-down fa-md"></i> 2천</button></li> 
-                        <li><button class="video_btn" title="공유"><i class="fas fa-share fa-md"></i> 공유</button></li> 
+                <div class="video-info">
+                    <div class="video_title">
+                        제목 : {{ video.title }}
                     </div>
-                </div>  
-            </div>
-        </section>
-        <section class="video_user">
-            <div class="user_imgBox">
-                <img class="user_img" src="" alt=""></img>
-            </div>
-            <div class="video_detail">
-                <div class="user_Box">
-                    <div class="user_detail">
-                        <span class="user_Name" title="유저 네임">{{ video.writer }}</span>
-                        <span class="user_NumOfSub" title="구독자 수">135만 명</span>
+                    <div class="video_uploaded_at">
+                        업로드 날짜 : {{ video.uploaded_at }}
                     </div>
-                    <div class="subbtnAndAlarm">
-                        <button id="sub_btn" class="sub_btn" onclick="Sub()">구독</button>
-                        <button id="alarm_btn" title="알림받기" onclick="Alarm()"><i class="far fa-bell"></i></button>
+                    <div class="video_information">
+                        <span class="video_views" title="조회 수">조회수 : {{ video.hits }}회</span>
+                        <div class="video_likehateicons">
+                            <li><button class="video_btn" title="이 동영상이 마음에 듭니다."><i class="fas fa-thumbs-up fa-md"></i> 1만</button></li> 
+                            <li><button class="video_btn" title="이 동영상이 마음에 들지 않습니다."><i class="fas fa-thumbs-down fa-md"></i> 2천</button></li> 
+                            <li><button class="video_btn" title="공유"><i class="fas fa-share fa-md"></i> 공유</button></li> 
+                        </div>
+                    </div>  
+                </div>
+            </section>
+            <section class="video_user">
+                <div class="user_imgBox">
+                    <img class="user_img" src="" alt=""></img>
+                </div>
+                <div class="video_detail">
+                    <div class="user_Box">
+                        <div class="user_detail">
+                            <span class="user_Name" title="유저 네임">{{ video.writer }}</span>
+                            <span class="user_NumOfSub" title="구독자 수">135만 명</span>
+                        </div>
+                        <div class="subbtnAndAlarm">
+                            <button id="sub_btn" class="sub_btn" onclick="Sub()">구독</button>
+                            <button id="alarm_btn" title="알림받기" onclick="Alarm()"><i class="far fa-bell"></i></button>
+                        </div>
+                    </div>
+                    <div class="video_des">
+                        {{ video.des }}
                     </div>
                 </div>
-                <div class="video_des">
-                    {{ video.des }}
-                </div>
-            </div>
-        </section>
-        <section class="comment_section">
-            <span><h3>댓글 {{ video.comments.count }}개 </h3></span>
+            </section>
+        </div>
+        <div class="comment_section">
+            <span>댓글 {{ video.comments.count }}개</span>
             {% if user.is_authenticated %}
             <div>
                 <div class="comment-form-div">
@@ -68,25 +70,29 @@
             <h3>로그인 후 댓글을 달아보세요.</h3>
             {% endif %}
             <div class="comment-list">
-            {% for comment in video.comments.all %}
-                <div class="comment-list-flex">
-                    <div class="comment-list-user" style="font-weight: bold;">{{ comment.commenter }}</div>
+                {% for comment in video.comments.all %}
+                <div class="comment-list-items">
                     <div class="comment-list-body">{{ comment.comment_body }}</div>
-                    <div class="comment-list-date">{{ comment.comment_date }}</div>
-                    {% if comment.commenter == user %}
-                    <div class="comment-list-delete">
-                        <form action="{% url 'youtube:comment_delete' video.id comment.id %}" method="POST">
-                            {% csrf_token %}
-                            <input type="submit" value="댓글 삭제">
-                        </form>
+                    <div class="comment-list-flex">
+                        <div class="comment-list-flex2">
+                            <div class="comment-list-user">{{ comment.commenter }}</div>
+                            <div class="comment-list-date">{{ comment.comment_date }}</div>
+                        </div>
+                        {% if comment.commenter == user %}
+                        <div class="comment-list-delete">
+                            <form action="{% url 'youtube:comment_delete' video.id comment.id %}" method="POST">
+                                {% csrf_token %}
+                                <input class="comment-list-delete-btn" type="submit" value="댓글 삭제" onclick="return confirm('댓글을 삭제하시겠습니까?')">
+                            </form>
+                        </div>
+                        {% endif %} 
                     </div>
-                    {% endif %} 
                 </div>
-            {% empty %}
-            <div class="card-text">댓글이 없습니다.</div>
-            {% endfor %}
+                {% empty %}
+                <div class="card-text">댓글이 없습니다.</div>
+                {% endfor %}
             </div>
-        </section>
+        </div>
     </div>
 </div>   
 {% endblock content %}
