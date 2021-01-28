@@ -322,6 +322,16 @@ video {
     position: fixed;
     width: 250px;
   }
+  #menu_btn {
+    display: none;
+  }
+  .logo {
+    position: fixed;
+    left: 2%;
+  }
+  .logo-span {
+    font-size: x-large;
+  }
   .contents {
     display: flex;
     margin-left: 250px;

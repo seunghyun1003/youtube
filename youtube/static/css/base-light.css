@@ -151,26 +151,20 @@ ul li button {
   .logo {
     width: 100%;
   }
-  .logo button i {
-    font-size: x-large;
-  }
-  .logo button .logo_title {
+  .logo i {
     font-size: large;
   }
-  .nav i {
+  .logo-span {
     font-size: large;
+  }
+  .nav > i {
+    font-size: large;
+  }
+  .nav > button a {
+    font-size: medium;
   }
   .nav {
     width: 15%;
-  }
-  .logo .logo_title {
-    font-size: 14px;
-  }
-  .logo i {
-    font-size: x-large;
-  }
-  .nav i {
-    font-size: large;
   }
 }
 
@@ -184,5 +178,17 @@ ul li button {
   }
   .logo {
     min-width: 200px;
+  }
+}
+
+@media all and (min-width: 1500px) {
+  .logo i {
+    font-size: x-large;
+  }
+  .nav i {
+    font-size: x-large;
+  }
+  .nav > button a {
+    font-size: large;
   }
 }

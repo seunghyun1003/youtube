@@ -5,7 +5,7 @@
   --dark-mode3: rgb(61, 61, 61);
   --dark-mode4: rgb(136, 136, 136);
   --dark-mode5: rgb(226, 226, 226);
-  --dark-mode6: rgb(238, 237, 237);
+  --dark-mode6: rgb(231, 231, 231);
   --red: rgb(211, 17, 17);
 }
 
@@ -31,9 +31,10 @@ a {
 }
 
 body {
+  background: var(--dark-mode1);
   overflow: auto;
 }
-
+/* 헤더 영역 */
 header {
   display: flex;
   position: fixed;
@@ -42,13 +43,14 @@ header {
   z-index: 2;
   width: 94%;
   height: 55px;
-  background: var(--dark-mode2);
+  background-color: var(--dark-mode2);
   justify-content: space-between;
   padding: 0 3%;
 }
 
 .menu {
   display: flex;
+  width: 50%;
 }
 .menu i {
   color: white;
@@ -68,6 +70,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  width: 50%;
 }
 .nav > button,
 a {
@@ -81,9 +84,9 @@ a {
   width: 0px;
   height: 100%;
   z-index: 3;
-  background: var(--dark-mode2);
+  background-color: var(--dark-mode2);
   overflow-x: hidden;
-  border-top: 1px solid var(--dark-mode5);
+  border-top: 1px solid var(--dark-mode2);
 }
 .menu #menu_list {
   border-bottom: 1px solid var(--dark-mode5);
@@ -148,26 +151,20 @@ ul li button {
   .logo {
     width: 100%;
   }
-  .logo button i {
-    font-size: x-large;
-  }
-  .logo button .logo_title {
+  .logo i {
     font-size: large;
   }
-  .nav i {
+  .logo-span {
     font-size: large;
+  }
+  .nav > i {
+    font-size: large;
+  }
+  .nav > button a {
+    font-size: medium;
   }
   .nav {
     width: 15%;
-  }
-  .logo .logo_title {
-    font-size: 14px;
-  }
-  .logo i {
-    font-size: x-large;
-  }
-  .nav i {
-    font-size: large;
   }
 }
 
@@ -181,5 +178,17 @@ ul li button {
   }
   .logo {
     min-width: 200px;
+  }
+}
+
+@media all and (min-width: 1500px) {
+  .logo i {
+    font-size: x-large;
+  }
+  .nav i {
+    font-size: x-large;
+  }
+  .nav > button a {
+    font-size: large;
   }
 }
