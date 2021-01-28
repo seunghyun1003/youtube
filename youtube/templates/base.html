@@ -34,8 +34,8 @@
                 <a href="/mychannel">{{user.username}}님의 채널</a>
             </button>
             {% else %}
-            <button>
-                <li><a href="{% url 'youtube:login' %}">Sign in</a></li>
+            <button style="min-width: 200px; text-align: end;">
+                <li><a href="{% url 'youtube:login' %}" >Sign in</a></li>
             </button>
             {% endif %}
             <button class="search_btn" id="search_btn" onclick="window.location.href = '/search'">

@@ -287,6 +287,8 @@ video {
   }
   .contents {
     display: flex;
+    margin: 30px 3% 0 3%;
+    width: 94%;
   }
   .video-info {
     margin-top: 10px;

@@ -149,9 +149,7 @@ def comment_write(request, id):
         commenter = request.user
         comment = Comment(video=video,commenter=commenter,comment_body=comment_body)
         comment.save()
-        return render(request, 'youtube/video.html', {
-            'video': video,
-        })
+        return redirect('youtube:detail',id)
     else:
         return render(request, 'youtube/video.html',{
             'video': video,
@@ -163,6 +161,7 @@ def comment_delete(request, video_id, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
     if comment.commenter == request.user:
         comment.delete()
+        return redirect('youtube:detail',video_id)
     return render(request, 'youtube/video.html', {
         'video': video,
         'comment':comment,
