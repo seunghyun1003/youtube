@@ -13,6 +13,9 @@
 a {
   padding: 0;
 }
+br {
+  display: none;
+}
 .login {
   display: flex;
   flex-direction: column;
@@ -24,6 +27,11 @@ a {
   font-size: x-large;
   font-weight: bolder;
   text-align: center;
+}
+.login-form-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .login-form {
   display: flex;
@@ -38,6 +46,15 @@ label {
   padding: 10px 0;
 }
 .login-form > input[type="text"] {
+  background-color: white;
+  text-align: center;
+  border: 2px solid gray;
+  height: 20px;
+  line-height: 20px;
+  font-size: large;
+  border-radius: 4px;
+}
+.login-form > input[type="email"] {
   background-color: white;
   text-align: center;
   border: 2px solid gray;
@@ -86,7 +103,8 @@ label {
   .login-title-span {
     font-size: x-large;
   }
-  .login-form > input[type="text"] {
+  .login-form > input[type="text"],
+  .login-form > input[type="email"] {
     height: 1.6em;
     line-height: 1.6em;
     font-size: large;
@@ -108,11 +126,11 @@ label {
   .wrap {
     padding: 200px 0;
   }
-  .login-form > input[type="text"] {
+  .login-form > input[type="text"],
+  .login-form > input[type="email"] {
     height: 1.6em;
     line-height: 1.6em;
     font-size: large;
-    width: 25%;
   }
 }
 
@@ -125,7 +143,8 @@ label {
     font-size: xx-large;
     font-weight: bolder;
   }
-  .login-form > input[type="text"] {
+  .login-form > input[type="text"],
+  .login-form > input[type="email"] {
     height: 2em;
     line-height: 2em;
     font-size: large;

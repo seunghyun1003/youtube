@@ -2,18 +2,23 @@
 {% load static %}
 
 {% block extrahead %}
-    <link rel="stylesheet" href=" {% static "css/reg-light-theme.css" %}"  id="maintheme" class="theme-link"/>
+    <link rel="stylesheet" href=" {% static "css/login_signup-light.css" %}"  id="login_signuptheme" class="theme-link"/>
 {% endblock %}
 
 {% block content %}
 <div class="wrap">
     {{ error }}
-    <div>
-        <form method="post" action="">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="회원가입" />
-        </form>
+    <div class="login">
+        <span class="login-title-i"><i class="far fa-user fa-3x"></i></span>
+        <span class="login-title-span">Member Login</span>
+        {{ error }}
+        <div class="login-form-div">
+            <form method="post" action="" class="login-form">
+                {% csrf_token %}
+                {{ form }}
+                <button id="submitbtn" type="submit">Sign up</button>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock content %}

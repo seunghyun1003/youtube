@@ -13,13 +13,11 @@
         {{ error }}
         <div class="login-form-div">
             <form method="post" action="" class="login-form">
-                <br>
                 {% csrf_token %}
                 {{ form }}
-                <br>
                 <button id="submitbtn" type="submit">Login</button>
-                <a class="signuplink" href="{% url 'youtube:signup' %}"><button class="signup_btn">Sign up</button></a>
             </form>
+            <a class="signuplink" href="{% url 'youtube:signup' %}"><button class="signup_btn">Sign up</button></a>
         </div>
     </div>
 </div>
