@@ -9,14 +9,24 @@
 <div class="wrap" style="position: fixed; top: 55px; left:0px;">
     
     {% if user.is_active %} 
-    <h2 class="loginsuc" style="text-align: center;">Logged User Info</h2>
-    <div class="userinfo" style="margin: 20px 10%;background-color: lightgray;text-align: center;">
-        <p style="padding:10px; font-size: large; font-weight: bold;">"email"</p> 
-        <p style="padding:10px;">{{ user.email }}</p>
-        <p style="padding:10px; font-size: large; font-weight: bold;">"UserName"</p> 
-        <p style="padding:10px;">{{ user.username }}</p>
-        <p style="padding:10px; font-size: large; font-weight: bold;">"last login"</p> 
-        <p style="padding:10px;">{{ user.last_login }}</p>
+    <h2 class="accounttitle">계정</h2>
+    <div class="userinfo">
+        <div class="userinfo-item">
+            <p>"email"</p> 
+            <p>{{ user.email }}</p>
+        </div>
+        <div class="userinfo-item">
+            <p>"UserName"</p> 
+            <p>{{ user.username }}</p>
+        </div>
+        <div class="userinfo-item">
+            <p>"last login"</p> 
+            <p>{{ user.last_login }}</p>
+        </div>
+    </div>
+    <div class="accountset">
+        <a href="{% url 'youtube:account_mod' %}">계정 수정</a>
+        <a href="{% url 'youtube:account_de' %}">계정 탈퇴</a>
     </div>
     <div style="position: fixed; bottom: 50px;">
         <a href="{% url 'youtube:logout' %}">Sign Out</a>

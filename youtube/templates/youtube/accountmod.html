@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extrahead %}
+    <link rel="stylesheet" id="maintheme"  class="theme-link"/>
+{% endblock %}
+
+{% block content %}
+<div class="wrap" style="position: fixed; top: 55px; left:0px;">
+    
+    {% if user.is_active %} 
+    <h2 class="accountmodtitle">계정 수정</h2>
+    <form class="usermod-form" action="{% url 'youtube:account_mod' %}" method="POST">
+        {% csrf_token %}
+        <div class="usermod-item">
+            <p>"email"</p> 
+            <input type="text" name="email"  value="{{ user.email }}"/>
+        </div>
+        <div class="usermod-item">
+            <p>"UserName"</p> 
+            <input type="text" name="username" value="{{ user.username }}"/>
+        </div>
+        <div class="usermod-item">
+            <p>"password"</p> 
+            <input type="text" name="password" value="{{ user.password }}"/>
+        </div>
+        <button type="submit">수정</button>
+    </form>
+    <div class="accountset">
+        <a href="{% url 'youtube:account_de' %}">계정 탈퇴</a>
+    </div>
+    {% else %}
+    <h2>로그인된 계정 없음</h2>
+    {% endif %}
+</div>
+{% endblock content %}

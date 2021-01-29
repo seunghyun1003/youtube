@@ -17,6 +17,7 @@ User = get_user_model()
 
 def signup(request):  
     if request.method == "POST":
+        error={}
         form = UserForm(request.POST)
         if form.is_valid():
             new_user = User.objects.create_user(**form.cleaned_data)
@@ -26,7 +27,11 @@ def signup(request):
         form = UserForm()
         return render(request, 'youtube/signup.html', {'form': form})
 
-
+    return render(request, 'youtube/signup.html', {
+        'form': form,
+        'error': 'error'
+        })
+    
 def signin(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
@@ -55,6 +60,22 @@ def who(request):
         })
     return render(request, 'youtube/who.html')
 
+def account_mod(request):
+    if request.method == "POST":
+        user = request.user
+        user.email = request.POST.get('email')
+        user.username = request.POST.get('username')
+        user.password = request.POST.get('password')
+        user.save()
+        return redirect('youtube:who')
+
+    else:
+        return render(request, 'youtube/accountmod.html')
+
+def account_de(request):
+    user = request.user
+    user.delete()
+    return redirect('youtube:who')
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.files.storage import FileSystemStorage

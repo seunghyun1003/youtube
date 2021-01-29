@@ -10,7 +10,9 @@ urlpatterns = [
     path('signup', views.signup, name='signup'),
     path('login', views.signin, name='login'),
     path('logout', views.signout, name='logout'),
-    path('who', views.who, name='who'),
+    path('accountinfo', views.who, name='who'),
+    path('accountmod', views.account_mod, name='account_mod'),
+    path('accountdel', views.account_de, name='account_de'),
     
     path('mychannel', views.video_upload, name='video_upload'),
     path('list', views.video_list_mych, name='video_list_mych'),

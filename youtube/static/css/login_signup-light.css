@@ -45,6 +45,10 @@ label {
   font-weight: bold;
   padding: 10px 0;
 }
+.errorlist > li {
+  color: var(--dark-mode4);
+  padding-bottom: 4px;
+}
 .login-form > input[type="text"] {
   background-color: white;
   text-align: center;
