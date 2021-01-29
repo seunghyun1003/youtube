@@ -7,29 +7,6 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 
 
-from .models import Video
-from django.db.models import Q
-
-def search(request):
-    return render(request, 'youtube/search.html')
-
-def search_result(request):
-    videos = Video.objects.order_by('-hits').all()
-    query = None
-
-    if 'q' in request.GET:
-        query = request.GET.get('q','')
-        videos = videos.filter(
-                Q(title__icontains=query) | 
-                Q(des__icontains=query) | 
-                Q(writer__icontains=query)
-        )
-        return redirect('youtube:search')
-        return render(request, 'youtube/search.html',{
-            'query':query,
-            'videos':videos
-        })
-
 from .forms import UserForm, LoginForm
 from django.contrib.auth import login, logout , authenticate
 from django.template import RequestContext
@@ -180,4 +157,27 @@ def comment_delete(request, video_id, comment_id):
         'video': video,
         'comment':comment,
     })
+
+
+
+from .models import Video
+from django.db.models import Q
+
+def search(request):
+    return render(request, 'youtube/search.html')
+
+def search_result(request):
+    videos = Video.objects.order_by('-hits').all()
+    query = None
+
+    if 'q' in request.GET:
+        query = request.GET.get('q','')
+        videos = videos.filter(
+            Q(title__icontains=query) | 
+            Q(des__icontains=query) 
+        )
+        return render(request, 'youtube/search.html',{
+            'query':query,
+            'videos':videos
+        })
 

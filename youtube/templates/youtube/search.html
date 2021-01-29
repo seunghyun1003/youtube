@@ -6,31 +6,42 @@
 {% endblock %}
 
 {% block content %}
-<section class="wrap3">
+<div class="wrap">
     <div class="search_form_section">
         <form method='GET' action="{% url 'youtube:search_result' %}" id="search_form" class="search_form"> 
-            {% csrf_token %}
             <input id="keyword" class="keyword" type=text name=q maxlength=255 value="{{ keyword }}" placeholder="검색" />             
             <button type="submit" tag="icons" class="search_submitbtn"/><i class="fas fa-search"></i></button>
         </form>
     </div>
     <div id="search-list">
         <div class="result">
-            {% for video in videos %}
-            <div>검색 결과
-                <a href="{% url 'youtube:detail' video.id %}">
-                    <li class="video-info-title">{{ video.title }}</li>
-                    <div class="video-info-div">
-                        <li>{{ video.writer }}</li>
-                        <li>조회수 {{ video.hits }}회</li>
-                        <li>{{ video.uploaded_at }}</li>
+            {% if videos %}
+                <div class="result-des">"{{ query }}"에 대한 검색 결과</div>
+                {% for video in videos %}
+                <div class="video-flex">
+                    <div class="video-item" >
+                        <a href="{% url 'youtube:detail' video.id %}">
+                            <div class="video-div">
+                                <video class="video-player" src="{{video.file.url}}" type="video/mp4"></video>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            {% empty %}
-                <div class="result-div">검색 결과 없음.</div>
-            {% endfor %}
+                    <div class="video-item2">
+                        <a href="{% url 'youtube:detail' video.id %}">
+                            <li class="video-info-title">{{ video.title }}</li>
+                            <div class="video-info-div">
+                                <li>조회수 {{ video.hits }}회, {{ video.uploaded_at }}</li>
+                                <li>{{ video.writer }}</li>
+                            </div>
+                            <li class="video-info-des">{{ video.des }}</li>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="result-div">"{{ query }}"에 대한 검색 결과 없음.</div>
+            {% endif %}
         </div>
     </div>
-</section>
+</div>
 {% endblock content %}

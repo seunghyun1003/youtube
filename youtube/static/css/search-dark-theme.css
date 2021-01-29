@@ -1,6 +1,6 @@
 @import url("base-dark.css");
 
-.wrap3 {
+.wrap {
   background-color: var(--dark-mode1);
   display: block;
   position: fixed;
@@ -18,12 +18,12 @@
 }
 
 @media all and (min-width: 320px) {
-  .wrap3 {
+  .wrap {
     width: 94%;
     padding: 10px 3%;
   }
   .search_form_section {
-    margin: 7.5px 0;
+    margin: 8px 0;
     width: 100%;
     padding-bottom: 20px;
     border-bottom: 2px solid var(--dark-mode4);
@@ -55,9 +55,6 @@
 }
 
 @media all and (min-width: 768px) {
-  #search_form_section {
-    width: 100%;
-  }
   .search_form {
     display: flex;
     height: 40px;
@@ -82,23 +79,18 @@
 }
 
 @media all and (min-width: 960px) {
-  #search_form_section {
-    width: 100%;
-  }
   .search_form {
     display: flex;
     min-width: 600px;
     height: 40px;
   }
-  .keyword {
+  .search_form > input[type="text"] {
     padding: 0 5px;
     outline: none;
     width: 100%;
     border: 2px solid var(--dark-mode4);
     margin: 5px 0px;
     font-size: 0.95em;
-  }
-  .search_form > input[type="text"] {
     color: white;
   }
   .search_submitbtn {
@@ -111,7 +103,7 @@
   .search_submitbtn > i {
     color: var(--dark-mode6);
   }
-  .result-div {
+  .result > div {
     color: white;
   }
 }
