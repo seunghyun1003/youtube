@@ -16,6 +16,11 @@ a {
 br {
   display: none;
 }
+.error-text {
+  text-align: center;
+  color: rgba(255, 0, 0, 0.8);
+  padding-top: 10px;
+}
 .login {
   display: flex;
   flex-direction: column;
@@ -47,6 +52,10 @@ label {
   font-weight: bold;
   padding: 10px 0;
   color: white;
+}
+.errorlist > li {
+  color: rgba(255, 0, 0, 0.8);
+  padding-bottom: 10px;
 }
 .login-form > input[type="text"] {
   background-color: white;

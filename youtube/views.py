@@ -10,6 +10,8 @@ from django.http import HttpResponse
 from .forms import UserForm, LoginForm
 from django.contrib.auth import login, logout , authenticate
 from django.template import RequestContext
+from django.contrib import messages
+
 
 from django.contrib.auth import get_user_model
 
@@ -40,10 +42,12 @@ def signin(request):
             login(request, user)
             return redirect('youtube:video_list')
         else:
-            return HttpResponse('로그인 실패. 다시 시도 해보세요.')
+            messages.error(request,'로그인 실패')
+            return redirect('youtube:login')
     else:
         form = LoginForm()
-        return render(request, 'youtube/login.html', {'form': form})
+
+    return render(request, 'youtube/login.html', {'form': form})
 
 def signout(request):
     logout(request)
@@ -60,25 +64,29 @@ def who(request):
 
 
 def account_mod(request):
-    context= {}
     if request.method == "POST":
         user = request.user
-        username = request.POST.get('email')
-        email = request.POST.get('username')
+        new_username = request.POST.get('username')
+        new_email = request.POST.get('email')
         
-        if User.objects.filter(username__iexact=username).exists():
-            context.update({'error':"사용 불가능한 이름입니다."})
-        elif User.objects.filter(email__iexact=email).exists():
-            context.update({'error':"사용 불가능한 이메일입니다."})
+        username_qs = User.objects.filter(username=new_username)
+        if username_qs.exists():
+            if not user.username == new_username:
+                messages.error(request,new_username+'은 중복된 이름입니다.')
+                return redirect('youtube:account_mod')
+            else:
+                user.email = new_email
+                user.username = new_username
+                user.save()
+                return redirect('youtube:who')
         else:
-            user.email = username
-            user.username = email
+            user.email = new_email
+            user.username = new_username
             user.save()
-            return redirect('youtube:account_mod')
-            context.update({'error':"사용 가능"})
-
+            return redirect('youtube:who')
+    
     else:
-        return render(request, 'youtube/accountmod.html',context)
+        return render(request, 'youtube/accountmod.html')
 
 from django.contrib.auth.hashers import check_password
 
@@ -108,7 +116,7 @@ def pw_mod(request):
 def account_de(request):
     user = request.user
     user.delete()
-    return redirect('youtube:who')
+    return redirect('youtube:video_list')
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.files.storage import FileSystemStorage

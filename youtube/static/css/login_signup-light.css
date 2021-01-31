@@ -16,12 +16,16 @@ a {
 br {
   display: none;
 }
+.error-text {
+  text-align: center;
+  color: red;
+  padding-top: 10px;
+}
 .login {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
-
 .login-title-i,
 .login-title-span {
   font-size: x-large;
@@ -46,8 +50,8 @@ label {
   padding: 10px 0;
 }
 .errorlist > li {
-  color: var(--dark-mode4);
-  padding-bottom: 4px;
+  color: red;
+  padding-bottom: 10px;
 }
 .login-form > input[type="text"] {
   background-color: white;

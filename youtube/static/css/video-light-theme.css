@@ -315,10 +315,10 @@ video {
     width: 8px;
   }
   .comment_section::-webkit-scrollbar-thumb {
-    background-color: var(--dark-mode3);
+    background-color: var(--dark-mode5);
   }
   .comment_section::-webkit-scrollbar-track {
-    background-color: var(--dark-mode5);
+    background-color: white;
   }
   .video_title {
     font-size: 20px;

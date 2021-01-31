@@ -7,29 +7,26 @@
 
 {% block content %}
 <div class="wrap">
-    
     {% if user.is_active %} 
     <div class="account-title">비밀번호 수정</div>
-    {{ context }}
     <form method="POST" action="{% url 'youtube:pw_mod' %}" class="usermod-form">
         {% csrf_token %}
-
-        <div class="login_input_container">
-            <div class="username_form_text">현재 비밀번호</div>
-            <div class="input_container">
-                <input class="login_input" name="origin_password" type="password" required>
-            </div>
-
-            <div class="password_form_text">새로운 비밀번호</div>
-            <div class="input_container">
-                <input class="login_input" name="password1" type="password" required>
-            </div>
-            <div class="confirm_password_form_text">새로운 비밀번호 확인</div>
-            <div class="input_container">
-                <input class="login_input" name="password2" type="password" required>
-            </div>
+        <div class="error-text">{{ error }}</div>
+        <div class="usermod-item">
+            <p>현재 비밀번호</p> 
+            <input name="origin_password" type="password" required>
         </div>
-        <button class="login_btn" type="submit">수정</button>
+        <div class="usermod-item">
+            <p>새로운 비밀번호</p> 
+            <input name="password1" type="password" required>
+        </div>
+        <div class="usermod-item">
+            <p>새로운 비밀번호 확인</p> 
+            <input name="password2" type="password" required>
+        </div>
+        <div class="usermod-subminbtn">
+            <button class="login_btn" type="submit">수정</button>
+        </div>
     </form>
     {% else %}
     <h2>로그인된 계정 없음</h2>

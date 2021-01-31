@@ -10,7 +10,9 @@
     <div class="login">
         <span class="login-title-i"><i class="far fa-user fa-3x"></i></span>
         <span class="login-title-span">Member Login</span>
-        {{ error }}
+        {% for message in messages %}
+            <div class="error-text">{{ message }}</div>
+        {% endfor %}
         <div class="login-form-div">
             <form method="post" action="" class="login-form">
                 {% csrf_token %}

@@ -34,6 +34,7 @@ body {
   background-color: rgb(247, 245, 245);
   overflow: auto;
 }
+
 /* 헤더 영역 */
 header {
   display: flex;

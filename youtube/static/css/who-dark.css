@@ -1,4 +1,4 @@
-@import url("base-light.css");
+@import url("base-dark.css");
 
 .wrap {
   position: fixed;
@@ -8,21 +8,24 @@
   height: 100%;
   width: 100%;
   overflow: auto;
+  background-color: var(--dark-mode1);
 }
 .account-title {
   text-align: center;
   font-weight: bold;
+  color: white;
 }
 .error-text {
   text-align: center;
-  color: red;
+  color: rgba(255, 0, 0, 0.8);
   font-size: small;
 }
 .userinfo {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--dark-mode5);
-  background-color: white;
+  border: 1px solid var(--dark-mode3);
+  background-color: var(--dark-mode2);
+  color: white;
   padding: 20px;
 }
 .userinfo-text {
@@ -38,11 +41,12 @@
   flex-basis: 40%;
 }
 .item-value {
-  color: var(--dark-mode4);
+  color: var(--dark-mode5);
   flex-basis: 60%;
 }
 .usermod-form {
-  background-color: white;
+  background-color: var(--dark-mode2);
+  color: white;
 }
 .usermod-item {
   display: flex;
@@ -53,7 +57,8 @@
 }
 .usermod-item > input[type="text"],
 input[type="password"] {
-  border: 1px solid var(--dark-mode5);
+  border: 1px solid var(--dark-mode4);
+  color: var(--dark-mode5);
 }
 .usermod-subminbtn {
   text-align: center;
@@ -91,8 +96,6 @@ input[type="password"] {
   }
   .accountset {
     text-align: center;
-  }
-  .usermod-subminbtn {
   }
   .usermod-subminbtn > button[type="submit"] {
     background-color: #4853d3;
@@ -158,16 +161,9 @@ input[type="password"] {
     text-align: end;
   }
   .usermod-subminbtn > button[type="submit"] {
-    background-color: #4853d3;
-    color: white;
     padding: 6px 10px;
-    border: none;
     border-radius: 4px;
-    cursor: pointer;
     font-size: medium;
-  }
-  .usermod-subminbtn > button[type="submit"]:hover {
-    background-color: #3841a5;
   }
   .accountset > button {
     padding: 6px 10px;

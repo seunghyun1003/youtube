@@ -40,13 +40,12 @@
     <div class="userinfo">
         <div class="userinfo-text">계정 설정</div>
         <div class="accountset">
-            <button onClick="location.href='{% url 'youtube:account_de' %}'">계정 탈퇴</button>
+            <button onclick="return confirm('정말로 계정을 삭제하시겠습니까?')"><a href="{% url 'youtube:account_de' %}">계정 탈퇴</a></button>
         </div>
-    </div>
         
     </div>
     {% else %}
-    <h2 class="loginsuc">No user logged in.</h2>
+    <div class="account-title">로그인된 계정 없음</div>
     {% endif %}
 </div>
 {% endblock content %}

@@ -56,7 +56,7 @@ function loadTheme(){
         }
     } else if(theme_name == 'whotheme'){
         if (currentTheme == "dark") {
-            theme.setAttribute('href', "static/css/who-light.css");
+            theme.setAttribute('href', "static/css/who-dark.css");
             console.log("내 계정 테마 : 다크");
         } else{
             theme.setAttribute('href', "static/css/who-light.css");

@@ -9,6 +9,15 @@
   margin: 0;
   overflow: auto;
 }
+.wrap2::-webkit-scrollbar {
+  width: 8px;
+}
+.wrap2::-webkit-scrollbar-thumb {
+  background-color: var(--dark-mode3);
+}
+.wrap2::-webkit-scrollbar-track {
+  background-color: var(--dark-mode5);
+}
 .mychannel_info {
   display: flex;
   flex-direction: column;
@@ -47,16 +56,6 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.05);
-  overflow: auto;
-}
-.tabcontent::-webkit-scrollbar {
-  width: 8px;
-}
-.tabcontent::-webkit-scrollbar-thumb {
-  background-color: var(--dark-mode3);
-}
-.tabcontent::-webkit-scrollbar-track {
-  background-color: var(--dark-mode5);
 }
 .tabcontent-span {
   font-size: large;
