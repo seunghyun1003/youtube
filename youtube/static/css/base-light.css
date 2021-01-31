@@ -186,6 +186,9 @@ ul li button {
   .logo i {
     font-size: x-large;
   }
+  .logo {
+    max-width: 400px;
+  }
   .nav i {
     font-size: x-large;
   }
