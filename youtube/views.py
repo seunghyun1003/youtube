@@ -42,7 +42,11 @@ def signin(request):
             login(request, user)
             return redirect('youtube:video_list')
         else:
-            messages.error(request,'로그인 실패')
+            username_qs = User.objects.filter(username=username)
+            if username_qs.exists():
+                messages.error(request,'비밀번호를 확인해주세요.')
+            else:
+                messages.error(request,'계정이 존재하지 않습니다.')
             return redirect('youtube:login')
     else:
         form = LoginForm()
