@@ -36,6 +36,21 @@
   color: var(--dark-mode4);
   flex-basis: 60%;
 }
+.usermod-form {
+  background-color: white;
+}
+.usermod-item {
+  display: flex;
+  width: 100%;
+}
+.usermod-item > p {
+  font-weight: bold;
+  flex-basis: 40%;
+}
+.usermod-item > input[type="text"] {
+  flex-basis: 60%;
+  border: 1px solid var(--dark-mode5);
+}
 @media all and (min-width: 320px) {
   .account-title {
     font-size: large;
@@ -47,6 +62,19 @@
   .userinfo-text {
     font-size: medium;
     padding-bottom: 30px;
+  }
+  .usermod-form {
+    margin: 30px 3%;
+    padding: 20px;
+  }
+  .usermod-item {
+    padding: 10px 0;
+  }
+  .usermod-item > p {
+    font-size: medium;
+  }
+  .usermod-item > input[type="text"] {
+    padding: 4px;
   }
 }
 
@@ -61,6 +89,35 @@
   .userinfo-text {
     font-size: large;
     padding-bottom: 30px;
+  }
+  .usermod-form {
+    margin: 30px 5%;
+    padding: 30px;
+  }
+  .usermod-item {
+    padding-bottom: 20px;
+  }
+  .usermod-item > p {
+    font-size: large;
+  }
+  .usermod-item > input[type="text"] {
+    padding: 6px;
+    font-size: large;
+  }
+  .usermod-subminbtn {
+    text-align: center;
+  }
+  .usermod-subminbtn > button[type="submit"] {
+    background-color: #4853d3;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: medium;
+  }
+  .usermod-subminbtn > button[type="submit"]:hover {
+    background-color: #3841a5;
   }
 }
 

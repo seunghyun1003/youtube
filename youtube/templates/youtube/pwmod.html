@@ -9,9 +9,9 @@
 <div class="wrap">
     
     {% if user.is_active %} 
-    <h2 class="modtitle">비밀번호 수정</h2>
-    {{ error }}
-    <form method="POST" action="{% url 'youtube:pw_mod' %}">
+    <div class="account-title">비밀번호 수정</div>
+    {{ context }}
+    <form method="POST" action="{% url 'youtube:pw_mod' %}" class="usermod-form">
         {% csrf_token %}
 
         <div class="login_input_container">

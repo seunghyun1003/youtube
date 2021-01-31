@@ -17,7 +17,6 @@ User = get_user_model()
 
 def signup(request):  
     if request.method == "POST":
-        error={}
         form = UserForm(request.POST)
         if form.is_valid():
             new_user = User.objects.create_user(**form.cleaned_data)
@@ -28,8 +27,7 @@ def signup(request):
         return render(request, 'youtube/signup.html', {'form': form})
 
     return render(request, 'youtube/signup.html', {
-        'form': form,
-        'error': 'error'
+        'form': form
         })
     
 def signin(request):
@@ -60,17 +58,27 @@ def who(request):
         })
     return render(request, 'youtube/who.html')
 
+
 def account_mod(request):
+    context= {}
     if request.method == "POST":
         user = request.user
-        user.email = request.POST.get('email')
-        user.username = request.POST.get('username')
-        user.password = request.POST.get('password')
-        user.save()
-        return redirect('youtube:who')
+        username = request.POST.get('email')
+        email = request.POST.get('username')
+        
+        if User.objects.filter(username__iexact=username).exists():
+            context.update({'error':"사용 불가능한 이름입니다."})
+        elif User.objects.filter(email__iexact=email).exists():
+            context.update({'error':"사용 불가능한 이메일입니다."})
+        else:
+            user.email = username
+            user.username = email
+            user.save()
+            return redirect('youtube:account_mod')
+            context.update({'error':"사용 가능"})
 
     else:
-        return render(request, 'youtube/accountmod.html')
+        return render(request, 'youtube/accountmod.html',context)
 
 from django.contrib.auth.hashers import check_password
 
