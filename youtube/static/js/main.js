@@ -54,6 +54,14 @@ function loadTheme(){
             theme.setAttribute('href', "static/css/login_signup-light.css");
             console.log("로그인  테마 : 라이트");
         }
+    } else if(theme_name == 'whotheme'){
+        if (currentTheme == "dark") {
+            theme.setAttribute('href', "static/css/who-light.css");
+            console.log("내 계정 테마 : 다크");
+        } else{
+            theme.setAttribute('href', "static/css/who-light.css");
+            console.log("내 계정 테마 : 라이트");
+        }
     }
 }
 

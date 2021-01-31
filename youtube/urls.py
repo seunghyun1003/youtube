@@ -12,6 +12,7 @@ urlpatterns = [
     path('logout', views.signout, name='logout'),
     path('accountinfo', views.who, name='who'),
     path('accountmod', views.account_mod, name='account_mod'),
+    path('pwmod', views.pw_mod, name='pw_mod'),
     path('accountdel', views.account_de, name='account_de'),
     
     path('mychannel', views.video_upload, name='video_upload'),

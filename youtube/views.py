@@ -49,7 +49,7 @@ def signin(request):
 
 def signout(request):
     logout(request)
-    return redirect('youtube:video_list')
+    return redirect('youtube:login')
 
 def who(request):
     user_pk = request.session.get('user') #login함수에서 추가한 request.session['user'] = user.id 
@@ -71,6 +71,31 @@ def account_mod(request):
 
     else:
         return render(request, 'youtube/accountmod.html')
+
+from django.contrib.auth.hashers import check_password
+
+def pw_mod(request):
+    context= {}
+    if request.method == "POST":
+        current_password = request.POST.get("origin_password")
+        user = request.user
+        if check_password(current_password,user.password):
+            new_password = request.POST.get("password1")
+            password_confirm = request.POST.get("password2")
+            if new_password == password_confirm:
+                if new_password == current_password:
+                    context.update({'error':"새로운 비밀번호가 현재 비밀번호와 같습니다. 다른 비밀번호로 입력하세요."})
+                else:
+                    user.set_password(new_password)
+                    user.save()
+                    login(request,user)
+                    return redirect('youtube:who')
+            else:
+                context.update({'error':"새로운 비밀번호를 다시 확인해주세요."})
+        else:
+            context.update({'error':"현재 비밀번호가 일치하지 않습니다."})
+
+    return render(request, "youtube/pwmod.html",context)
 
 def account_de(request):
     user = request.user

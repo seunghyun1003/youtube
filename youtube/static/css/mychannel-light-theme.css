@@ -58,6 +58,12 @@
 .tabcontent::-webkit-scrollbar-track {
   background-color: var(--dark-mode5);
 }
+.tabcontent-span {
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 50px;
+}
 .updateform {
   display: flex;
   height: 100%;
@@ -267,6 +273,9 @@ video {
   .my_Name {
     padding-top: 0;
     font-size: 16px;
+  }
+  .tabcontent-span {
+    font-size: x-large;
   }
   .home-2 {
     display: flex;

@@ -50,7 +50,7 @@
                 </ul>
                 {% if user.is_authenticated %}
                 <ul>
-                    <li style="padding-bottom: 10px;"><a href="/accountinfo">로그인한 계정 정보</a></li>
+                    <li style="padding-bottom: 10px;"><a href="/accountinfo">내 정보</a></li>
                     <li><a href="{% url 'youtube:logout' %}">로그아웃</a></li>
                 </ul>
                 {% else %}

@@ -1,0 +1,93 @@
+@import url("base-light.css");
+
+.wrap {
+  position: fixed;
+  top: 55px;
+  left: 0;
+  background-color: inherit;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+.account-title {
+  text-align: center;
+  font-weight: bold;
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--dark-mode5);
+  background-color: white;
+  padding: 20px;
+}
+.userinfo-text {
+  font-weight: bold;
+}
+.userinfo-item {
+  display: flex;
+  padding: 10px 0;
+  flex-wrap: wrap;
+}
+.item {
+  font-weight: bold;
+  flex-basis: 40%;
+}
+.item-value {
+  color: var(--dark-mode4);
+  flex-basis: 60%;
+}
+@media all and (min-width: 320px) {
+  .account-title {
+    font-size: large;
+    margin-top: 10px;
+  }
+  .userinfo {
+    margin: 30px 2%;
+  }
+  .userinfo-text {
+    font-size: medium;
+    padding-bottom: 30px;
+  }
+}
+
+@media all and (min-width: 768px) {
+  .account-title {
+    font-size: x-large;
+    margin: 30px;
+  }
+  .userinfo {
+    margin: 30px 5%;
+  }
+  .userinfo-text {
+    font-size: large;
+    padding-bottom: 30px;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .account-title {
+    font-size: xx-large;
+    margin: 30px;
+  }
+}
+
+@media all and (min-width: 1500px) {
+  .menu .menu_box {
+    position: fixed;
+    width: 250px;
+  }
+  #menu_btn {
+    display: none;
+  }
+  .logo {
+    position: fixed;
+    left: 2%;
+  }
+  .logo-span {
+    font-size: x-large;
+  }
+  .wrap {
+    margin-left: 250px;
+    width: 87%;
+  }
+}

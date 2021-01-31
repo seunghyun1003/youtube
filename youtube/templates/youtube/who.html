@@ -2,34 +2,48 @@
 {% load static %}
 
 {% block extrahead %}
-    <link rel="stylesheet" id="maintheme"  class="theme-link"/>
+    <link rel="stylesheet" id="whotheme"  class="theme-link"/>
 {% endblock %}
 
 {% block content %}
-<div class="wrap" style="position: fixed; top: 55px; left:0px;">
+<div class="wrap">
     
     {% if user.is_active %} 
-    <h2 class="accounttitle">계정</h2>
+    <div class="account-title">내 정보</div>
     <div class="userinfo">
+        <div class="userinfo-text"> 계정 이름 및 연락처 정보</div>
         <div class="userinfo-item">
-            <p>"email"</p> 
-            <p>{{ user.email }}</p>
+            <div class="item">사용자 이름</div> 
+            <div class="item-value">{{ user.username }}</div>
         </div>
         <div class="userinfo-item">
-            <p>"UserName"</p> 
-            <p>{{ user.username }}</p>
+            <div class="item">이메일</div> 
+            <div class="item-value">{{ user.email }}</div>
         </div>
-        <div class="userinfo-item">
-            <p>"last login"</p> 
-            <p>{{ user.last_login }}</p>
+        <div class="accountset">
+            <button onClick="location.href='{% url 'youtube:account_mod' %}'">계정 수정</button>
         </div>
     </div>
-    <div class="accountset">
-        <a href="{% url 'youtube:account_mod' %}">계정 수정</a>
-        <a href="{% url 'youtube:account_de' %}">계정 탈퇴</a>
+    <div class="userinfo">
+        <div class="userinfo-text"> 로그인 정보</div>
+        <div class="userinfo-item">
+            <div class="item">최근 로그인</div> 
+            <div class="item-value">{{ user.last_login  }}</div>
+        </div>
     </div>
-    <div style="position: fixed; bottom: 50px;">
-        <a href="{% url 'youtube:logout' %}">Sign Out</a>
+    <div class="userinfo">
+        <div class="userinfo-text">비밀번호</div>
+        <div class="accountset">
+            <button onClick="location.href='{% url 'youtube:pw_mod' %}'">비밀번호 수정</button>
+        </div>
+    </div>
+    <div class="userinfo">
+        <div class="userinfo-text">계정 설정</div>
+        <div class="accountset">
+            <button onClick="location.href='{% url 'youtube:account_de' %}'">계정 탈퇴</button>
+        </div>
+    </div>
+        
     </div>
     {% else %}
     <h2 class="loginsuc">No user logged in.</h2>
