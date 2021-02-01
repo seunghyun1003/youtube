@@ -87,55 +87,19 @@ function ToggleSidebar() {
     } 
 }
 
-function Sub() {
-    var sub_btn = document.getElementById("sub_btn");
-    var alarm_btn = document.getElementById("alarm_btn");
-
-    if(sub_btn.innerText === '구독') {
-        sub_btn.innerText = "구독 중";
-        sub_btn.style.backgroundColor = 'var(--dark-mode5)';
-        sub_btn.style.color='black';
-        alarm_btn.style.display="inline-block"
-    }else {
-        sub_btn.innerText = '구독';
-        sub_btn.style.backgroundColor='var(--red)';
-        sub_btn.style.color = 'var(--dark-mode5)';
-        alarm_btn.style.display="none"
-    } 
-}
-
-function Alarm() {
-    var alarm_btn = document.getElementById("alarm_btn");
-
-    if(alarm_btn.style.color=="var(--dark-mode4)"){
-        alarm_btn.style.color='var(--red)';
-    }else{
-        alarm_btn.style.color="var(--dark-mode4)";
-    }
-}
-
-function CloseSearch(){
-    var search_mobile = document.getElementById("search_mobile");
-    var back_btn = document.getElementById("back_btn");
-
-    search_mobile.id="search";
-    back_btn.style.display = 'none';
-}
-
 function DropDownSetting() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 
-function showTextFile() {
-    const selectedFiles = document.querySelector('.upload-video_input').files;
-    const list = document.createElement('ul');
-    document.querySelector('.file_list').appendChild(list);
+function VideoDesShow(){
+    var des = document.getElementById("video_des");
+    var des_showbtn = document.getElementById("videodes_showbtn");
 
-    for(const file of selectedFiles) {
-        const listItem = document.createElement('li');
-        const summary = document.createElement('div');
-        summary.textContent = file.webkitRelativePath;
-        listItem.appendChild(summary);
-        list.appendChild(listItem);
-    }   
+    if(des.style.display == "none"){
+        des.style.display = "block"
+        des_showbtn.style.display = "none"
+    } else{
+        des.style.display = "none"
+        des_showbtn.style.display = "inline"
+    }
 }

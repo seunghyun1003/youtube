@@ -200,28 +200,7 @@ video {
 .user_detail {
   display: flex;
   flex-direction: column;
-  padding-left: 0.5em;
   width: 100%;
-}
-.user_Box {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 24px;
-}
-.subbtnAndAlarm {
-  display: flex;
-  margin-right: 3%;
-}
-.sub_btn {
-  width: 5.5em;
-  height: 2.8em;
-  color: rgb(245, 245, 245);
-  background-color: rgb(211, 17, 17);
-  border-radius: 2px;
-  margin-right: 20px;
-}
-.video_des {
-  padding: 0 2%;
 }
 #alarm_btn {
   display: none;
@@ -239,9 +218,7 @@ video {
   .video_btn,
   .video_btn_x,
   .user_Name,
-  .user_NumOfSub,
-  .video_des,
-  .sub_btn {
+  .video_des {
     font-size: 14px;
   }
   .comment-form > textarea {
@@ -268,9 +245,7 @@ video {
     font-size: 16px;
   }
   .user_Name,
-  .user_NumOfSub,
-  .video_des,
-  .sub_btn {
+  .video_des {
     font-size: 14px;
   }
 }
@@ -336,9 +311,7 @@ video {
   .video_btn,
   .video_btn_x,
   .user_Name,
-  .user_NumOfSub,
-  .video_des,
-  .sub_btn {
+  .video_des {
     font-size: 16px;
   }
 }

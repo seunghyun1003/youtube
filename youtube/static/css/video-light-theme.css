@@ -89,12 +89,7 @@
   justify-content: space-between;
 }
 .comment-list-user {
-  font-size: small;
   font-weight: bold;
-}
-.comment-list-date {
-  font-size: small;
-  font-weight: 200;
 }
 .comment-list-delete {
   align-self: flex-end;
@@ -164,6 +159,9 @@ video {
   justify-content: space-between;
   align-items: center;
 }
+#video_des {
+  display: none;
+}
 .video_views {
   color: gray;
 }
@@ -199,28 +197,7 @@ video {
 .user_detail {
   display: flex;
   flex-direction: column;
-  padding-left: 0.5em;
   width: 100%;
-}
-.user_Box {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 24px;
-}
-.subbtnAndAlarm {
-  display: flex;
-  margin-right: 3%;
-}
-.sub_btn {
-  width: 5.5em;
-  height: 2.8em;
-  color: rgb(245, 245, 245);
-  background-color: rgb(211, 17, 17);
-  border-radius: 2px;
-  margin-right: 20px;
-}
-.video_des {
-  padding: 0 2%;
 }
 #alarm_btn {
   display: none;
@@ -232,16 +209,15 @@ video {
     flex-direction: column;
   }
   .video_title {
-    font-size: 16px;
+    font-size: large;
+    padding-bottom: 10px;
   }
   .video_views,
   .video_btn,
   .video_btn_x,
   .user_Name,
-  .user_NumOfSub,
-  .video_des,
-  .sub_btn {
-    font-size: 14px;
+  .video_des {
+    font-size: medium;
   }
   .comment-form > textarea {
     font-size: large;
@@ -259,18 +235,19 @@ video {
 }
 @media all and (min-width: 600px) {
   .video_title {
-    font-size: 18px;
+    font-size: x-large;
   }
   .video_views,
   .video_btn,
   .video_btn_x {
-    font-size: 16px;
+    font-size: large;
   }
   .user_Name,
-  .user_NumOfSub,
-  .video_des,
-  .sub_btn {
-    font-size: 14px;
+  .video_des {
+    font-size: large;
+  }
+  .comment-list-body {
+    font-size: large;
   }
 }
 
@@ -327,18 +304,6 @@ video {
   }
   .comment_section::-webkit-scrollbar-track {
     background-color: white;
-  }
-  .video_title {
-    font-size: 20px;
-  }
-  .video_views,
-  .video_btn,
-  .video_btn_x,
-  .user_Name,
-  .user_NumOfSub,
-  .video_des,
-  .sub_btn {
-    font-size: 16px;
   }
 }
 

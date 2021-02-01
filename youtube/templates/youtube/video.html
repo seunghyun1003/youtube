@@ -18,11 +18,10 @@
                 </div>
                 <div class="video-info">
                     <div class="video_title">
-                        제목 : {{ video.title }}
+                        {{ video.title }}
+                        <button id="videodes_showbtn" title="동영상 설명" onclick="VideoDesShow()"><i class="fas fa-plus"></i></button>
                     </div>
-                    <div class="video_uploaded_at">
-                        업로드 날짜 : {{ video.uploaded_at }}
-                    </div>
+                    <div class="video_des" id="video_des">{{ video.des }}</div>
                     <div class="video_information">
                         <span class="video_views" title="조회 수">조회수 : {{ video.hits }}회</span>
                         <div class="video_likehateicons">
@@ -49,17 +48,11 @@
                     <img class="user_img" src="" alt=""></img>
                 </div>
                 <div class="video_detail">
-                    <div class="user_Box">
-                        <div class="user_detail">
-                            <span class="user_Name" title="유저 네임">업로더 : {{ video.writer }}</span>
-                        </div>
-                        <div class="subbtnAndAlarm">
-                            <button id="sub_btn" class="sub_btn" onclick="Sub()">구독</button>
-                            <button id="alarm_btn" title="알림받기" onclick="Alarm()"><i class="far fa-bell"></i></button>
-                        </div>
+                    <div class="user_detail">
+                        <span class="user_Name" title="유저 네임">업로더 : {{ video.writer }}</span>
                     </div>
-                    <div class="video_des">
-                        {{ video.des }}
+                    <div class="video_uploaded_at">
+                        업로드 날짜 : {{ video.uploaded_at }}
                     </div>
                 </div>
             </section>
@@ -94,7 +87,7 @@
                         <div class="comment-list-delete">
                             <form action="{% url 'youtube:comment_delete' video.id comment.id %}" method="POST">
                                 {% csrf_token %}
-                                <input class="comment-list-delete-btn" type="submit" value="댓글 삭제" onclick="return confirm('댓글을 삭제하시겠습니까?')">
+                                <input class="comment-list-delete-btn" type="submit" value="삭제" onclick="return confirm('댓글을 삭제하시겠습니까?')">
                             </form>
                         </div>
                         {% endif %} 
