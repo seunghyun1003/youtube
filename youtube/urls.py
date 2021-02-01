@@ -23,6 +23,8 @@ urlpatterns = [
     path('edit<int:id>', views.video_update, name='video_update'),
     path('video<int:id>/comment/write', views.comment_write, name='comment_write'),
     path('video<int:video_id>/comment/<int:comment_id>/delete', views.comment_delete, name='comment_delete'),
+    path('like<int:id>', views.like_video, name="like_video"),
+    path('dislike<int:id>', views.dislike_video, name="dislike_video"),
 
     path('search', views.search, name='search'),
     path('searchresult', views.search_result, name='search_result'),

@@ -175,11 +175,17 @@ video {
 }
 .video_btn {
   padding: 5px 8px;
+  color: #4853d3;
+  border: none;
+}
+.video_btn_x {
+  padding: 5px 8px;
   color: gray;
   border: none;
 }
-.video_btn :hover {
-  color: blue;
+.video_btn > i,
+.video_btn_x > i {
+  padding-right: 10px;
 }
 
 .video_user {
@@ -231,6 +237,7 @@ video {
   }
   .video_views,
   .video_btn,
+  .video_btn_x,
   .user_Name,
   .user_NumOfSub,
   .video_des,
@@ -256,7 +263,8 @@ video {
     font-size: 18px;
   }
   .video_views,
-  .video_btn {
+  .video_btn,
+  .video_btn_x {
     font-size: 16px;
   }
   .user_Name,
@@ -326,6 +334,7 @@ video {
   }
   .video_views,
   .video_btn,
+  .video_btn_x,
   .user_Name,
   .user_NumOfSub,
   .video_des,

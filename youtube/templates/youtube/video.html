@@ -26,9 +26,20 @@
                     <div class="video_information">
                         <span class="video_views" title="조회 수">조회수 : {{ video.hits }}회</span>
                         <div class="video_likehateicons">
-                            <li><button class="video_btn" title="이 동영상이 마음에 듭니다."><i class="fas fa-thumbs-up fa-md"></i> 1만</button></li> 
-                            <li><button class="video_btn" title="이 동영상이 마음에 들지 않습니다."><i class="fas fa-thumbs-down fa-md"></i> 2천</button></li> 
-                            <li><button class="video_btn" title="공유"><i class="fas fa-share fa-md"></i> 공유</button></li> 
+                            <a href="{% url 'youtube:like_video' video.id %}">
+                                {% if user in video.like_users.all %}
+                                <li><button class="video_btn" title="좋아요 취소"><i class="fas fa-thumbs-up"></i>{{ video.like_users.count}}</button></li> 
+                                {% else %}
+                                <li><button class="video_btn_x" title="좋아요"><i class="far fa-thumbs-up"></i>{{ video.like_users.count}}</button></li> 
+                                {% endif %}
+                            </a>
+                            <a href="{% url 'youtube:dislike_video' video.id %}">
+                                {% if user in video.dislike_users.all %}
+                                <li><button class="video_btn" title="싫어요 취소"><i class="fas fa-thumbs-down"></i>{{ video.dislike_users.count}}</button></li> 
+                                {% else %}
+                                <li><button class="video_btn_x" title="싫어요"><i class="far fa-thumbs-down"></i>{{ video.dislike_users.count}}</button></li> 
+                                {% endif %}
+                            </a>
                         </div>
                     </div>  
                 </div>

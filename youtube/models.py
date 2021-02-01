@@ -10,6 +10,8 @@ class Video(models.Model):
     uploaded_at = models.DateTimeField(default=timezone.now)
     
     hits = models.PositiveIntegerField(default = 0)
+    like_users = models.ManyToManyField(get_user_model(), related_name="like_videos", blank=True)
+    dislike_users = models.ManyToManyField(get_user_model(), related_name="dislike_videos", blank=True)
 
     class Meta:
         ordering=('-uploaded_at',)
@@ -30,3 +32,5 @@ class Comment(models.Model):
 
     class Meta:
         ordering=('-comment_date',)
+
+

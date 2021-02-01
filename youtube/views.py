@@ -190,6 +190,35 @@ def detail_page(request, id):
             'video': video
         })
 
+#좋아요 불러오기
+def like_video(request, id):
+    video = get_object_or_404(Video, pk=id)
+    user = request.user
+
+    if user in video.like_users.all():
+        video.like_users.remove(request.user)
+    else:
+        if user in video.dislike_users.all():
+            video.dislike_users.remove(request.user)
+        video.like_users.add(request.user)
+
+    return redirect('youtube:detail',id)
+
+#싫어요 불러오기
+def dislike_video(request, id):
+    video = get_object_or_404(Video, pk=id)
+    user = request.user
+
+    if user in video.dislike_users.all():
+        video.dislike_users.remove(request.user)
+    else:
+        if user in video.like_users.all():
+            video.like_users.remove(request.user)
+        video.dislike_users.add(request.user)
+
+    return redirect('youtube:detail',id)
+
+
 #인기순으로 비디오 정렬
 def top(request):
     videos = Video.objects.all().order_by('-hits')
@@ -199,6 +228,7 @@ def top(request):
 
 from .models import Comment
 
+#댓글 쓰기
 def comment_write(request, id):
     if request.method == "POST":
         video = get_object_or_404(Video,pk=id)
@@ -232,6 +262,7 @@ from django.db.models import Q
 def search(request):
     return render(request, 'youtube/search.html')
 
+#검색 결과
 def search_result(request):
     videos = Video.objects.order_by('-hits').all()
     query = None
@@ -246,4 +277,5 @@ def search_result(request):
             'query':query,
             'videos':videos
         })
+
 
