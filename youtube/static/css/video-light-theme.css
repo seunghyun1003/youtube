@@ -64,7 +64,6 @@
   border-bottom: 1px solid lightgray;
 }
 .comment-list-body {
-  font-size: small;
   /* 한 줄 자르기 */
   display: inline-block;
   width: 100%;
@@ -198,10 +197,6 @@ video {
   display: flex;
   flex-direction: column;
   width: 100%;
-}
-#alarm_btn {
-  display: none;
-  color: var(--dark-mode4);
 }
 @media all and (min-width: 320px) {
   .video-flex {
