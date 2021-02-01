@@ -142,6 +142,23 @@ def video_list_mych(request):
         'videos' : videos
     })
 
+#사용자별 좋아요, 싫어요 선택한 비디오 리스트
+def my_likelist(request):
+    user = request.user
+    likevideos = Video.objects.filter(like_users = user).order_by('-uploaded_at')
+    dislikevideos = Video.objects.filter(dislike_users = user).order_by('-uploaded_at')
+    return render(request, 'youtube/likelist.html',{
+        'likevideos' : likevideos,
+        'dislikevideos' : dislikevideos
+    })
+
+#사용자별 댓글 리스트
+def my_commentlist(request):
+    user = request.user
+    my_comments = Comment.objects.filter(commenter = user).order_by('-comment_date')
+    return render(request, 'youtube/commentlist.html',{
+        'my_comments' : my_comments
+    })
 #비디오 업로드
 def video_upload(request):
     if request.method == "POST":
@@ -255,6 +272,13 @@ def comment_delete(request, video_id, comment_id):
     })
 
 
+#내 댓글 삭제
+def my_comment_delete(request, video_id, comment_id):
+    video = get_object_or_404(Video,pk=video_id)
+    comment = get_object_or_404(Comment, id=comment_id)
+    if comment.commenter == request.user:
+        comment.delete()
+        return redirect('youtube:my_commentlist')
 
 from .models import Video
 from django.db.models import Q

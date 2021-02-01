@@ -22,9 +22,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 70%;
-  height: 15%;
-  padding: 5% 15% 0 15%;
 }
 .my_imgBox {
   display: flex;
@@ -60,7 +57,6 @@
 .tabcontent-span {
   font-size: large;
   text-align: center;
-  padding-top: 50px;
 }
 .updateform {
   display: flex;
@@ -104,6 +100,11 @@ video {
     padding: 8px 6px;
     font-size: 14px;
   }
+  .mychannel_info {
+    width: 90%;
+    height: 15%;
+    padding: 5% 5% 0 5%;
+  }
   .my_Name {
     width: 100%;
     padding-top: 18px;
@@ -120,6 +121,9 @@ video {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 10px;
+  }
+  .tabcontent-span {
+    padding-top: 24px;
   }
   input[type="text"],
   textarea {
@@ -173,7 +177,7 @@ video {
   }
   td {
     padding: 10px 3px;
-    text-align: left;
+    text-align: right;
   }
   td > a {
     padding: 0;
@@ -185,7 +189,7 @@ video {
   .list-td1 {
   }
   .list-td2 {
-    margin-right: 10px;
+    width: 50px;
   }
   .update-link {
     color: white;
@@ -234,6 +238,9 @@ video {
     width: 96%;
     padding: 0 2%;
   }
+  .list-td2 {
+    width: 100px;
+  }
   .updateform {
     flex-direction: column;
     width: 86%;
@@ -261,8 +268,18 @@ video {
     height: 100%;
     background-color: black;
   }
+  .likelist-title {
+    font-size: large;
+    padding: 24px 0;
+    text-align: center;
+  }
 }
 @media all and (min-width: 768px) {
+  .mychannel_info {
+    width: 70%;
+    height: 15%;
+    padding: 5% 15% 0 15%;
+  }
   .tab button {
     padding: 16px 20px;
     font-size: 16px;
@@ -282,6 +299,10 @@ video {
   .upload-form {
     padding: 30px;
     width: 80%;
+  }
+  .tabcontent-span {
+    padding-top: 30px;
+    font-size: x-large;
   }
   button[type="submit"],
   .update-btn {
@@ -303,6 +324,10 @@ video {
     font-size: medium;
     padding-top: 0;
   }
+  .likelist-title {
+    font-size: x-large;
+    padding: 30px 0;
+  }
 }
 
 @media all and (min-width: 960px) {
@@ -321,8 +346,8 @@ video {
   }
   #filelist {
     display: block;
-    width: 70%;
-    padding: 0 15%;
+    width: 60%;
+    padding: 0 20%;
   }
   table {
     margin: 0 auto;
@@ -378,5 +403,11 @@ video {
   }
   .flex-form {
     flex-basis: 40%;
+  }
+  .likelist-title {
+    padding: 50px 0;
+  }
+  .tabcontent-span {
+    padding-top: 50px;
   }
 }

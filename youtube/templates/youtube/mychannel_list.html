@@ -19,11 +19,14 @@
         <div class="tab" id="tab">
             <button class="tabbtn" onclick="window.location.href = 'mychannel'">업로드</button>
             <button class="tabbtn active" onclick="window.location.href = 'list'">파일목록</button>
+            <button class="tabbtn" onclick="window.location.href = 'likelist'">내 취향</button>
+            <button class="tabbtn" onclick="window.location.href = 'commentlist'">내 댓글</button>
         </div>
     </div>
     <div id="filelist" class="tabcontent" style="display:block">
         {% if videos %}
         <table class="list-table">
+            <div class="tabcontent-span">업로드한 동영상 {{videos.count}}개</div>
             <tbody>
                 {% for video in videos %}
                 <tr>

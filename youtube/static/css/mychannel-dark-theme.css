@@ -23,9 +23,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 70%;
-  height: 15%;
-  padding: 5% 15% 0 15%;
 }
 .my_imgBox {
   display: flex;
@@ -66,7 +63,6 @@
 .tabcontent-span {
   font-size: large;
   text-align: center;
-  padding-top: 50px;
   color: white;
 }
 .updateform {
@@ -109,6 +105,11 @@ video {
   -webkit-box-orient: vertical;
 }
 @media all and (min-width: 320px) {
+  .mychannel_info {
+    width: 90%;
+    height: 15%;
+    padding: 5% 5% 0 5%;
+  }
   .tabbtn {
     padding: 8px 6px;
     font-size: 14px;
@@ -118,6 +119,9 @@ video {
     padding-top: 18px;
     text-align: start;
     font-size: 14px;
+  }
+  .tabcontent-span {
+    padding-top: 24px;
   }
   .home-2 {
     display: flex;
@@ -184,7 +188,8 @@ video {
   }
   td {
     padding: 10px 3px;
-    text-align: left;
+    text-align: right;
+    color: white;
   }
   td > a {
     padding: 0;
@@ -196,7 +201,7 @@ video {
   .list-td1 {
   }
   .list-td2 {
-    margin-right: 10px;
+    width: 50px;
   }
   .update-link {
     color: white;
@@ -248,6 +253,9 @@ video {
     padding: 0 2%;
     border-top: 1px solid rgba(255, 255, 255, 0.143);
   }
+  .list-td2 {
+    width: 100px;
+  }
   .updateform {
     flex-direction: column;
     width: 86%;
@@ -275,8 +283,19 @@ video {
     height: 100%;
     background-color: black;
   }
+  .likelist-title {
+    font-size: large;
+    padding: 24px 0;
+    text-align: center;
+    color: white;
+  }
 }
 @media all and (min-width: 768px) {
+  .mychannel_info {
+    width: 70%;
+    height: 15%;
+    padding: 5% 15% 0 15%;
+  }
   .tab button {
     padding: 16px 20px;
     font-size: 16px;
@@ -287,6 +306,7 @@ video {
     font-size: 16px;
   }
   .tabcontent-span {
+    padding-top: 30px;
     font-size: x-large;
   }
   .home-2 {
@@ -317,6 +337,10 @@ video {
     font-size: medium;
     padding-top: 0;
   }
+  .likelist-title {
+    font-size: x-large;
+    padding: 30px 0;
+  }
 }
 
 @media all and (min-width: 960px) {
@@ -335,8 +359,11 @@ video {
   }
   #filelist {
     display: block;
-    width: 70%;
-    padding: 0 15%;
+    width: 60%;
+    padding: 0 20%;
+  }
+  .tabcontent-span {
+    padding-top: 50px;
   }
   table {
     margin: 0 auto;
@@ -392,5 +419,8 @@ video {
   }
   .flex-form {
     flex-basis: 40%;
+  }
+  .likelist-title {
+    padding: 50px 0;
   }
 }

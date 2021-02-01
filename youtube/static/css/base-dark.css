@@ -122,6 +122,11 @@ ul li button {
   padding: 4px 16px;
   font-size: 14px;
 }
+.dropdown-content ul li span:hover,
+ul li a:hover,
+ul li button:hover {
+  color: white;
+}
 .show {
   display: block;
 }

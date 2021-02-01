@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href=" {% static "css/mychannel-light-theme.css" %}" id="mychanneltheme"  class="theme-link"/>
+{% endblock %}
+
+{% block content %}
+<section class="wrap2">
+    <button id=reload_btn onclick="location.reload();"><i class="fas fa-redo-alt"></i></button>
+    <div class="mychannel_info" id="mychannel_info">
+        <div class="my_imgBox">
+            <div class="my_info">
+                {% if user.is_active %} 
+                <li><span id="user_Name">"{{ user.username }}"님</span></li>
+                {% endif %}
+            </div>
+        </div>
+        <div class="tab" id="tab">
+            <button class="tabbtn" onclick="window.location.href = 'mychannel'">업로드</button>
+            <button class="tabbtn" onclick="window.location.href = 'list'">파일목록</button>
+            <button class="tabbtn" onclick="window.location.href = 'likelist'">내 취향</button>
+            <button class="tabbtn active" onclick="window.location.href = 'commentlist'">내 댓글</button>
+        </div>
+    </div>
+    <div id="filelist" class="tabcontent" style="display:block">
+        {% if my_comments %}
+        <table class="list-table">
+            <div class="tabcontent-span">작성한 댓글 {{my_comments.count}}개</div>
+            <tbody>
+                <tr>
+                    {% for mycomment in my_comments %}
+                    <tr>
+                        <td class="list-td1">
+                            <a href="video{{mycomment.video.pk}}" class="channellist-title">동영상 제목 : {{ mycomment.video.title }}</a>
+                        </td>
+                        <td>
+                            <div>댓글 : {{ mycomment.comment_body }}</div>
+                        </td>
+                        <td class="list-td2">
+                            <form method="post" action="{% url 'youtube:my_comment_delete' mycomment.video.id mycomment.id %}" onclick="return confirm('댓글을 정말 삭제하시겠습니까?')">
+                                {% csrf_token %}
+                                <button type="submit">delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+        {% else %}
+        <div class="tabcontent-span">작성한 댓글 없음</div>
+        {% endif %}
+    </div>
+</section>
+{% endblock content %}
