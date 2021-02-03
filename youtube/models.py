@@ -12,6 +12,7 @@ class Video(models.Model):
     hits = models.PositiveIntegerField(default = 0)
     like_users = models.ManyToManyField(get_user_model(), related_name="like_videos", blank=True)
     dislike_users = models.ManyToManyField(get_user_model(), related_name="dislike_videos", blank=True)
+    save_users = models.ManyToManyField(get_user_model(), related_name="save_videos", blank=True)
 
     class Meta:
         ordering=('-uploaded_at',)

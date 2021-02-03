@@ -80,6 +80,12 @@
     padding-top: 10px;
     font-size: medium;
   }
+  .savelist-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    padding-top: 10px;
+  }
 }
 @media all and (min-width: 600px) {
   .video-flex {
@@ -102,6 +108,10 @@
     flex-basis: 32.33%;
     margin: 20px 0.5% 0;
   }
+  .savelist-title {
+    font-size: x-large;
+    padding-top: 30px;
+  }
 }
 
 @media all and (min-width: 1024px) {
@@ -111,6 +121,10 @@
   .video-item {
     flex-basis: 24%;
     margin: 20px 0.5% 0;
+  }
+  .savelist-title {
+    font-size: xx-large;
+    padding-top: 30px;
   }
 }
 

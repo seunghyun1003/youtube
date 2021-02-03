@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href=" {% static "css/main-light-theme.css" %}" id="maintheme"  class="theme-link"/>
+{% endblock %}
+
+{% block content %}
+<div class="wrap">
+    {% if savevideos %}
+    <div class="savelist-title">보관된 동영상 {{savevideos.count}}개</div>
+    <div class="video-flex">
+        {% for video in savevideos %}
+            <div class="video-item">
+                <a href="{% url 'youtube:detail' video.id %}">
+                <div class="video-div">
+                    <video class="video-player">
+                        <source src="{{video.file.url}}" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-info-div">
+                    <li class="video-info-title">{{ video.title }}</li>
+                    <div class="video-info">
+                        <li>{{ video.writer }}</li>
+                        <li>조회수 {{ video.hits }}회</li>
+                        <li>{{ video.uploaded_at }}</li>
+                    </div>
+                </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <div class="savelist-title">보관된 동영상 없음</div>
+    {% endif %}
+</div>
+{% endblock content %}

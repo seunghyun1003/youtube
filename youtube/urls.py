@@ -28,8 +28,10 @@ urlpatterns = [
     path('video<int:video_id>/mycomment/<int:comment_id>/delete', views.my_comment_delete, name='my_comment_delete'),
     path('like<int:id>', views.like_video, name="like_video"),
     path('dislike<int:id>', views.dislike_video, name="dislike_video"),
+    path('save<int:id>', views.save_video, name="save_video"),
 
     path('search', views.search, name='search'),
     path('searchresult', views.search_result, name='search_result'),
     path('top', views.top, name='top'),
+    path('savelist', views.savelist, name='savelist'),
 ]

@@ -235,6 +235,17 @@ def dislike_video(request, id):
 
     return redirect('youtube:detail',id)
 
+#동영상 저장여부 불러오기
+def save_video(request, id):
+    video = get_object_or_404(Video, pk=id)
+    user = request.user
+
+    if user in video.save_users.all():
+        video.save_users.remove(request.user)
+    else:
+        video.save_users.add(request.user)
+
+    return redirect('youtube:detail',id)
 
 #인기순으로 비디오 정렬
 def top(request):
@@ -242,6 +253,18 @@ def top(request):
     return render(request, 'youtube/top.html', {
         'videos' : videos
     })
+
+from .models import Comment
+
+#사용자별 동영상 보관함
+def savelist(request):
+    user = request.user
+    savevideos = Video.objects.filter(save_users = user).order_by('-uploaded_at')
+    return render(request, 'youtube/savelist.html',{
+        'savevideos' : savevideos
+    })
+
+
 
 from .models import Comment
 

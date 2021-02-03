@@ -24,7 +24,10 @@
             <nav class="menu_box" id="menu_box" onclick="ToggleSidebar()">
                 <ul id="menu_list">
                     <li><button onclick="window.location.href = '/top'">인기</button></li>
-                    <li><button onclick="window.location.href = ''">다른 메뉴</button></li>
+                    
+                    {% if user.is_authenticated %}
+                        <li><button onclick="window.location.href = '/savelist'">보관함</button></li>
+                    {% endif %}
                 </ul>
             </nav>
         </div> 

@@ -39,6 +39,13 @@
                                 <li><button class="video_btn_x" title="싫어요"><i class="far fa-thumbs-down"></i>{{ video.dislike_users.count}}</button></li> 
                                 {% endif %}
                             </a>
+                            <a href="{% url 'youtube:save_video' video.id %}">
+                                {% if user in video.save_users.all %}
+                                <li><button class="video_btn" title="보관함에 저장 취소"><i class="fas fa-bookmark"></i></button></li> 
+                                {% else %}
+                                <li><button class="video_btn_x" title="보관함에 저장"><i class="far fa-bookmark"></i></button></li> 
+                                {% endif %}
+                            </a>
                         </div>
                     </div>  
                 </div>
