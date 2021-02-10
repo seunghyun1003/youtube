@@ -27,7 +27,7 @@
 
 ## 4. 시연 동영상
 🧐아래 사진을 클릭면 유튜브 동영상으로 이동합니다.<br><br>
-[![캡처2](https://user-images.githubusercontent.com/58840682/107349380-8085d980-6b0b-11eb-877c-9a3488b8660f.PNG)](https://youtu.be/1YDD-q2O3js) 
+[![캡처2](https://user-images.githubusercontent.com/58840682/107349380-8085d980-6b0b-11eb-877c-9a3488b8660f.PNG)](https://www.youtube.com/watch?v=slHIeCxyuPU) 
 
 <br>
 <br>
