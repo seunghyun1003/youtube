@@ -1,4 +1,4 @@
-# SHTUBE : Youtube Clone Coding 
+# SHTUBE : Youtube Clone Coding  [![Tech Blog Badge](https://shields.io/badge/-TechBlog-orange)](https://jocoma.tistory.com/)
 동영상 플랫폼인 [YOUTUBE](https://www.youtube.com/)를 클론코딩한 사이트입니다.
 
 <br>
